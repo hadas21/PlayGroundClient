@@ -58,10 +58,10 @@ render () {
         <h3>Sign Up</h3>
         <Form onSubmit={this.onSignUp}>
           <Form.Group controlId='username'>
-            <Form.Label>username address</Form.Label>
+            <Form.Label>Username</Form.Label>
             <Form.Control
               required
-              type='username'
+              type='text'
               name='username'
               value={username}
               placeholder='Enter username'

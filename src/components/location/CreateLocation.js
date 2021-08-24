@@ -12,8 +12,10 @@ class CreateLocation extends Component {
     super(props)
 
     this.state = {
+
       location: '',
       description: ''
+
     }
   }
 
@@ -25,9 +27,10 @@ handleChange = (event) =>
 onCreateLocation = (event) => {
   event.preventDefault()
 
-  // const { history, setUser } = this.props
+  const { user } = this.props
+  const data = this.state
 
-  createLocation(this.state)
+  createLocation(data, user)
     .then((res) => console.log(res))
     .catch((err) => console.log(err))
   // .then(() =>
