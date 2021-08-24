@@ -10,7 +10,7 @@ The world is your playground.
 - As a signed in user, I would like to change my password.
 - As a signed in user I would like to add a location.
 - As a signed in user I would like to see all saved locations.
-- As a signed in user I would like to update a saved location.
+- As a signed in user I would like to update/delete a saved location.
 - As a signed in user I would like to add a friend by username.
 - As a signed in user I would like to see locations added by friends.
 - As a signed in user I would like to be able to sign out.
