@@ -12,7 +12,7 @@ class SignUp extends Component {
     super(props)
 
     this.state = {
-      email: '',
+      username: '',
       password: '',
       passwordConfirmation: ''
     }
@@ -40,7 +40,7 @@ onSignUp = (event) => {
     )
     .then(() => history.push('/'))
     .catch((error) => {
-      this.setState({ email: '', password: '', passwordConfirmation: '' })
+      this.setState({ username: '', password: '', passwordConfirmation: '' })
       msgAlert({
         heading: 'Sign Up Failed with error: ' + error.message,
         message: signUpFailure,
@@ -50,21 +50,21 @@ onSignUp = (event) => {
 }
 
 render () {
-  const { email, password, passwordConfirmation } = this.state
+  const { username, password, passwordConfirmation } = this.state
 
   return (
     <div className='row'>
       <div className='col-sm-10 col-md-8 mx-auto mt-5'>
         <h3>Sign Up</h3>
         <Form onSubmit={this.onSignUp}>
-          <Form.Group controlId='email'>
-            <Form.Label>Email address</Form.Label>
+          <Form.Group controlId='username'>
+            <Form.Label>username address</Form.Label>
             <Form.Control
               required
-              type='email'
-              name='email'
-              value={email}
-              placeholder='Enter email'
+              type='username'
+              name='username'
+              value={username}
+              placeholder='Enter username'
               onChange={this.handleChange}
             />
           </Form.Group>
