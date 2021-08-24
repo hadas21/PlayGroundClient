@@ -1,5 +1,5 @@
 {
-  "PlayGroundClient": "http://<git-name>.github.io/<repo-name>",
+  "PlayGroundClient": "http://ProjectPlayGroundLHA.github.io/PlayGroundClient",
   "name": "PlayGroundClient",
   "version": "0.1.0",
   "private": true,
