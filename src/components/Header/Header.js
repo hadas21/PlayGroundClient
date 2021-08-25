@@ -9,8 +9,9 @@ const authenticatedOptions = (
     </NavLink>
     <NavLink to='/sign-out' className='nav-link'>Sign Out
     </NavLink>
-    <NavLink to='/create-location' className='nav-link'>create
+    <NavLink to='/create-location' className='nav-link'>Create
     </NavLink>
+    <NavLink to='/locations' className='nav-link'>Locations</NavLink>
   </Fragment>
 )
 

@@ -11,6 +11,7 @@ import SignIn from './components/auth/SignIn'
 import SignOut from './components/auth/SignOut'
 import ChangePassword from './components/auth/ChangePassword'
 import CreateLocation from '../src/components/location/CreateLocation'
+import IndexLocations from './components/location/IndexLocations'
 
 class App extends Component {
   constructor (props) {
@@ -92,6 +93,14 @@ class App extends Component {
             path='/create-location'
             render={() => (
               <CreateLocation user={user} />
+            )}
+          />
+          <AuthenticatedRoute
+            user={user}
+            exact
+            path='/locations'
+            render={() => (
+              <IndexLocations user={user} />
             )}
           />
         </main>

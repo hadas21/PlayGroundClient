@@ -15,6 +15,16 @@ export const createLocation = (data, user) => {
   })
 }
 
+export const indexLocations = (user) => {
+  return axios({
+    method: 'GET',
+    url: apiUrl + '/locations',
+    headers: {
+      Authorization: `Bearer ${user.token}`
+    }
+  })
+}
+
 export const showLocation = (user) => {
   console.log(user)
   return axios({
