@@ -14,6 +14,7 @@ import CreateLocation from '../src/components/location/CreateLocation'
 import IndexLocations from './components/location/IndexLocations'
 import ShowLocation from './components/location/ShowLocation'
 import UpdateLocation from './components/location/UpdateLocation'
+import Map from './components/map/Map'
 
 class App extends Component {
   constructor (props) {
@@ -72,6 +73,12 @@ class App extends Component {
               <SignIn msgAlert={this.msgAlert} setUser={this.setUser} />
             )}
           />
+          <Route
+            path='/'
+            render={() => (
+              <Map />
+            )}
+          ></Route>
           <AuthenticatedRoute
             user={user}
             path='/sign-out'
@@ -91,33 +98,35 @@ class App extends Component {
             )}
           />
           <AuthenticatedRoute
+            msgAlert={this.msgAlert}
             user={user}
             path='/create-location'
             render={() => (
-              <CreateLocation user={user} />
+              <CreateLocation msgAlert={this.msgAlert} user={user} />
             )}
           />
           <AuthenticatedRoute
+            msgAlert={this.msgAlert}
             user={user}
             exact
             path='/locations'
             render={() => (
-              <IndexLocations user={user} />
+              <IndexLocations msgAlert={this.msgAlert} user={user} />
             )}
           />
           <AuthenticatedRoute
+            msgAlert={this.msgAlert}
             user={user}
             exact
             path='/locations/:id'
-            render={() => (
-              <ShowLocation user={user} />
-            )}
+            render={() => <ShowLocation msgAlert={this.msgAlert} user={user} />}
           />
           <AuthenticatedRoute
+            msgAlert={this.msgAlert}
             user={user}
             path='/locations/:id/edit'
             render={() => (
-              <UpdateLocation user={user} />
+              <UpdateLocation msgAlert={this.msgAlert} user={user} />
             )}
           />
         </main>

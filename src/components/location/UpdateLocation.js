@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 
 import { updateLocation, showLocation } from '../../api/location'
-// import { signUpSuccess, signUpFailure } from '../AutoDismissAlert/messages'
+import { updateLocationFailure } from '../AutoDismissAlert/messages'
 
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
@@ -28,17 +28,9 @@ class UpdateLocation extends Component {
       .catch(err => console.log(err))
   }
 
-  // handleChange = (event) =>
-  //   this.setState({
-  //     [event.target.name]: event.target.value
-  //   })
-
   handleChange = (event) => {
-    // because `this.state.movie` is an object with multiple keys, we have to do some fancy updating
     const userInput = { [event.target.name]: event.target.value }
     this.setState(currState => {
-      // "Spread" out current movie state key/value pairs, then add the new one at the end
-      // this will override the old key/value pair in the state but leave the others untouched
       return { location: { ...currState.location, ...userInput } }
     })
   }
@@ -46,13 +38,20 @@ class UpdateLocation extends Component {
 handleSubmit = (event) => {
   event.preventDefault()
 
-  const { user, match, history } = this.props
+  const { user, match, history, msgAlert } = this.props
   const data = this.state.location
+  const id = match.params.id
 
-  updateLocation(data, match.params.id, user)
-    .then(() => history.push('/locations/' + match.params.id))
+  updateLocation(data, id, user)
+    .then(() => history.push('/locations/' + id))
     .then(() => this.setState({ location: { location: '', description: '' } }))
-    .catch(err => console.log(err))
+    .catch((err) => {
+      msgAlert({
+        heading: 'location update failed :(',
+        message: updateLocationFailure + err.message,
+        variant: 'danger'
+      })
+    })
 }
 
 render () {
