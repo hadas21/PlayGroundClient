@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 
 import { createLocation } from '../../api/location'
-// import { signUpSuccess, signUpFailure } from '../AutoDismissAlert/messages'
+import { createLocationSuccess, createLocationFailure } from '../AutoDismissAlert/messages'
 
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
@@ -27,14 +27,26 @@ handleChange = (event) =>
 onCreateLocation = (event) => {
   event.preventDefault()
 
-  const { history, user } = this.props
+  const { history, user, msgAlert } = this.props
   const data = this.state
 
   createLocation(data, user)
-    .then((res) => console.log(res))
+    .then((res) => history.push('/locations' + res.data.location._id))
+    .then(() =>
+      msgAlert({
+        heading: 'Location Created!',
+        message: createLocationSuccess,
+        variant: 'success'
+      })
+    )
     .then(() => this.setState({ location: '', description: '' }))
-    .then(() => history.push('/locations'))
-    .catch((err) => console.log(err))
+    .catch((err) =>
+      msgAlert({
+        heading: 'Location creation failed :(',
+        message: createLocationFailure + err.message,
+        variant: 'danger'
+      })
+    )
 }
 
 render () {

@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 // API request
 import { showLocation, deleteLocation } from '../../api/location'
+import { showLocationFailure } from '../AutoDismissAlert/messages'
 import Button from 'react-bootstrap/Button'
 
 class ShowLocation extends Component {
@@ -14,11 +15,17 @@ class ShowLocation extends Component {
   }
 
   componentDidMount () {
-    const { match, user } = this.props
+    const { match, user, msgAlert } = this.props
 
     showLocation(match.params.id, user)
       .then((res) => this.setState({ location: res.data.location }))
-      .catch((err) => console.log(err))
+      .catch((err) =>
+        msgAlert({
+          heading: 'Show location failed :(',
+          message: showLocationFailure + err.message,
+          variant: 'danger'
+        })
+      )
   }
 
   handleDelete = (event) => {
@@ -35,14 +42,14 @@ class ShowLocation extends Component {
     }
 
     // Get the owner (a user id) from the movie state
-    const { title, description, owner } = this.state.location
+    const { location, description, owner } = this.state.location
     const { user, history, match } = this.props
     // history, match
 
     return (
       <>
         <h3>Show One Location</h3>
-        <h5>{title}</h5>
+        <h5>{location}</h5>
         <p>Where? Here - {description}</p>
         {user._id === owner && (
           <>
