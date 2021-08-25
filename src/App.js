@@ -12,6 +12,8 @@ import SignOut from './components/auth/SignOut'
 import ChangePassword from './components/auth/ChangePassword'
 import CreateLocation from '../src/components/location/CreateLocation'
 import IndexLocations from './components/location/IndexLocations'
+import ShowLocation from './components/location/ShowLocation'
+import UpdateLocation from './components/location/UpdateLocation'
 
 class App extends Component {
   constructor (props) {
@@ -101,6 +103,21 @@ class App extends Component {
             path='/locations'
             render={() => (
               <IndexLocations user={user} />
+            )}
+          />
+          <AuthenticatedRoute
+            user={user}
+            exact
+            path='/locations/:id'
+            render={() => (
+              <ShowLocation user={user} />
+            )}
+          />
+          <AuthenticatedRoute
+            user={user}
+            path='/locations/:id/edit'
+            render={() => (
+              <UpdateLocation user={user} />
             )}
           />
         </main>

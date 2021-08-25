@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 // API request
-import { showLocation } from '../../api/movies'
-
-// import Button from 'react-bootstrap/Button'
+import { showLocation, deleteLocation } from '../../api/location'
+import Button from 'react-bootstrap/Button'
 
 class ShowLocation extends Component {
   constructor (props) {
@@ -15,46 +14,20 @@ class ShowLocation extends Component {
   }
 
   componentDidMount () {
-    const { match, user, msgAlert } = this.props
+    const { match, user } = this.props
 
     showLocation(match.params.id, user)
       .then((res) => this.setState({ location: res.data.location }))
-      .then(() =>
-        msgAlert({
-          heading: 'Show movie success',
-          message: 'Check out the movie',
-          variant: 'success'
-        })
-      )
-      .catch((err) =>
-        msgAlert({
-          heading: 'Show movie failed :(',
-          message: 'Something went wrong: ' + err.message,
-          variant: 'danger'
-        })
-      )
+      .catch((err) => console.log(err))
   }
 
-  // handleDelete = (event) => {
-  //   const { match, user, msgAlert, history } = this.props
-  //   deleteMovie(match.params.id, user)
-  //   // Redirect to the list of movies
-  //     .then(() => history.push('/movies'))
-  //     .then(() =>
-  //       msgAlert({
-  //         heading: 'Delete movie successfully',
-  //         message: 'Movie is no more',
-  //         variant: 'success'
-  //       })
-  //     )
-  //     .catch((err) =>
-  //       msgAlert({
-  //         heading: 'Delete movie failed :(',
-  //         message: 'Something went wrong: ' + err.message,
-  //         variant: 'danger'
-  //       })
-  //     )
-  // }
+  handleDelete = (event) => {
+    const { match, user, history } = this.props
+    deleteLocation(match.params.id, user)
+    // Redirect to the list of locations
+      .then(() => history.push('/locations'))
+      .catch((err) => console.log(err))
+  }
 
   render () {
     if (this.state.location === null) {
@@ -63,28 +36,25 @@ class ShowLocation extends Component {
 
     // Get the owner (a user id) from the movie state
     const { title, description, owner } = this.state.location
-    const { user } = this.props
+    const { user, history, match } = this.props
     // history, match
 
     return (
       <>
         <h3>Show One Location</h3>
         <h5>{title}</h5>
-        <p>Directed by: {description}</p>
-        {/* Compare the signed in user's ID against the owner of this movie */}
+        <p>Where? Here - {description}</p>
         {user._id === owner && (
           <>
-            {/* <Button onClick={this.handleDelete}>Delete This Movie</Button> */}
-            {/* Button with a Link inside should work but is ugly. Better way below. */}
+            <Button onClick={this.handleDelete}>Delete</Button>
             {/* <Button>
-              <Link to={`/locations/${match.params.id}/edit`}>Update Movie</Link>
+              <Link to={`/locations/${match.params.id}/edit`}>Update</Link>
             </Button> */}
 
-            {/* Provide the Button a `onClick` handler & use the history object to redirect the user */}
-            {/* <Button
+            <Button
               onClick={() => history.push(`/locations/${match.params.id}/edit`)}>
-                        Update Movie
-            </Button> */}
+              Update
+            </Button>
           </>
         )}
       </>
