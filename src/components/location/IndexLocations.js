@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { indexLocations } from '../../api/location'
+import { showLocationFailure } from '../AutoDismissAlert/messages'
 
 class IndexLocations extends Component {
   constructor (props) {
@@ -12,12 +13,16 @@ class IndexLocations extends Component {
   }
 
   componentDidMount () {
-    const { user } = this.props
+    const { user, msgAlert } = this.props
     indexLocations(user)
       .then(res => this.setState({ locations: res.data.locations }))
-      .catch(err => console.log(err))
-      // .then(() => msgAlert({ heading: 'Index success', message: 'Here are the locations', variant: 'success' }))
-      // .catch(err => msgAlert({ heading: 'Index failed :(', message: 'Something went wrong: ' + err.message, variant: 'danger' }))
+      .catch((err) =>
+        msgAlert({
+          heading: 'Index failed :(',
+          message: showLocationFailure + err.message,
+          variant: 'danger'
+        })
+      )
   }
 
   // - render - display the movies in the state (optionally: loading message)
@@ -40,7 +45,7 @@ class IndexLocations extends Component {
 
     return (
       <>
-        <h3>All The Movies:</h3>
+        <h3>All The Locations:</h3>
         {locationJsx}
       </>
     )

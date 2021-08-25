@@ -91,33 +91,35 @@ class App extends Component {
             )}
           />
           <AuthenticatedRoute
+            msgAlert={this.msgAlert}
             user={user}
             path='/create-location'
             render={() => (
-              <CreateLocation user={user} />
+              <CreateLocation msgAlert={this.msgAlert} user={user} />
             )}
           />
           <AuthenticatedRoute
+            msgAlert={this.msgAlert}
             user={user}
             exact
             path='/locations'
             render={() => (
-              <IndexLocations user={user} />
+              <IndexLocations msgAlert={this.msgAlert} user={user} />
             )}
           />
           <AuthenticatedRoute
+            msgAlert={this.msgAlert}
             user={user}
             exact
             path='/locations/:id'
-            render={() => (
-              <ShowLocation user={user} />
-            )}
+            render={() => <ShowLocation msgAlert={this.msgAlert} user={user} />}
           />
           <AuthenticatedRoute
+            msgAlert={this.msgAlert}
             user={user}
             path='/locations/:id/edit'
             render={() => (
-              <UpdateLocation user={user} />
+              <UpdateLocation msgAlert={this.msgAlert} user={user} />
             )}
           />
         </main>
