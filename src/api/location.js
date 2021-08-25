@@ -15,11 +15,42 @@ export const createLocation = (data, user) => {
   })
 }
 
-export const showLocation = (user) => {
-  console.log(user)
+export const indexLocations = (user) => {
   return axios({
     method: 'GET',
-    url: `${apiUrl}/locations${user.id}`,
+    url: apiUrl + '/locations',
+    headers: {
+      Authorization: `Bearer ${user.token}`
+    }
+  })
+}
+
+export const showLocation = (id, user) => {
+  return axios({
+    method: 'GET',
+    url: `${apiUrl}/locations/${id}`,
+    headers: {
+      Authorization: `Bearer ${user.token}`
+    }
+  })
+}
+
+export const deleteLocation = (id, user) => {
+  return axios({
+    url: apiUrl + '/locations/' + id,
+    method: 'DELETE',
+    headers: {
+      Authorization: `Bearer ${user.token}`
+    }
+  })
+}
+
+export const updateLocation = (data, id, user) => {
+  console.log(data, id, user)
+  return axios({
+    url: apiUrl + '/locations/' + id,
+    method: 'PATCH',
+    data: { location: data },
     headers: {
       Authorization: `Bearer ${user.token}`
     }

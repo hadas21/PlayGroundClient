@@ -27,28 +27,14 @@ handleChange = (event) =>
 onCreateLocation = (event) => {
   event.preventDefault()
 
-  const { user } = this.props
+  const { history, user } = this.props
   const data = this.state
 
   createLocation(data, user)
     .then((res) => console.log(res))
+    .then(() => this.setState({ location: '', description: '' }))
+    .then(() => history.push('/locations'))
     .catch((err) => console.log(err))
-  // .then(() =>
-// msgAlert({
-// heading: 'Sign Up Success',
-// message: signUpSuccess,
-// variant: 'success',
-// })
-// )
-// .then(() => history.push('/'))
-// .catch((error) => {
-// this.setState({ email: '', password: '', passwordConfirmation: '' })
-// msgAlert({
-// heading: 'Sign Up Failed with error: ' + error.message,
-// message: signUpFailure,
-// variant: 'danger',
-// })
-  // })
 }
 
 render () {
