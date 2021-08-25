@@ -1,1 +1,7 @@
 @import '~bootstrap/scss/bootstrap';
+@import 'mapbox-gl/dist/mapbox-gl.css';
+
+#map {
+    height: 500px;
+    margin-bottom: 50px;
+}
