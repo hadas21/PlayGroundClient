@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 //, { useRef, useEffect, useState }
 import mapboxgl from '!mapbox-gl' // eslint-disable-line import/no-webpack-loader-syntax
 import './../../index.scss'
+import { saveLocation } from '../../api/map'
 // import 'https://api.mapbox.com/mapbox-gl-js/v2.4.1/mapbox-gl.css'
 
 mapboxgl.accessToken = 'pk.eyJ1IjoibGF1cmFhbHlzb24iLCJhIjoiY2tzcDJleWVkMDF0NjMxcGhwMzM1Mm1tMiJ9.27PwqNrg2-gZnMmuS1vOww'
@@ -11,9 +12,9 @@ class Map extends Component {
     super(props)
 
     this.state = {
-      lng: 1.9,
-      lat: 40.35,
-      zoom: 1
+      lng: '',
+      lat: '',
+      zoom: ''
     }
     this.mapContainer = React.createRef()
   }
@@ -32,6 +33,8 @@ class Map extends Component {
         lat: map.getCenter().lat.toFixed(4),
         zoom: map.getZoom().toFixed(2)
       })
+      saveLocation(this.state.lng, this.state.lat)
+        .then((res) => console.log(res))
     })
     console.log(map)
   }
