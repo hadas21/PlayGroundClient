@@ -14,6 +14,7 @@ import CreateLocation from '../src/components/location/CreateLocation'
 import IndexLocations from './components/location/IndexLocations'
 import ShowLocation from './components/location/ShowLocation'
 import UpdateLocation from './components/location/UpdateLocation'
+import Map from './components/map/Map'
 
 class App extends Component {
   constructor (props) {
@@ -72,6 +73,12 @@ class App extends Component {
               <SignIn msgAlert={this.msgAlert} setUser={this.setUser} />
             )}
           />
+          <Route
+            path='/'
+            render={() => (
+              <Map />
+            )}
+          ></Route>
           <AuthenticatedRoute
             user={user}
             path='/sign-out'
