@@ -23,7 +23,7 @@ import Map from './components/map/Map'
 import CreateFriend from '../src/components/friend/CreateFriend'
 import IndexFriends from '../src/components/friend/IndexFriends'
 import ShowFriend from '../src/components/friend/ShowFriend'
-import DeleteFriend from '../src/components/friend/DeleteFriend'
+import UpdateFriend from '../src/components/friend/UpdateFriend'
 
 class App extends Component {
   constructor (props) {
@@ -167,7 +167,7 @@ class App extends Component {
             user={user}
             path='/delete-friend'
             render={() => (
-              <DeleteFriend msgAlert={this.msgAlert} user={user} />
+              <UpdateFriend msgAlert={this.msgAlert} user={user} />
             )}
           />
         </main>
