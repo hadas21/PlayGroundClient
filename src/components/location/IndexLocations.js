@@ -38,7 +38,7 @@ class IndexLocations extends Component {
     } else {
       locationJsx = locations.map(location => (
         <li key={location._id}>
-          <Link to={`/locations/${location._id}`}>{location.location}</Link>
+          <Link to={`/map/locations/${location._id}`}>{location.location}</Link>
         </li>
       ))
     }

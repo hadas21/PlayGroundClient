@@ -32,7 +32,7 @@ class ShowLocation extends Component {
     const { match, user, history } = this.props
     deleteLocation(match.params.id, user)
     // Redirect to the list of locations
-      .then(() => history.push('/locations'))
+      .then(() => history.push('/map/locations'))
       .catch((err) => console.log(err))
   }
 
@@ -59,7 +59,7 @@ class ShowLocation extends Component {
             </Button> */}
 
             <Button
-              onClick={() => history.push(`/locations/${match.params.id}/edit`)}>
+              onClick={() => history.push(`/map/locations/${match.params.id}/edit`)}>
               Update
             </Button>
           </>

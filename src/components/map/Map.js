@@ -22,17 +22,19 @@ class Map extends Component {
     this.mapContainer = React.createRef()
   }
 
-address = null
+address = ''
 myMap = this.map
 
 componentDidMount () {
   const { lng, lat, zoom } = this.state
+  //   const { user } = this.props
   const map = new mapboxgl.Map({
     container: this.mapContainer.current,
     style: 'mapbox://styles/lauraalyson/cksp2t5nr6w2m17o33s38ftds',
     center: [lng, lat],
     zoom: zoom
   })
+
   map.on('click', (e) => {
     this.setState({
       lng: e.lngLat.lng,
@@ -53,6 +55,7 @@ componentDidMount () {
     console.log('this is marker: ', marker)
   }
   )
+
   const geocoder = new MapboxGeocoder({
     accessToken: mapboxgl.accessToken,
     marker: {
@@ -64,16 +67,23 @@ componentDidMount () {
 
 render () {
   const { lng, lat, zoom } = this.state
-  const { user } = this.props
+  const { user, msgAlert } = this.props
   return (
     <div>
       <div className='sidebar'>Longitude: {lng} | Latitude: {lat} | Zoom: {zoom}
       </div>
       <div ref={this.mapContainer} className='map-container' />
       <AuthenticatedRoute
+        msgAlert={msgAlert}
         user={user}
-        path='/create-location'
-        render={() => <CreateLocation user={user} address={this.address} />}
+        path='/map/create-location'
+        render={() => (
+          <CreateLocation
+            msgAlert={msgAlert}
+            user={user}
+            address={this.address}
+          />
+        )}
       />
     </div>
   )
