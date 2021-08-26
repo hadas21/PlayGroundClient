@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 //, { useRef, useEffect, useState }
 import mapboxgl from '!mapbox-gl' // eslint-disable-line import/no-webpack-loader-syntax
+import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder'
+
 import './../../index.scss'
 import { saveLocation } from '../../api/map'
 import CreateLocation from '../../components/location/CreateLocation'
@@ -21,6 +23,7 @@ class Map extends Component {
   }
 
 address = null
+myMap = this.map
 
 componentDidMount () {
   const { lng, lat, zoom } = this.state
@@ -36,7 +39,7 @@ componentDidMount () {
       lat: e.lngLat.lat,
       zoom: map.getZoom().toFixed(2)
     })
-
+    console.log(map)
     saveLocation(this.state.lng, this.state.lat)
       .then((res) => {
         console.log(res.data)
@@ -50,7 +53,13 @@ componentDidMount () {
     console.log('this is marker: ', marker)
   }
   )
-  console.log(map)
+  const geocoder = new MapboxGeocoder({
+    accessToken: mapboxgl.accessToken,
+    marker: {
+      color: 'orange'
+    }
+  })
+  map.addControl(geocoder)
 }
 
 render () {
@@ -64,9 +73,8 @@ render () {
       <AuthenticatedRoute
         user={user}
         path='/create-location'
-        render={() => <CreateLocation user={user} address={this.address}/>}
+        render={() => <CreateLocation user={user} address={this.address} />}
       />
-      <CreateLocation />
     </div>
   )
 }
