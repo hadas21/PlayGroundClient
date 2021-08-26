@@ -16,7 +16,7 @@ import ChangePassword from './components/auth/ChangePassword'
 // location CRUD
 
 =======
-// import CreateLocation from '../src/components/location/CreateLocation'
+
 >>>>>>> 336a074 (allow user to interact with map)
 import IndexLocations from './components/location/IndexLocations'
 import ShowLocation from './components/location/ShowLocation'
