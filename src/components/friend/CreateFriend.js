@@ -1,21 +1,18 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 
-import { createLocation } from '../../api/location'
+import { createFriend } from '../../api/friend'
 import { createLocationSuccess, createLocationFailure } from '../AutoDismissAlert/messages'
 
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 
-class CreateLocation extends Component {
+class CreateFriend extends Component {
   constructor (props) {
     super(props)
 
     this.state = {
-
-      location: '',
-      description: ''
-
+      location: ''
     }
   }
 
@@ -24,17 +21,17 @@ handleChange = (event) =>
     [event.target.name]: event.target.value
   })
 
-onCreateLocation = (event) => {
+onCreateFriend = (event) => {
   event.preventDefault()
 
   const { history, user, msgAlert } = this.props
   const data = this.state
 
-  createLocation(data, user)
-    .then((res) => history.push('/locations' + res.data.location._id))
+  createFriend(data, user)
+    .then((res) => history.push('/friends' + res.data.location._id))
     .then(() =>
       msgAlert({
-        heading: 'Location Created!',
+        heading: 'Friend Added!',
         message: createLocationSuccess,
         variant: 'success'
       })
@@ -42,7 +39,7 @@ onCreateLocation = (event) => {
     .then(() => this.setState({ location: '', description: '' }))
     .catch((err) =>
       msgAlert({
-        heading: 'Location creation failed :(',
+        heading: 'Failed adding Friend :(',
         message: createLocationFailure + err.message,
         variant: 'danger'
       })
@@ -50,38 +47,28 @@ onCreateLocation = (event) => {
 }
 
 render () {
-  const { description } = this.state
-  const { address } = this.props
+  const { friend } = this.state
 
   return (
     <div className='row'>
       <div className='col-sm-10 col-md-8 mx-auto mt-5'>
-        <h3>Add Location</h3>
-        <Form onSubmit={this.onCreateLocation}>
-          <Form.Group controlId='location'>
-            <Form.Label>Location</Form.Label>
+        <h3>Add Friend</h3>
+        <Form onSubmit={this.onCreateFriend}>
+          <Form.Group controlId='friend'>
+            <Form.Label>
+                Add Friend
+            </Form.Label>
             <Form.Control
               required
               type='text'
-              name='location'
-              value={address}
-              placeholder='Enter location'
-              onChange={this.handleChange}
-            />
-          </Form.Group>
-          <Form.Group controlId='description'>
-            <Form.Label>Description</Form.Label>
-            <Form.Control
-              required
-              name='description'
-              value={description}
-              type='text'
-              placeholder='description'
+              name='friend'
+              value={friend}
+              placeholder='Add Friend'
               onChange={this.handleChange}
             />
           </Form.Group>
           <Button variant='primary' type='submit'>
-                        Submit
+                        Add
           </Button>
         </Form>
       </div>
@@ -90,4 +77,4 @@ render () {
 }
 }
 
-export default withRouter(CreateLocation)
+export default withRouter(CreateFriend)

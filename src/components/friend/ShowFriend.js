@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 // API request
-import { showLocation, deleteLocation } from '../../api/location'
+import { showFriend, deleteFriend } from '../../api/friend'
 import { showLocationFailure } from '../AutoDismissAlert/messages'
 import Button from 'react-bootstrap/Button'
 
-class ShowLocation extends Component {
+class ShowFriend extends Component {
   constructor (props) {
     super(props)
 
@@ -17,11 +17,11 @@ class ShowLocation extends Component {
   componentDidMount () {
     const { match, user, msgAlert } = this.props
 
-    showLocation(match.params.id, user)
+    showFriend(match.params.id, user)
       .then((res) => this.setState({ location: res.data.location }))
       .catch((err) =>
         msgAlert({
-          heading: 'Show location failed :(',
+          heading: 'Unable to Show Friend :(',
           message: showLocationFailure + err.message,
           variant: 'danger'
         })
@@ -30,9 +30,9 @@ class ShowLocation extends Component {
 
   handleDelete = (event) => {
     const { match, user, history } = this.props
-    deleteLocation(match.params.id, user)
+    deleteFriend(match.params.id, user)
     // Redirect to the list of locations
-      .then(() => history.push('/locations'))
+      .then(() => history.push('/friends'))
       .catch((err) => console.log(err))
   }
 
@@ -41,25 +41,18 @@ class ShowLocation extends Component {
       return 'Loading...'
     }
 
-    // Get the owner (a user id) from the movie state
-    const { location, description, owner } = this.state.location
+    const { friend, owner } = this.state.location
     const { user, history, match } = this.props
-    // history, match
 
     return (
       <>
-        <h3>Show One Location</h3>
-        <h5>{location}</h5>
-        <p>Where? Here - {description}</p>
+        <h3>Show One Friend</h3>
+        <h5>{friend}</h5>
         {user._id === owner && (
           <>
             <Button onClick={this.handleDelete}>Delete</Button>
-            {/* <Button>
-              <Link to={`/locations/${match.params.id}/edit`}>Update</Link>
-            </Button> */}
-
             <Button
-              onClick={() => history.push(`/locations/${match.params.id}/edit`)}>
+              onClick={() => history.push(`/friends/${match.params.id}/edit`)}>
               Update
             </Button>
           </>
@@ -69,4 +62,4 @@ class ShowLocation extends Component {
   }
 }
 
-export default withRouter(ShowLocation)
+export default withRouter(ShowFriend)
