@@ -44,3 +44,15 @@ export const deleteFriend = (id, user) => {
     }
   })
 }
+
+export const updateFriend = (data, id, user) => {
+  console.log(data, id, user)
+  return axios({
+    url: apiUrl + '/friends/' + id,
+    method: 'PATCH',
+    data: { location: data },
+    headers: {
+      Authorization: `Bearer ${user.token}`
+    }
+  })
+}
