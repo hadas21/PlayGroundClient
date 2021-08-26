@@ -27,11 +27,13 @@ handleChange = (event) =>
 onCreateLocation = (event) => {
   event.preventDefault()
 
-  const { history, user, msgAlert } = this.props
+  const { history, user, msgAlert, address } = this.props
+
+  this.setState({ location: address })
   const data = this.state
 
   createLocation(data, user)
-    .then((res) => history.push('/locations' + res.data.location._id))
+    .then((res) => history.push('/map/locations' + res.data.location._id))
     .then(() =>
       msgAlert({
         heading: 'Location Created!',
