@@ -5,16 +5,25 @@ import { v4 as uuid } from 'uuid'
 
 import AuthenticatedRoute from './components/AuthenticatedRoute/AuthenticatedRoute'
 import AutoDismissAlert from './components/AutoDismissAlert/AutoDismissAlert'
+// header logic
 import Header from './components/Header/Header'
+// auth CRUD
 import SignUp from './components/auth/SignUp'
 import SignIn from './components/auth/SignIn'
 import SignOut from './components/auth/SignOut'
 import ChangePassword from './components/auth/ChangePassword'
-import CreateLocation from '../src/components/location/CreateLocation'
+// location CRUD
+
 import IndexLocations from './components/location/IndexLocations'
 import ShowLocation from './components/location/ShowLocation'
 import UpdateLocation from './components/location/UpdateLocation'
+// map logic
 import Map from './components/map/Map'
+// friends CRUD
+import CreateFriend from '../src/components/friend/CreateFriend'
+import IndexFriends from '../src/components/friend/IndexFriends'
+import ShowFriend from '../src/components/friend/ShowFriend'
+import UpdateFriend from '../src/components/friend/UpdateFriend'
 
 class App extends Component {
   constructor (props) {
@@ -76,7 +85,7 @@ class App extends Component {
           <Route
             path='/'
             render={() => (
-              <Map />
+              <Map user={user}/>
             )}
           ></Route>
           <AuthenticatedRoute
@@ -95,14 +104,6 @@ class App extends Component {
             path='/change-password'
             render={() => (
               <ChangePassword msgAlert={this.msgAlert} user={user} />
-            )}
-          />
-          <AuthenticatedRoute
-            msgAlert={this.msgAlert}
-            user={user}
-            path='/create-location'
-            render={() => (
-              <CreateLocation msgAlert={this.msgAlert} user={user} />
             )}
           />
           <AuthenticatedRoute
@@ -127,6 +128,38 @@ class App extends Component {
             path='/locations/:id/edit'
             render={() => (
               <UpdateLocation msgAlert={this.msgAlert} user={user} />
+            )}
+          />
+          <AuthenticatedRoute
+            msgAlert={this.msgAlert}
+            user={user}
+            path='/create-friend'
+            render={() => (
+              <CreateFriend msgAlert={this.msgAlert} user={user} />
+            )}
+          />
+          <AuthenticatedRoute
+            msgAlert={this.msgAlert}
+            user={user}
+            path='/index-friends'
+            render={() => (
+              <IndexFriends msgAlert={this.msgAlert} user={user} />
+            )}
+          />
+          <AuthenticatedRoute
+            msgAlert={this.msgAlert}
+            user={user}
+            path='/show-friend'
+            render={() => (
+              <ShowFriend msgAlert={this.msgAlert} user={user} />
+            )}
+          />
+          <AuthenticatedRoute
+            msgAlert={this.msgAlert}
+            user={user}
+            path='/delete-friend'
+            render={() => (
+              <UpdateFriend msgAlert={this.msgAlert} user={user} />
             )}
           />
         </main>
