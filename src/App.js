@@ -12,7 +12,6 @@ import SignUp from './components/auth/SignUp'
 import SignIn from './components/auth/SignIn'
 import SignOut from './components/auth/SignOut'
 import ChangePassword from './components/auth/ChangePassword'
-// location CRUD
 
 import IndexLocations from './components/location/IndexLocations'
 import ShowLocation from './components/location/ShowLocation'
@@ -82,12 +81,7 @@ class App extends Component {
               <SignIn msgAlert={this.msgAlert} setUser={this.setUser} />
             )}
           />
-          <Route
-            path='/'
-            render={() => (
-              <Map user={user}/>
-            )}
-          ></Route>
+          <Route path='/' render={() => <Map user={user} />}></Route>
           <AuthenticatedRoute
             user={user}
             path='/sign-out'
@@ -134,34 +128,27 @@ class App extends Component {
             msgAlert={this.msgAlert}
             user={user}
             path='/create-friend'
-            render={() => (
-              <CreateFriend msgAlert={this.msgAlert} user={user} />
-            )}
+            render={() => <CreateFriend msgAlert={this.msgAlert} user={user} />}
           />
           <AuthenticatedRoute
             msgAlert={this.msgAlert}
             user={user}
             path='/index-friends'
-            render={() => (
-              <IndexFriends msgAlert={this.msgAlert} user={user} />
-            )}
+            render={() => <IndexFriends msgAlert={this.msgAlert} user={user} />}
           />
           <AuthenticatedRoute
             msgAlert={this.msgAlert}
             user={user}
             path='/show-friend'
-            render={() => (
-              <ShowFriend msgAlert={this.msgAlert} user={user} />
-            )}
+            render={() => <ShowFriend msgAlert={this.msgAlert} user={user} />}
           />
           <AuthenticatedRoute
             msgAlert={this.msgAlert}
             user={user}
             path='/delete-friend'
-            render={() => (
-              <UpdateFriend msgAlert={this.msgAlert} user={user} />
-            )}
+            render={() => <UpdateFriend msgAlert={this.msgAlert} user={user} />}
           />
+
         </main>
       </Fragment>
     )

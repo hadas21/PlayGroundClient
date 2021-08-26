@@ -12,6 +12,15 @@ export const saveLocation = (lng, lat) => {
   })
 }
 
+export const findLocation = (address) => {
+  const encodedAddress = encodeURIComponent(address)
+  console.log('address is: ' + encodedAddress)
+  return axios({
+    method: 'GET',
+    url: apiUrl + encodedAddress + token
+  })
+}
+
 // export const indexLocations = (user) => {
 //   return axios({
 //     method: 'GET',
