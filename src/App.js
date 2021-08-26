@@ -13,7 +13,7 @@ import SignIn from './components/auth/SignIn'
 import SignOut from './components/auth/SignOut'
 import ChangePassword from './components/auth/ChangePassword'
 // location CRUD
-import CreateLocation from '../src/components/location/CreateLocation'
+
 import IndexLocations from './components/location/IndexLocations'
 import ShowLocation from './components/location/ShowLocation'
 import UpdateLocation from './components/location/UpdateLocation'
@@ -85,7 +85,7 @@ class App extends Component {
           <Route
             path='/'
             render={() => (
-              <Map />
+              <Map user={user}/>
             )}
           ></Route>
           <AuthenticatedRoute
@@ -104,14 +104,6 @@ class App extends Component {
             path='/change-password'
             render={() => (
               <ChangePassword msgAlert={this.msgAlert} user={user} />
-            )}
-          />
-          <AuthenticatedRoute
-            msgAlert={this.msgAlert}
-            user={user}
-            path='/create-location'
-            render={() => (
-              <CreateLocation msgAlert={this.msgAlert} user={user} />
             )}
           />
           <AuthenticatedRoute
