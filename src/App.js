@@ -12,12 +12,8 @@ import SignUp from './components/auth/SignUp'
 import SignIn from './components/auth/SignIn'
 import SignOut from './components/auth/SignOut'
 import ChangePassword from './components/auth/ChangePassword'
-<<<<<<< HEAD
 // location CRUD
 
-=======
-
->>>>>>> 336a074 (allow user to interact with map)
 import IndexLocations from './components/location/IndexLocations'
 import ShowLocation from './components/location/ShowLocation'
 import UpdateLocation from './components/location/UpdateLocation'
