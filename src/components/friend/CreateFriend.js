@@ -12,9 +12,7 @@ class CreateFriend extends Component {
     super(props)
 
     this.state = {
-
       location: ''
-
     }
   }
 
