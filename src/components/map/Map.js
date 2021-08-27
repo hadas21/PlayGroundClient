@@ -24,6 +24,7 @@ class Map extends Component {
     this.mapContainer = React.createRef()
   }
 
+
 address = ''
 myMap = this.map
 
@@ -35,6 +36,7 @@ componentDidMount () {
     center: [-13, 34],
     zoom: 2
   })
+
   indexLocations(this.props.user)
   // .then((res) => console.log(res))
     .then((res) => {
@@ -44,14 +46,15 @@ componentDidMount () {
       }
     })
     .catch((err) => console.log(err))
-
   map.on('click', (e) => {
     this.setState({
       lng: e.lngLat.lng,
       lat: e.lngLat.lat,
       zoom: map.getZoom().toFixed(2)
     })
+
     // console.log('coor: ', e)
+
 
     saveLocation(this.state.lng, this.state.lat)
       .then((res) => {
@@ -66,6 +69,8 @@ componentDidMount () {
     console.log('this is marker: ', marker)
   }
   )
+
+
 
   const geocoder = new MapboxGeocoder({
     accessToken: mapboxgl.accessToken
@@ -86,6 +91,7 @@ render () {
       <AuthenticatedRoute
         msgAlert={msgAlert}
         user={user}
+
         lng={lng}
         lat={lat}
         path='/map/create-location'
@@ -93,6 +99,7 @@ render () {
           <CreateLocation
             lng={lng}
             lat={lat}
+
             msgAlert={msgAlert}
             user={user}
             address={this.address}

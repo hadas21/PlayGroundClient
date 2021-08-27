@@ -15,6 +15,7 @@ class CreateLocation extends Component {
       location: '',
       description: '',
       coordinates: []
+
     }
   }
 
@@ -25,14 +26,20 @@ class CreateLocation extends Component {
 handleChange = (event) =>
   this.setState({
     location: this.props.address,
+
     description: event.target.value,
     coordinates: [this.props.lng, this.props.lat]
+
+
   })
 
 onCreateLocation = (event) => {
   event.preventDefault()
 
+
   const { user, msgAlert } = this.props
+
+
 
   const data = this.state
 
@@ -41,9 +48,11 @@ onCreateLocation = (event) => {
   // }
 
   createLocation(data, user)
+
     .then((res) => console.log(res.data.location.coordinates))
     .then()
   // .then((res) => history.push('/map/locations' + res.data.location._id))
+
     .then(() =>
       msgAlert({
         heading: 'Location Created!',
@@ -92,7 +101,9 @@ render () {
               onChange={this.handleChange}
             />
           </Form.Group>
+
           <Button variant='primary' type='submit'>Submit
+
           </Button>
         </Form>
       </div>
