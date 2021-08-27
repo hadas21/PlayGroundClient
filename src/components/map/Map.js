@@ -2,13 +2,11 @@ import React, { Component } from 'react'
 //, { useRef, useEffect, useState }
 import mapboxgl from '!mapbox-gl' // eslint-disable-line import/no-webpack-loader-syntax
 import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder'
-import { Link } from 'react-router-dom'
-import Button from 'react-bootstrap/Button'
 import './../../index.scss'
 import { indexLocations } from '../../api/location'
 import { saveLocation } from '../../api/map'
-import CreateLocation from '../../components/location/CreateLocation'
-import AuthenticatedRoute from '../../components/AuthenticatedRoute/AuthenticatedRoute'
+// import CreateLocation from '../../components/location/CreateLocation'
+// import AuthenticatedRoute from '../../components/AuthenticatedRoute/AuthenticatedRoute'
 import Sidebar from './Sidebar'
 
 mapboxgl.accessToken = 'pk.eyJ1IjoibGF1cmFhbHlzb24iLCJhIjoiY2tzcDJleWVkMDF0NjMxcGhwMzM1Mm1tMiJ9.27PwqNrg2-gZnMmuS1vOww'
@@ -26,7 +24,6 @@ class Map extends Component {
   }
 
 address = ''
-myMap = this.map
 
 componentDidMount () {
   // const { zoom } = this.state
@@ -46,25 +43,27 @@ componentDidMount () {
       }
     })
     .catch((err) => console.log(err))
+
+  // On click function
   map.on('click', (e) => {
+    console.log(e)
     this.setState({
       lng: e.lngLat.lng,
       lat: e.lngLat.lat,
       zoom: map.getZoom().toFixed(2)
     })
 
-    // console.log('coor: ', e)
-
     saveLocation(this.state.lng, this.state.lat)
       .then((res) => {
         console.log(res.data)
         this.address = res.data.features[1].place_name
+        console.log('This is this.address 1', this.address)
       })
       .catch((err) => console.log(err))
 
     const marker = new mapboxgl.Marker()
       .setLngLat({ lng: this.state.lng, lat: this.state.lat })
-      .addTo(map) // add the marker to the map
+      .addTo(map)
     console.log('this is marker: ', marker)
   }
   )
@@ -82,34 +81,17 @@ render () {
   return (
     <div>
       <Sidebar>
-        <Button><Link to='/map/create-location' className='nav-link'>Add a Location</Link></Button>
-        <CreateLocation
-          msgAlert={msgAlert}
-          user={user}
-          address={this.address}
-        />
+        lng={lng}
+        lat={lat}
+        msgAlert={msgAlert}
+        user={user}
+        address={this.address}
+        map={this.map}
       </Sidebar>
       <div ref={this.mapContainer} className='map-container' />
       <div className='lat-long'>Longitude: {lng} | Latitude: {lat} | Zoom: {zoom}
+      This is address: {this.address}
       </div>
-      <AuthenticatedRoute
-        msgAlert={msgAlert}
-        user={user}
-
-        lng={lng}
-        lat={lat}
-        path='/map/create-location'
-        render={() => (
-          <CreateLocation
-            lng={lng}
-            lat={lat}
-
-            msgAlert={msgAlert}
-            user={user}
-            address={this.address}
-          />
-        )}
-      />
     </div>
   )
 }
