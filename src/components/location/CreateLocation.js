@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { withRouter, Link } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 
@@ -58,9 +58,9 @@ render () {
   return (
     <div className='row'>
       <div className='col-sm-10 col-sm-8 mx-auto mt-5'>
-        <Link to='/map' className='nav-link'>
+        {/* <Link to='/map' className='nav-link'>
             Add a Location
-        </Link>
+        </Link> */}
         <Form onSubmit={this.onCreateLocation}>
           <Form.Group controlId='location'>
             <Form.Label>Location</Form.Label>
