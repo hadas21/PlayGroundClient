@@ -58,6 +58,9 @@ render () {
   return (
     <div className='row'>
       <div className='col-sm-10 col-sm-8 mx-auto mt-5'>
+        <Link to='/map' className='nav-link'>
+            Add a Location
+        </Link>
         <Form onSubmit={this.onCreateLocation}>
           <Form.Group controlId='location'>
             <Form.Label>Location</Form.Label>
@@ -86,11 +89,7 @@ render () {
             Submit
           </Button>
         </Form>
-        <Button>
-          <Link to='/map' className='nav-link'>
-            Add a Location
-          </Link>
-        </Button>
+
       </div>
     </div>
   )
