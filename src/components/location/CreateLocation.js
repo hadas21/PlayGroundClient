@@ -13,14 +13,24 @@ class CreateLocation extends Component {
 
     this.state = {
       location: '',
-      description: ''
+      description: '',
+      coordinates: []
+
     }
+  }
+
+  componentDidMount () {
+    this.clearForm(false)
   }
 
 handleChange = (event) =>
   this.setState({
     location: this.props.address,
-    description: event.target.value
+
+    description: event.target.value,
+    coordinates: [this.props.lng, this.props.lat]
+
+
   })
 
 onCreateLocation = (event) => {
@@ -30,8 +40,16 @@ onCreateLocation = (event) => {
 
   const data = this.state
 
+  // const clearForm = (isPinDown) => {
+  //   return !isPinDown
+  // }
+
   createLocation(data, user)
-    // .then((res) => history.push('/map/locations' + res.data.location._id))
+
+    .then((res) => console.log(res.data.location.coordinates))
+    .then()
+  // .then((res) => history.push('/map/locations' + res.data.location._id))
+
     .then(() =>
       msgAlert({
         heading: 'Location Created!',
@@ -80,8 +98,9 @@ render () {
               onChange={this.handleChange}
             />
           </Form.Group>
-          <Button variant='primary' type='submit'>
-            Submit
+
+          <Button variant='primary' type='submit'>Submit
+
           </Button>
         </Form>
       </div>
