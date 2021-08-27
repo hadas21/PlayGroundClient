@@ -15,7 +15,7 @@
     }
 
     .flex-center.left {
-        left: 200px;
+        left: 170px;
     }
 
     .sidebar-content {
@@ -56,15 +56,4 @@
         width: 300px;
         height: 100%;
     }
-
-    /*
-  The sidebar styling has them "expanded" by default, we use CSS transforms to push them offscreen
-  The toggleSidebar() function removes this class from the element in order to expand it.
-*/
-    // .left.collapsed {
-    //     transform: translateX(5px);
-    // }
-
-    // .right.collapsed {
-    //     transform: translateX(295px);
-    // }
+    

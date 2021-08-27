@@ -7,11 +7,16 @@ import CreateLocation from '../location/CreateLocation'
 
 class Sidebar extends Component {
   render () {
+    const { user, msgAlert } = this.props
     return (
       <>
         <div id='this.map.current'>
           <div id='left' className='sidebar flex-center left collapsed'>
-            <div className='sidebar-content rounded-rect flex-center'><CreateLocation className=""/>
+            <div className='sidebar-content rounded-rect flex-center'><CreateLocation
+              msgAlert={msgAlert}
+              user={user}
+              address={this.address}
+            />
             </div>
           </div>
         </div>

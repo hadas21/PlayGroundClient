@@ -2,11 +2,12 @@ import React, { Component } from 'react'
 //, { useRef, useEffect, useState }
 import mapboxgl from '!mapbox-gl' // eslint-disable-line import/no-webpack-loader-syntax
 import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder'
-
+import { Link } from 'react-router-dom'
+import Button from 'react-bootstrap/Button'
 import './../../index.scss'
 import { saveLocation } from '../../api/map'
 import CreateLocation from '../../components/location/CreateLocation'
-import AuthenticatedRoute from '../../components/AuthenticatedRoute/AuthenticatedRoute'
+// import AuthenticatedRoute from '../../components/AuthenticatedRoute/AuthenticatedRoute'
 import Sidebar from './Sidebar'
 
 mapboxgl.accessToken = 'pk.eyJ1IjoibGF1cmFhbHlzb24iLCJhIjoiY2tzcDJleWVkMDF0NjMxcGhwMzM1Mm1tMiJ9.27PwqNrg2-gZnMmuS1vOww'
@@ -23,33 +24,33 @@ class Map extends Component {
     this.mapContainer = React.createRef()
   }
 
-  // geojson = {
-  //   type: 'FeatureCollection',
-  //   features: [
-  //     {
-  //       type: 'Feature',
-  //       geometry: {
-  //         type: 'Point',
-  //         coordinates: [-77.032, 38.913]
-  //       },
-  //       properties: {
-  //         title: 'Mapbox',
-  //         description: 'Washington, D.C.'
-  //       }
-  //     },
-  //     {
-  //       type: 'Feature',
-  //       geometry: {
-  //         type: 'Point',
-  //         coordinates: [-122.414, 37.776]
-  //       },
-  //       properties: {
-  //         title: 'Mapbox',
-  //         description: 'San Francisco, California'
-  //       }
-  //     }
-  //   ]
-  // };
+  geojson = {
+    type: 'FeatureCollection',
+    features: [
+      {
+        type: 'Feature',
+        geometry: {
+          type: 'Point',
+          coordinates: [-77.032, 38.913]
+        },
+        properties: {
+          title: 'Mapbox',
+          description: 'Washington, D.C.'
+        }
+      },
+      {
+        type: 'Feature',
+        geometry: {
+          type: 'Point',
+          coordinates: [-122.414, 37.776]
+        },
+        properties: {
+          title: 'Mapbox',
+          description: 'San Francisco, California'
+        }
+      }
+    ]
+  }
 
 address = ''
 myMap = this.map
@@ -101,22 +102,17 @@ render () {
   const { user, msgAlert } = this.props
   return (
     <div>
-      <Sidebar />
+      <Sidebar>
+        <Button><Link to='/map/create-location' className='nav-link'>Add a Location</Link></Button>
+        <CreateLocation
+          msgAlert={msgAlert}
+          user={user}
+          address={this.address}
+        />
+      </Sidebar>
       <div ref={this.mapContainer} className='map-container' />
       <div className='lat-long'>Longitude: {lng} | Latitude: {lat} | Zoom: {zoom}
       </div>
-      <AuthenticatedRoute
-        msgAlert={msgAlert}
-        user={user}
-        path='/map/create-location'
-        render={() => (
-          <CreateLocation
-            msgAlert={msgAlert}
-            user={user}
-            address={this.address}
-          />
-        )}
-      />
     </div>
   )
 }
