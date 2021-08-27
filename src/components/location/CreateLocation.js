@@ -19,9 +19,9 @@ class CreateLocation extends Component {
     }
   }
 
-  componentDidMount () {
-    this.clearForm(false)
-  }
+  // componentDidMount () {
+  //   this.clearForm(false)
+  // }
 
 handleChange = (event) =>
   this.setState({
@@ -29,8 +29,6 @@ handleChange = (event) =>
 
     description: event.target.value,
     coordinates: [this.props.lng, this.props.lat]
-
-
   })
 
 onCreateLocation = (event) => {
