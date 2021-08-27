@@ -22,6 +22,34 @@ class Map extends Component {
     this.mapContainer = React.createRef()
   }
 
+  // geojson = {
+  //   type: 'FeatureCollection',
+  //   features: [
+  //     {
+  //       type: 'Feature',
+  //       geometry: {
+  //         type: 'Point',
+  //         coordinates: [-77.032, 38.913]
+  //       },
+  //       properties: {
+  //         title: 'Mapbox',
+  //         description: 'Washington, D.C.'
+  //       }
+  //     },
+  //     {
+  //       type: 'Feature',
+  //       geometry: {
+  //         type: 'Point',
+  //         coordinates: [-122.414, 37.776]
+  //       },
+  //       properties: {
+  //         title: 'Mapbox',
+  //         description: 'San Francisco, California'
+  //       }
+  //     }
+  //   ]
+  // };
+
 address = ''
 myMap = this.map
 
@@ -42,6 +70,7 @@ componentDidMount () {
       zoom: map.getZoom().toFixed(2)
     })
     console.log(map)
+
     saveLocation(this.state.lng, this.state.lat)
       .then((res) => {
         console.log(res.data)
@@ -49,18 +78,20 @@ componentDidMount () {
       }
       )
       .catch((err) => console.log(err))
+
     const marker = new mapboxgl.Marker()
       .setLngLat({ lng: this.state.lng, lat: this.state.lat })
       .addTo(map) // add the marker to the map
     console.log('this is marker: ', marker)
   }
   )
-
+  for (const { geometry } of this.geojson.features) {
+    // make a marker for each feature and add to the map
+    new mapboxgl.Marker().setLngLat(geometry.coordinates).addTo(map)
+  }
   const geocoder = new MapboxGeocoder({
-    accessToken: mapboxgl.accessToken,
-    marker: {
-      color: 'orange'
-    }
+    accessToken: mapboxgl.accessToken
+
   })
   map.addControl(geocoder)
 }
