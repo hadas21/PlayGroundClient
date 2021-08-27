@@ -12,24 +12,22 @@ class CreateLocation extends Component {
     super(props)
 
     this.state = {
-
       location: '',
       description: ''
-
     }
   }
 
 handleChange = (event) =>
   this.setState({
-    [event.target.name]: event.target.value
+    location: this.props.address,
+    description: event.target.value
   })
 
 onCreateLocation = (event) => {
   event.preventDefault()
 
-  const { history, user, msgAlert, address } = this.props
+  const { history, user, msgAlert } = this.props
 
-  this.setState({ location: address })
   const data = this.state
 
   createLocation(data, user)
@@ -83,7 +81,7 @@ render () {
             />
           </Form.Group>
           <Button variant='primary' type='submit'>
-                        Submit
+            Submit
           </Button>
         </Form>
       </div>
