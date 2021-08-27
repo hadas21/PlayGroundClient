@@ -1,0 +1,23 @@
+import React, { Component } from 'react'
+import './Sidebar.scss'
+import './../../index.scss'
+import CreateLocation from '../location/CreateLocation'
+//, { useRef, useEffect, useState }
+// import mapboxgl from '!mapbox-gl'
+
+class Sidebar extends Component {
+  render () {
+    return (
+      <>
+        <div id='this.map.current'>
+          <div id='left' className='sidebar flex-center left collapsed'>
+            <div className='sidebar-content rounded-rect flex-center'><CreateLocation className=""/>
+            </div>
+          </div>
+        </div>
+      </>
+    )
+  }
+}
+
+export default Sidebar
