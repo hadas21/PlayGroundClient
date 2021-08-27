@@ -18,35 +18,34 @@ class Map extends Component {
     this.state = {
       lng: '',
       lat: '',
-      zoom: ''
+      zoom: '',
+      address: ''
     }
     this.mapContainer = React.createRef()
   }
 
-address = ''
-
-componentDidMount () {
+  componentDidMount () {
   // const { zoom } = this.state
-  const map = new mapboxgl.Map({
-    container: this.mapContainer.current,
-    style: 'mapbox://styles/lauraalyson/cksp2t5nr6w2m17o33s38ftds',
-    center: [-13, 34],
-    zoom: 2
-  })
-
-  indexLocations(this.props.user)
-  // .then((res) => console.log(res))
-    .then((res) => {
-      for (const { coordinates } of res.data.locations) {
-        // make a marker for each feature and add to the map
-        new mapboxgl.Marker().setLngLat(coordinates).addTo(map)
-      }
+    const map = new mapboxgl.Map({
+      container: this.mapContainer.current,
+      style: 'mapbox://styles/lauraalyson/cksp2t5nr6w2m17o33s38ftds',
+      center: [-13, 34],
+      zoom: 2
     })
-    .catch((err) => console.log(err))
-  // map.dragRotate.enable()
 
-  // On click function
-  map.on('load', () => {
+    indexLocations(this.props.user)
+    // .then((res) => console.log(res))
+      .then((res) => {
+        for (const { coordinates } of res.data.locations) {
+        // make a marker for each feature and add to the map
+          new mapboxgl.Marker().setLngLat(coordinates).addTo(map)
+        }
+      })
+      .catch((err) => console.log(err))
+    // map.dragRotate.enable()
+
+    // On click function
+    map.on('load', () => {
     // console.log(e)
     // this.setState({
     //   lng: e.lngLat.lng,
@@ -54,60 +53,64 @@ componentDidMount () {
     //   zoom: map.getZoom().toFixed(2)
     // })
 
-    saveLocation(this.state.lng, this.state.lat)
-      .then((res) => {
-        console.log(res.data)
-        this.address = res.data.features[1].place_name
-        console.log('This is this.address 1', this.address)
-      })
-      .catch((err) => console.log(err))
+      saveLocation(this.state.lng, this.state.lat)
+        .then((res) => {
+          console.log(res.data)
+          this.address = res.data.features[1].place_name
+          console.log('This is this.address 1', this.address)
+        })
+        .catch((err) => console.log(err))
 
-    const marker = new mapboxgl.Marker({ draggable: true })
-      .setLngLat({ lng: this.state.lng, lat: this.state.lat })
-      .addTo(map)
-    console.log('this is marker: ', marker)
-    function onDragEnd (e) {
-      console.log(e)
-      // this.setState({
-      //   lng: e.lngLat.lng,
-      //   lat: e.lngLat.lat,
-      //   zoom: map.getZoom().toFixed(2)
-      // })
+      const marker = new mapboxgl.Marker({ draggable: true })
+        .setLngLat({ lng: this.state.lng, lat: this.state.lat })
+        .addTo(map)
+      console.log('this is marker: ', marker)
+      function onDragEnd (e) {
+        console.log('e: ', e)
+
       // const lngLat = marker.getLngLat()
+      // console.log('lngLat: ', this)
+      // this.setState.bind(this, ({
+      //   lng: lngLat.lng,
+      //   lat: lngLat.lat,
+      //   zoom: map.getZoom().toFixed(2)
+      // }))
       // coordinates.style.display = 'block'
       // coordinates.innerHTML = `Longitude: ${lngLat.lng}<br />Latitude: ${lngLat.lat}`
-    }
+      }
 
-    marker.on('dragend', onDragEnd)
-  })
+      marker.on('dragend', onDragEnd)
+    })
 
-  const geocoder = new MapboxGeocoder({
-    accessToken: mapboxgl.accessToken
+    const geocoder = new MapboxGeocoder({
+      accessToken: mapboxgl.accessToken
 
-  })
-  map.addControl(geocoder)
-}
+    })
+    map.addControl(geocoder)
 
-render () {
-  const { lng, lat, zoom } = this.state
-  const { user, msgAlert } = this.props
-  return (
-    <div>
-      <Sidebar>
+    // handleDrag()
+  }
+
+  render () {
+    const { lng, lat, zoom } = this.state
+    const { user, msgAlert } = this.props
+    return (
+      <div>
+        <Sidebar>
         lng={lng}
         lat={lat}
         msgAlert={msgAlert}
         user={user}
         address={this.address}
         map={this.map}
-      </Sidebar>
-      <div ref={this.mapContainer} className='map-container' />
-      <div className='lat-long'>Longitude: {lng} | Latitude: {lat} | Zoom: {zoom}
+        </Sidebar>
+        <div ref={this.mapContainer} className='map-container' />
+        <div className='lat-long'>Longitude: {lng} | Latitude: {lat} | Zoom: {zoom}
       This is address: {this.address}
+        </div>
       </div>
-    </div>
-  )
-}
+    )
+  }
 }
 
 export default Map
