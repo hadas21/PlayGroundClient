@@ -4,7 +4,7 @@ import mapboxgl from '!mapbox-gl' // eslint-disable-line import/no-webpack-loade
 import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder'
 import './../../index.scss'
 import { indexLocations } from '../../api/location'
-import { saveLocation } from '../../api/map'
+import { getAddress } from '../../api/map'
 // import CreateLocation from '../../components/location/CreateLocation'
 // import AuthenticatedRoute from '../../components/AuthenticatedRoute/AuthenticatedRoute'
 import Sidebar from './Sidebar'
@@ -18,12 +18,16 @@ class Map extends Component {
     this.state = {
       lng: '',
       lat: '',
-      zoom: ''
+      zoom: '',
+      address: '',
+      color: ''
     }
     this.mapContainer = React.createRef()
   }
 
-address = ''
+setMarkerColor = () => {
+  this.setState({ color: '#33dc3f' })
+}
 
 componentDidMount () {
   // const { zoom } = this.state
@@ -34,12 +38,20 @@ componentDidMount () {
     zoom: 2
   })
 
+  const { color } = this.state
   indexLocations(this.props.user)
-  // .then((res) => console.log(res))
     .then((res) => {
+      console.log(res)
       for (const { coordinates } of res.data.locations) {
-        // make a marker for each feature and add to the map
-        new mapboxgl.Marker().setLngLat(coordinates).addTo(map)
+        // make a marker for each location and add to the map
+        new mapboxgl.Marker({ draggable: false, color: '#ffff' })
+          .setLngLat(coordinates)
+          .setPopup(
+            new mapboxgl.Popup({ offset: 25 }).setHTML(
+              `<p>${this.description}</p>`
+            )
+          )
+          .addTo(map)
       }
     })
     .catch((err) => console.log(err))
@@ -47,35 +59,41 @@ componentDidMount () {
 
   // On click function
   map.on('load', () => {
-    // console.log(e)
-    // this.setState({
-    //   lng: e.lngLat.lng,
-    //   lat: e.lngLat.lat,
-    //   zoom: map.getZoom().toFixed(2)
-    // })
-
-    saveLocation(this.state.lng, this.state.lat)
-      .then((res) => {
-        console.log(res.data)
-        this.address = res.data.features[1].place_name
-        console.log('This is this.address 1', this.address)
-      })
-      .catch((err) => console.log(err))
-
-    const marker = new mapboxgl.Marker({ draggable: true })
-      .setLngLat({ lng: this.state.lng, lat: this.state.lat })
+    // drop a marker to create new location
+    const marker = new mapboxgl.Marker({ color: color, draggable: true })
+      .setLngLat([0, 0])
       .addTo(map)
     console.log('this is marker: ', marker)
-    function onDragEnd (e) {
-      console.log(e)
-      // this.setState({
-      //   lng: e.lngLat.lng,
-      //   lat: e.lngLat.lat,
-      //   zoom: map.getZoom().toFixed(2)
-      // })
-      // const lngLat = marker.getLngLat()
-      // coordinates.style.display = 'block'
-      // coordinates.innerHTML = `Longitude: ${lngLat.lng}<br />Latitude: ${lngLat.lat}`
+
+    const onDragEnd = (e) => {
+      console.log('e: ', e)
+      // set state to marker coords
+      const lngLat = marker.getLngLat()
+      this.setState({
+        lng: lngLat.lng,
+        lat: lngLat.lat,
+        zoom: map.getZoom().toFixed(2),
+        color: '#33dc3f'
+      })
+      // transfer coords to string address
+      getAddress(lngLat.lng, lngLat.lat)
+        .then((res) => {
+          console.log(res.data)
+          this.setState({ address: res.data.features[1].place_name })
+        })
+        .catch((err) => console.log(err))
+
+      indexLocations(this.props.user)
+        .then((res) => {
+          console.log(res)
+          for (const { coordinates } of res.data.locations) {
+            // make a marker for each location and add to the map
+            new mapboxgl.Marker({ draggable: false, color: '#ffff' })
+              .setLngLat(coordinates)
+              .addTo(map)
+          }
+        })
+        .catch((err) => console.log(err))
     }
 
     marker.on('dragend', onDragEnd)
@@ -83,27 +101,26 @@ componentDidMount () {
 
   const geocoder = new MapboxGeocoder({
     accessToken: mapboxgl.accessToken
-
   })
   map.addControl(geocoder)
 }
 
 render () {
-  const { lng, lat, zoom } = this.state
+  const { lng, lat, zoom, address } = this.state
   const { user, msgAlert } = this.props
   return (
     <div>
-      <Sidebar>
+      <Sidebar
         lng={lng}
         lat={lat}
         msgAlert={msgAlert}
         user={user}
-        address={this.address}
-        map={this.map}
-      </Sidebar>
+        address={address}
+        setMarkerColor={this.setMarkerColor}
+      />
       <div ref={this.mapContainer} className='map-container' />
-      <div className='lat-long'>Longitude: {lng} | Latitude: {lat} | Zoom: {zoom}
-      This is address: {this.address}
+      <div className='lat-long'>
+        Longitude: {lng} | Latitude: {lat} | Zoom: {zoom} address: {address}
       </div>
     </div>
   )
