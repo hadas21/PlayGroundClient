@@ -43,15 +43,16 @@ componentDidMount () {
       }
     })
     .catch((err) => console.log(err))
+  // map.dragRotate.enable()
 
   // On click function
-  map.on('click', (e) => {
-    console.log(e)
-    this.setState({
-      lng: e.lngLat.lng,
-      lat: e.lngLat.lat,
-      zoom: map.getZoom().toFixed(2)
-    })
+  map.on('load', () => {
+    // console.log(e)
+    // this.setState({
+    //   lng: e.lngLat.lng,
+    //   lat: e.lngLat.lat,
+    //   zoom: map.getZoom().toFixed(2)
+    // })
 
     saveLocation(this.state.lng, this.state.lat)
       .then((res) => {
@@ -61,12 +62,24 @@ componentDidMount () {
       })
       .catch((err) => console.log(err))
 
-    const marker = new mapboxgl.Marker()
+    const marker = new mapboxgl.Marker({ draggable: true })
       .setLngLat({ lng: this.state.lng, lat: this.state.lat })
       .addTo(map)
     console.log('this is marker: ', marker)
-  }
-  )
+    function onDragEnd (e) {
+      console.log(e)
+      // this.setState({
+      //   lng: e.lngLat.lng,
+      //   lat: e.lngLat.lat,
+      //   zoom: map.getZoom().toFixed(2)
+      // })
+      // const lngLat = marker.getLngLat()
+      // coordinates.style.display = 'block'
+      // coordinates.innerHTML = `Longitude: ${lngLat.lng}<br />Latitude: ${lngLat.lat}`
+    }
+
+    marker.on('dragend', onDragEnd)
+  })
 
   const geocoder = new MapboxGeocoder({
     accessToken: mapboxgl.accessToken
