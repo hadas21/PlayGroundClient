@@ -9,8 +9,8 @@ const authenticatedOptions = (
     </NavLink>
     <NavLink to='/sign-out' className='nav-link'>Sign Out
     </NavLink>
-    <NavLink to='/map/create-location' className='nav-link'>Add a Location
-    </NavLink>
+    {/* <NavLink to='/map/create-location' className='nav-link'>Add a Location
+    </NavLink> */}
     <NavLink to='/map/locations' className='nav-link'>Show Locations
     </NavLink>
     <NavLink to='/create-friend' className='nav-link'>Add a Friend
@@ -38,7 +38,7 @@ const alwaysOptions = (
 const Header = ({ user }) => (
   <Navbar bg='primary' variant='dark' expand='md'>
     <Navbar.Brand>
-      <Link to='/' style={{ color: '#FFF', textDecoration: 'none' }}>react-auth-template</Link>
+      <Link to='/' style={{ color: '#FFF', textDecoration: 'none', padding: '0 20px', fontSize: '30px' }}>Playground</Link>
     </Navbar.Brand>
     <Navbar.Toggle aria-controls='basic-navbar-nav' />
     <Navbar.Collapse id='basic-navbar-nav'>

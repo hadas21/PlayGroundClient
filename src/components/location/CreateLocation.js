@@ -1,93 +1,51 @@
 import React, { Component } from 'react'
-import { withRouter } from 'react-router-dom'
-
-import { createLocation } from '../../api/location'
-import { createLocationSuccess, createLocationFailure } from '../AutoDismissAlert/messages'
-
-import Form from 'react-bootstrap/Form'
+import { withRouter, Link } from 'react-router-dom'
 import Button from 'react-bootstrap/Button'
+import Form from 'react-bootstrap/Form'
+
+// import { createLocation } from '../../api/location'
+// import { createLocationSuccess, createLocationFailure } from '../AutoDismissAlert/messages'
 
 class CreateLocation extends Component {
-  constructor (props) {
-    super(props)
+  render () {
+    const { address, description } = this.props
 
-    this.state = {
-      location: '',
-      description: ''
-    }
-  }
+    return (
+      <div className='row'>
+        <div className='col-sm-10 col-sm-8 mx-auto mt-5'>
+          <Form onSubmit={this.onCreateLocation}>
+            <Form.Group controlId='location'>
+              <Form.Label>Location</Form.Label>
+              <Form.Control
+                required
+                type='text'
+                name='location'
+                value={address}
+                placeholder='Enter location'
+                onChange={this.handleChange}
+              />
+            </Form.Group>
+            <Form.Group controlId='description'>
+              <Form.Label>Description</Form.Label>
+              <Form.Control
+                required
+                name='description'
+                value={description}
+                type='text'
+                placeholder='description'
+                onChange={this.handleChange}
+              />
+            </Form.Group>
 
-handleChange = (event) =>
-  this.setState({
-    location: this.props.address,
-    description: event.target.value
-  })
-
-onCreateLocation = (event) => {
-  event.preventDefault()
-
-  const { history, user, msgAlert } = this.props
-
-  const data = this.state
-
-  createLocation(data, user)
-    .then((res) => history.push('/map/locations' + res.data.location._id))
-    .then(() =>
-      msgAlert({
-        heading: 'Location Created!',
-        message: createLocationSuccess,
-        variant: 'success'
-      })
-    )
-    .then(() => this.setState({ location: '', description: '' }))
-    .catch((err) =>
-      msgAlert({
-        heading: 'Location creation failed :(',
-        message: createLocationFailure + err.message,
-        variant: 'danger'
-      })
-    )
-}
-
-render () {
-  const { description } = this.state
-  const { address } = this.props
-
-  return (
-    <div className='row'>
-      <div className='col-sm-10 col-md-8 mx-auto mt-5'>
-        <h3>Add Location</h3>
-        <Form onSubmit={this.onCreateLocation}>
-          <Form.Group controlId='location'>
-            <Form.Label>Location</Form.Label>
-            <Form.Control
-              required
-              type='text'
-              name='location'
-              value={address}
-              placeholder='Enter location'
-              onChange={this.handleChange}
-            />
-          </Form.Group>
-          <Form.Group controlId='description'>
-            <Form.Label>Description</Form.Label>
-            <Form.Control
-              required
-              name='description'
-              value={description}
-              type='text'
-              placeholder='description'
-              onChange={this.handleChange}
-            />
-          </Form.Group>
-          <Button variant='primary' type='submit'>
-            Submit
+            <Button variant='primary' type='submit'>Submit</Button>
+          </Form>
+          <Button>
+            <Link to='/map' className='nav-link'>Add a Location</Link>
           </Button>
-        </Form>
+        </div>
       </div>
-    </div>
-  )
-}
+    )
+  }
 }
 
 export default withRouter(CreateLocation)
