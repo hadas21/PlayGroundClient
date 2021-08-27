@@ -18,6 +18,10 @@ class CreateLocation extends Component {
     }
   }
 
+  componentDidMount () {
+    this.clearForm(false)
+  }
+
 handleChange = (event) =>
   this.setState({
     location: this.props.address,
@@ -32,9 +36,13 @@ onCreateLocation = (event) => {
 
   const data = this.state
 
+  // const clearForm = (isPinDown) => {
+  //   return !isPinDown
+  // }
+
   createLocation(data, user)
     .then((res) => console.log(res.data.location.coordinates))
-    .then(this.isPinDown = false)
+    .then()
   // .then((res) => history.push('/map/locations' + res.data.location._id))
     .then(() =>
       msgAlert({
@@ -68,7 +76,7 @@ render () {
               required
               type='text'
               name='location'
-              value={ address}
+              value={address}
               placeholder='Enter location'
               onChange={this.handleChange}
             />
