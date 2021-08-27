@@ -4,6 +4,7 @@ import mapboxgl from '!mapbox-gl' // eslint-disable-line import/no-webpack-loade
 import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder'
 
 import './../../index.scss'
+import { indexLocations } from '../../api/location'
 import { saveLocation } from '../../api/map'
 import CreateLocation from '../../components/location/CreateLocation'
 import AuthenticatedRoute from '../../components/AuthenticatedRoute/AuthenticatedRoute'
@@ -23,33 +24,6 @@ class Map extends Component {
     this.mapContainer = React.createRef()
   }
 
-  // geojson = {
-  //   type: 'FeatureCollection',
-  //   features: [
-  //     {
-  //       type: 'Feature',
-  //       geometry: {
-  //         type: 'Point',
-  //         coordinates: [-77.032, 38.913]
-  //       },
-  //       properties: {
-  //         title: 'Mapbox',
-  //         description: 'Washington, D.C.'
-  //       }
-  //     },
-  //     {
-  //       type: 'Feature',
-  //       geometry: {
-  //         type: 'Point',
-  //         coordinates: [-122.414, 37.776]
-  //       },
-  //       properties: {
-  //         title: 'Mapbox',
-  //         description: 'San Francisco, California'
-  //       }
-  //     }
-  //   ]
-  // };
 
 address = ''
 myMap = this.map
@@ -63,20 +37,30 @@ componentDidMount () {
     zoom: 2
   })
 
+  indexLocations(this.props.user)
+  // .then((res) => console.log(res))
+    .then((res) => {
+      for (const { coordinates } of res.data.locations) {
+        // make a marker for each feature and add to the map
+        new mapboxgl.Marker().setLngLat(coordinates).addTo(map)
+      }
+    })
+    .catch((err) => console.log(err))
   map.on('click', (e) => {
     this.setState({
       lng: e.lngLat.lng,
       lat: e.lngLat.lat,
       zoom: map.getZoom().toFixed(2)
     })
-    console.log(map)
+
+    // console.log('coor: ', e)
+
 
     saveLocation(this.state.lng, this.state.lat)
       .then((res) => {
         console.log(res.data)
         this.address = res.data.features[1].place_name
-      }
-      )
+      })
       .catch((err) => console.log(err))
 
     const marker = new mapboxgl.Marker()
@@ -85,10 +69,9 @@ componentDidMount () {
     console.log('this is marker: ', marker)
   }
   )
-  for (const { geometry } of this.geojson.features) {
-    // make a marker for each feature and add to the map
-    new mapboxgl.Marker().setLngLat(geometry.coordinates).addTo(map)
-  }
+
+
+
   const geocoder = new MapboxGeocoder({
     accessToken: mapboxgl.accessToken
 
@@ -108,9 +91,15 @@ render () {
       <AuthenticatedRoute
         msgAlert={msgAlert}
         user={user}
+
+        lng={lng}
+        lat={lat}
         path='/map/create-location'
         render={() => (
           <CreateLocation
+            lng={lng}
+            lat={lat}
+
             msgAlert={msgAlert}
             user={user}
             address={this.address}
