@@ -18,6 +18,7 @@ class CreateLocation extends Component {
   }
 
 handleChange = (event) =>
+
   this.setState({
     location: this.props.address,
     description: event.target.value,
@@ -27,14 +28,13 @@ handleChange = (event) =>
 onCreateLocation = (event) => {
   event.preventDefault()
 
-  const { user, msgAlert } = this.props
+  const { user, msgAlert, setMarkerColor, history } = this.props
 
   const data = this.state
 
   createLocation(data, user)
     .then((res) => console.log(res.data.location.coordinates))
-    .then()
-
+    .then(() => history.push('/map'))
     .then(() =>
       msgAlert({
         heading: 'Location Created!',
@@ -43,6 +43,7 @@ onCreateLocation = (event) => {
       })
     )
     .then(() => this.setState({ location: '', description: '' }))
+    .then(setMarkerColor())
     .catch((err) =>
       msgAlert({
         heading: 'Location creation failed :(',
@@ -89,7 +90,6 @@ render () {
             Submit
           </Button>
         </Form>
-
       </div>
     </div>
   )
