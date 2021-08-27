@@ -7,6 +7,7 @@ import AuthenticatedRoute from './components/AuthenticatedRoute/AuthenticatedRou
 import AutoDismissAlert from './components/AutoDismissAlert/AutoDismissAlert'
 // header logic
 import Header from './components/Header/Header'
+
 // auth CRUD
 import SignUp from './components/auth/SignUp'
 import SignIn from './components/auth/SignIn'
@@ -81,7 +82,6 @@ class App extends Component {
               <SignIn msgAlert={this.msgAlert} setUser={this.setUser} />
             )}
           />
-
           <AuthenticatedRoute
             user={user}
             path='/sign-out'

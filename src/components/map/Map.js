@@ -7,6 +7,7 @@ import './../../index.scss'
 import { saveLocation } from '../../api/map'
 import CreateLocation from '../../components/location/CreateLocation'
 import AuthenticatedRoute from '../../components/AuthenticatedRoute/AuthenticatedRoute'
+import Sidebar from './Sidebar'
 
 mapboxgl.accessToken = 'pk.eyJ1IjoibGF1cmFhbHlzb24iLCJhIjoiY2tzcDJleWVkMDF0NjMxcGhwMzM1Mm1tMiJ9.27PwqNrg2-gZnMmuS1vOww'
 
@@ -54,13 +55,12 @@ address = ''
 myMap = this.map
 
 componentDidMount () {
-  const { lng, lat, zoom } = this.state
-  //   const { user } = this.props
+  // const { zoom } = this.state
   const map = new mapboxgl.Map({
     container: this.mapContainer.current,
     style: 'mapbox://styles/lauraalyson/cksp2t5nr6w2m17o33s38ftds',
-    center: [lng, lat],
-    zoom: zoom
+    center: [-13, 34],
+    zoom: 2
   })
 
   map.on('click', (e) => {
@@ -101,9 +101,10 @@ render () {
   const { user, msgAlert } = this.props
   return (
     <div>
-      <div className='sidebar'>Longitude: {lng} | Latitude: {lat} | Zoom: {zoom}
-      </div>
+      <Sidebar />
       <div ref={this.mapContainer} className='map-container' />
+      <div className='lat-long'>Longitude: {lng} | Latitude: {lat} | Zoom: {zoom}
+      </div>
       <AuthenticatedRoute
         msgAlert={msgAlert}
         user={user}
