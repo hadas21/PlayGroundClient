@@ -1,6 +1,7 @@
 ### Playground
 ```md
 The world is your playground.
+![check it out here](https://projectplaygroundlha.github.io/PlayGroundClient/)
 ```
 ## Version One User Stories
 

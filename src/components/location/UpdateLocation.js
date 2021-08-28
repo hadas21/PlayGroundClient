@@ -43,7 +43,7 @@ handleSubmit = (event) => {
   const id = match.params.id
 
   updateLocation(data, id, user)
-    .then(() => history.push('/locations/' + id))
+    .then(() => history.push('/map/locations/' + id))
     .then(() => this.setState({ location: { location: '', description: '' } }))
     .catch((err) => {
       msgAlert({

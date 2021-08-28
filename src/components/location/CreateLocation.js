@@ -1,37 +1,40 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
+import Button from 'react-bootstrap/Button'
+import Form from 'react-bootstrap/Form'
 
 import { createLocation } from '../../api/location'
 import { createLocationSuccess, createLocationFailure } from '../AutoDismissAlert/messages'
-
-import Form from 'react-bootstrap/Form'
-import Button from 'react-bootstrap/Button'
 
 class CreateLocation extends Component {
   constructor (props) {
     super(props)
 
     this.state = {
-
       location: '',
-      description: ''
-
+      description: '',
+      coordinates: []
     }
   }
 
 handleChange = (event) =>
+
   this.setState({
-    [event.target.name]: event.target.value
+    location: this.props.address,
+    description: event.target.value,
+    coordinates: [this.props.lng, this.props.lat]
   })
 
 onCreateLocation = (event) => {
   event.preventDefault()
 
-  const { history, user, msgAlert } = this.props
+  const { user, msgAlert, setMarkerColor, history } = this.props
+
   const data = this.state
 
   createLocation(data, user)
-    .then((res) => history.push('/locations' + res.data.location._id))
+    .then((res) => console.log(res.data.location.coordinates))
+    .then(() => history.push('/map'))
     .then(() =>
       msgAlert({
         heading: 'Location Created!',
@@ -40,6 +43,7 @@ onCreateLocation = (event) => {
       })
     )
     .then(() => this.setState({ location: '', description: '' }))
+    .then(setMarkerColor())
     .catch((err) =>
       msgAlert({
         heading: 'Location creation failed :(',
@@ -50,13 +54,14 @@ onCreateLocation = (event) => {
 }
 
 render () {
-  const { description } = this.state
-  const { address } = this.props
+  const { address, description } = this.props
 
   return (
     <div className='row'>
-      <div className='col-sm-10 col-md-8 mx-auto mt-5'>
-        <h3>Add Location</h3>
+      <div className='col-sm-10 col-sm-8 mx-auto mt-5'>
+        {/* <Link to='/map' className='nav-link'>
+            Add a Location
+        </Link> */}
         <Form onSubmit={this.onCreateLocation}>
           <Form.Group controlId='location'>
             <Form.Label>Location</Form.Label>
@@ -80,8 +85,9 @@ render () {
               onChange={this.handleChange}
             />
           </Form.Group>
+
           <Button variant='primary' type='submit'>
-                        Submit
+            Submit
           </Button>
         </Form>
       </div>
