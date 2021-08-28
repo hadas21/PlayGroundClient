@@ -1,4 +1,3 @@
-
 import axios from 'axios'
 
 const apiUrl = 'https://api.mapbox.com/geocoding/v5/mapbox.places/'
