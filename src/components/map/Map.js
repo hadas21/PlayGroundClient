@@ -23,29 +23,6 @@ class Map extends Component {
     this.mapContainer = React.createRef()
   }
 
-<<<<<<< HEAD
-setAddress = () => {
-  this.setState({ address: '' })
-}
-=======
-  // setMarkerColor = () => {
-  //   this.setState({ color: '#33dc3f' })
-  // }
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> 153930e (render list of all locations of all users, users not rendering (yet))
-=======
-<<<<<<< HEAD
->>>>>>> 38ab98f (resolve)
-
-setAddress = () => {
-  this.setState({ address: '' })
-}
-=======
->>>>>>> fc0cb16 (g)
-=======
->>>>>>> 584b5c7 (resolve)
-
 setAddress = () => {
   this.setState({ address: '' })
 }
@@ -88,12 +65,9 @@ componentDidMount () {
       }
     })
     .catch((err) => console.log(err))
-<<<<<<< HEAD
 
-=======
   // map.dragRotate.enable()
-  // const { lng, lat } = this.state.center
->>>>>>> 01fa2ad (resolve)
+
   // On click function
   const marker = new mapboxgl.Marker({ color: color, draggable: true })
     .setLngLat([map.getCenter().lng, map.getCenter().lat]) // map.getCenter().lat.toFixed(4)
@@ -104,26 +78,13 @@ componentDidMount () {
 
     marker.setLngLat([map.getCenter().lng, map.getCenter().lat]) // map.getCenter().lat.toFixed(4)
       .addTo(map)
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
 
->>>>>>> 38ab98f (resolve)
     console.log('this is marker: ', marker)
 
     // marker.on('click', (e) => {
     //   console.log('this is marker.on click e: ', e)
     // })
-<<<<<<< HEAD
->>>>>>> 153930e (render list of all locations of all users, users not rendering (yet))
 
-=======
->>>>>>> 01fa2ad (resolve)
-=======
-
->>>>>>> 38ab98f (resolve)
     const onDragEnd = (e) => {
       // set state to marker coords
       const lngLat = marker.getLngLat()
@@ -131,12 +92,7 @@ componentDidMount () {
         lng: lngLat.lng,
         lat: lngLat.lat,
         zoom: map.getZoom().toFixed(2)
-<<<<<<< HEAD
-        // color: '#33dc3f'
-=======
->>>>>>> 153930e (render list of all locations of all users, users not rendering (yet))
       })
-
       // transfer coords to string address
       getAddress(lngLat.lng, lngLat.lat)
         .then((res) => {
@@ -167,20 +123,10 @@ componentDidMount () {
     accessToken: mapboxgl.accessToken
   })
   map.addControl(geocoder)
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
 
-  map.on('click', (e) => {
-    console.log('this is map.e ', e)
-=======
-=======
->>>>>>> 50a6f7d (resolve)
   map.on('load', () => {
     geocoder.query('Boston')
   })
->>>>>>> 01fa2ad (resolve)
 }
 
 render () {
@@ -194,22 +140,11 @@ render () {
         msgAlert={msgAlert}
         user={user}
         address={address}
-<<<<<<< HEAD
-<<<<<<< HEAD
         setAddress={this.setAddress}
       />
       <div ref={this.mapContainer} className='map-container'>
         <div className='lat-long'> Longitude: {lng} | Latitude: {lat} | Zoom: {zoom} address: {address}
         </div>
-=======
-        setMarkerColor={this.setMarkerColor}
-=======
->>>>>>> 105d356 (cleasr sreate location form after success and error)
-        setAddress={this.setAddress}
-      />
-      <div ref={this.mapContainer} className='map-container' />
-      <div className='lat-long'>Longitude: {lng} | Latitude: {lat} | Zoom: {zoom} address: {address}
->>>>>>> dec9422 (cleare oncreate location form)
       </div>
     </div>
   )

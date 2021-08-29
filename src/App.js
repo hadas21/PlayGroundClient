@@ -24,12 +24,8 @@ import CreateFriend from '../src/components/friend/CreateFriend'
 import IndexFriends from '../src/components/friend/IndexFriends'
 import ShowFriend from '../src/components/friend/ShowFriend'
 import UpdateFriend from '../src/components/friend/UpdateFriend'
-<<<<<<< HEAD
-import Users from './components/map/Users'
-=======
 import Users from '../src/components/auth/Users'
 import IndexAllLocations from '../src/components/location/indexAllLocations'
->>>>>>> 153930e (render list of all locations of all users, users not rendering (yet))
 
 class App extends Component {
   constructor (props) {
@@ -63,17 +59,9 @@ class App extends Component {
     const { msgAlerts, user } = this.state
 
     return (
-<<<<<<< HEAD
-<<<<<<< HEAD
+
       <Fragment>
         <Header user={user} className='container-fluid'/>
-=======
-      <Fragment className='container-fluid'>
-=======
-      <Fragment>
->>>>>>> 547ce3f (resolve)
-        <Header user={user} />
->>>>>>> fd3fde7 (resolve)
         {msgAlerts.map((msgAlert) => (
           <AutoDismissAlert
             key={msgAlert.id}
