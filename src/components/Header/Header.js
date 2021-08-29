@@ -27,6 +27,15 @@ const unauthenticatedOptions = (
   </Fragment>
 )
 
+<<<<<<< HEAD
+=======
+const alwaysOptions = (
+  <Fragment>
+    {/* <NavLink exact to='/' className='nav-link'>Home</NavLink> */}
+  </Fragment>
+)
+
+>>>>>>> af8fc1f (delete home from header)
 const Header = ({ user }) => (
   <Navbar className='sticky-top' bg='primary' variant='dark' expand='md'>
     <Navbar.Brand>
