@@ -1,9 +1,11 @@
 /* eslint-disable no-tabs */
+// react
 import React, { Component, Fragment } from 'react'
 import { Route } from 'react-router-dom'
 import { v4 as uuid } from 'uuid'
-
+// Authentication
 import AuthenticatedRoute from './components/AuthenticatedRoute/AuthenticatedRoute'
+// user messages
 import AutoDismissAlert from './components/AutoDismissAlert/AutoDismissAlert'
 // header logic
 import Header from './components/Header/Header'
@@ -13,19 +15,22 @@ import SignUp from './components/auth/SignUp'
 import SignIn from './components/auth/SignIn'
 import SignOut from './components/auth/SignOut'
 import ChangePassword from './components/auth/ChangePassword'
+import Users from '../src/components/auth/Users'
 
+// location CRUD
 import IndexLocations from './components/location/IndexLocations'
 import ShowLocation from './components/location/ShowLocation'
 import UpdateLocation from './components/location/UpdateLocation'
-// map logic
-import Map from './components/map/Map'
+import IndexAllLocations from '../src/components/location/indexAllLocations'
+
 // friends CRUD
 import CreateFriend from '../src/components/friend/CreateFriend'
 import IndexFriends from '../src/components/friend/IndexFriends'
 import ShowFriend from '../src/components/friend/ShowFriend'
 import UpdateFriend from '../src/components/friend/UpdateFriend'
-import Users from '../src/components/auth/Users'
-import IndexAllLocations from '../src/components/location/indexAllLocations'
+
+// map logic
+import Map from './components/map/Map'
 
 class App extends Component {
   constructor (props) {

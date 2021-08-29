@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
+// style
 import './Sidebar.scss'
 import './../../index.scss'
+// components
 import CreateLocation from '../location/CreateLocation'
 import CreateFriend from '../friend/CreateFriend'
 import Users from './Users'
@@ -30,9 +32,9 @@ class Sidebar extends Component {
                 />
                 <br />
                 <CreateFriend
-                  setAddress={setAddress}
                   msgAlert={msgAlert}
                   user={user}
+                  setAddress={setAddress}
                   address={address}
                   lng={lng}
                   lat={lat}

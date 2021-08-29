@@ -1,9 +1,13 @@
 import React, { Component } from 'react'
+// mapbox
 import mapboxgl from '!mapbox-gl' // eslint-disable-line import/no-webpack-loader-syntax
 import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder'
+// style
 import './../../index.scss'
+// api calls
 import { indexLocations } from '../../api/location'
 import { getAddress } from '../../api/map'
+// components
 import Sidebar from './Sidebar'
 
 mapboxgl.accessToken = 'pk.eyJ1IjoibGF1cmFhbHlzb24iLCJhIjoiY2tzcDJleWVkMDF0NjMxcGhwMzM1Mm1tMiJ9.27PwqNrg2-gZnMmuS1vOww'
@@ -28,26 +32,15 @@ setAddress = () => {
 }
 
 componentDidMount () {
-  // const { zoom } = this.state
   const map = new mapboxgl.Map({
     container: this.mapContainer.current,
-    style: 'mapbox://styles/lauraalyson/cksp2t5nr6w2m17o33s38ftds',
-    center: [-13, 34],
-    zoom: 2
+    style: 'mapbox://styles/lauraalyson/cksp2t5nr6w2m17o33s38ftds'
   })
-  // let center = []
-
-  // map.on('move', () => {
-  //   this.setState({ center: { lng: map.getCenter().lng, lat: map.getCenter().lat } })
-
-  // console.log(typeof center[0])
-
-  // return [map.getCenter().lng, map.getCenter().lat]
-  // })
-  // getCoords()
 
   const { color } = this.state
+  // get saved locations to display markers on map
   indexLocations(this.props.user)
+  // set markers on map
     .then((res) => {
       for (const { coordinates, location, description } of res.data.locations) {
         // make a marker for each location and add to the map
@@ -64,27 +57,28 @@ componentDidMount () {
           .addTo(map)
       }
     })
-    .catch((err) => console.log(err))
+    .catch((error) =>
+      this.props.msgAlert({
+        heading: 'Sorry, ' + error.message,
+        message: 'The map did not load with your locations. please try refreshing the page',
+        variant: 'danger'
+      })
+    )
 
   // map.dragRotate.enable()
 
-  // On click function
+  // drop new draggable marker to create new location
   const marker = new mapboxgl.Marker({ color: color, draggable: true })
     .setLngLat([map.getCenter().lng, map.getCenter().lat]) // map.getCenter().lat.toFixed(4)
     .addTo(map)
-  console.log('this is marker: ', marker)
+  // keep only one draggable marker on map
   map.on('moveend', () => {
     marker.remove()
 
-    marker.setLngLat([map.getCenter().lng, map.getCenter().lat]) // map.getCenter().lat.toFixed(4)
+    marker
+      .setLngLat([map.getCenter().lng, map.getCenter().lat]) // map.getCenter().lat.toFixed(4)
       .addTo(map)
-
-    console.log('this is marker: ', marker)
-
-    // marker.on('click', (e) => {
-    //   console.log('this is marker.on click e: ', e)
-    // })
-
+    // store data of marked location
     const onDragEnd = (e) => {
       // set state to marker coords
       const lngLat = marker.getLngLat()
@@ -99,31 +93,48 @@ componentDidMount () {
           console.log(res.data)
           this.setState({ address: res.data.features[1].place_name })
         })
-        .catch((err) => console.log(err))
+        .catch((error) =>
+          this.props.msgAlert({
+            heading: 'Oops... ' + error.message,
+            message: 'There is no registered address for the selected area, please zoom in and try again',
+            variant: 'danger'
+          })
+        )
 
+      // index locations again to display new location NEED TO FIND CLEANER WAY TO DO THIS!!!
       indexLocations(this.props.user)
         .then((res) => {
           console.log(res)
-          for (const { coordinates, location, description } of res.data.locations) {
+          for (const { coordinates, location, description } of res.data
+            .locations) {
             new mapboxgl.Marker({ draggable: false, color: '#ffff' })
               .setPopup(
-                new mapboxgl.Popup({ offset: 25 }).setHTML(`<h6>${location}</h6><p>${description}</p>`)
+                new mapboxgl.Popup({ offset: 25 }).setHTML(
+                  `<h6>${location}</h6><p>${description}</p>`
+                )
               )
               .setLngLat(coordinates)
               .addTo(map)
           }
         })
-        .catch((err) => console.log(err))
+        .catch((error) =>
+          this.props.msgAlert({
+            heading: 'Sorry, : ' + error.message,
+            message: 'The map did not load with your locations. please try refreshing the page',
+            variant: 'danger'
+          })
+        )
     }
 
     marker.on('dragend', onDragEnd)
   })
 
+  // add search box to map
   const geocoder = new MapboxGeocoder({
     accessToken: mapboxgl.accessToken
   })
   map.addControl(geocoder)
-
+  // show boston on the map
   map.on('load', () => {
     geocoder.query('Boston')
   })
@@ -143,7 +154,7 @@ render () {
         setAddress={this.setAddress}
       />
       <div ref={this.mapContainer} className='map-container'>
-        <div className='lat-long'> Longitude: {lng} | Latitude: {lat} | Zoom: {zoom} address: {address}
+        <div className='lat-long'> Longitude: {lng} | Latitude: {lat} | Zoom: {zoom}
         </div>
       </div>
     </div>
