@@ -61,6 +61,7 @@ render () {
   return (
     <div className='row'>
       <div className='col-sm-10 col-sm-8 mx-auto mt-5'>
+        <h3>Add a Pin</h3>
         <Form onSubmit={this.onCreateLocation}>
           <Form.Group controlId='location'>
             <Form.Label>Location</Form.Label>
@@ -87,7 +88,7 @@ render () {
             />
           </Form.Group>
 
-          <Button variant='primary' type='submit'>Add Location
+          <Button variant='primary' type='submit'>Add
           </Button>
         </Form>
       </div>

@@ -30,9 +30,6 @@ class IndexFriends extends Component {
   render () {
     const { friends } = this.state
     console.log('this is friends in index ', friends)
-    if (friends === null) {
-      return 'Loading...'
-    }
 
     let friendJsx
     if (friends.length === 0) {

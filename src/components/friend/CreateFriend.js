@@ -51,11 +51,12 @@ onCreateFriend = (event) => {
 }
 
 render () {
-  const { username, location } = this.state
+  const { username } = this.state
+  // location
 
   return (
     <div className='row'>
-      <div className='col-sm-10 col-md-8 mx-auto mt-5'>
+      <div className='col-sm-10 col-sm-8 mx-auto mt-5'>
         <Form onSubmit={this.onCreateFriend}>
           <Form.Group controlId='friend'>
             <Form.Label>Add Friend</Form.Label>
@@ -66,16 +67,15 @@ render () {
               placeholder='Add friend name...'
               onChange={this.handleChange}
             />
-            <Form.Control
+            {/* <Form.Control
               type='location'
               name='location'
               value={location}
               placeholder='Add location name...'
               onChange={this.handleChange}
-            />
+            /> */}
           </Form.Group>
-          <Button variant='primary' type='submit'>
-            Add
+          <Button variant='primary' type='submit'>Add
           </Button>
         </Form>
       </div>

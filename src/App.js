@@ -72,9 +72,6 @@ class App extends Component {
         ))}
         <main className='container-fluid'>
           <Route
-            path='/users' render={() => <Users />}
-          />
-          <Route
             path='/sign-up'
             render={() => (
               <SignUp msgAlert={this.msgAlert} setUser={this.setUser} />
@@ -85,6 +82,11 @@ class App extends Component {
             render={() => (
               <SignIn msgAlert={this.msgAlert} setUser={this.setUser} />
             )}
+          />
+          <AuthenticatedRoute
+            path='/users'
+            user={user}
+            render={() => <Users user={user} />}
           />
           <AuthenticatedRoute
             user={user}

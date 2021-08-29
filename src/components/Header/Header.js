@@ -9,14 +9,14 @@ const authenticatedOptions = (
     </NavLink>
     <NavLink to='/sign-out' className='nav-link'>Sign Out
     </NavLink>
-    <NavLink exact to='/map' className='nav-link'>Map</NavLink>
+    {/* <NavLink exact to='/map' className='nav-link'>Map</NavLink> */}
     <NavLink to='/map/locations' className='nav-link'>Show Locations
     </NavLink>
     <NavLink to='/create-friend' className='nav-link'>Add a Friend
     </NavLink>
     <NavLink to='/friends' className='nav-link'>Show Friends
     </NavLink>
-
+    <NavLink to='/users' className='nav-link'>Show Users</NavLink>
   </Fragment>
 )
 
@@ -24,7 +24,6 @@ const unauthenticatedOptions = (
   <Fragment>
     <NavLink to='/sign-up' className='nav-link'>Sign Up</NavLink>
     <NavLink to='/sign-in' className='nav-link'>Sign In</NavLink>
-    <NavLink to='/users' className='nav-link'>Show Users</NavLink>
   </Fragment>
 )
 
@@ -32,7 +31,7 @@ const Header = ({ user }) => (
   <Navbar className='sticky-top' bg='primary' variant='dark' expand='md'>
     <Navbar.Brand>
       <Link
-        to='/'
+        to='/map'
         style={{
           color: '#FFF',
           textDecoration: 'none',

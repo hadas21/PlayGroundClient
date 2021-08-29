@@ -1,50 +1,57 @@
-import axios from 'axios'
 import React, { Component } from 'react'
-// import { Link } from 'react-router-dom'
-
-// import the api's url
+import axios from 'axios'
 import apiUrl from '../apiConfig'
-
-// This will be our Books Index component (show all books)
+import { Link } from 'react-router-dom'
+import FriendLocation from './map/FriendLocation'
+import '../index.scss'
 class Users extends Component {
   constructor (props) {
     super(props)
 
-    // setup our initial state
     this.state = {
-      // we have zero books, until our API request has finished
       users: []
     }
   }
 
-  // this is called whenever our component is created and inserted
-  // into the DOM (first appears)
   componentDidMount () {
-    // make a GET request for all of the books
     axios(`${apiUrl}/users`)
       .then((res) => {
-        console.log('this is res: ', res)
-        for (const { username } of res.data.user) {
-          this.setState({ users: [username] })
-        }
+        console.log('This is res.data ', res.data)
+        const response = res.data.user.map((user) => [user.username, user._id, user.token])
+        this.setState({ users: response })
+        console.log('this is the setState: ', response)
       })
-      .then(() => console.log(this.state))
       .catch(console.error)
   }
+
+  // handleClick = (token) => {
+  //   console.log(token)
+  //   indexFriendLocations(token)
+  //     .then(() => console.log(this.props.user))
+  //     .then((res) => console.log(res))
+  //     .then((res) => this.setState({ locations: res.data.locations }))
+  //     .catch((err) => console.log('this is the error ', err))
+  // }
 
   render () {
     const { users } = this.state
 
-    const userList = users.map(user => (
-      <li key={user._id}>
-        {user.username}
-      </li>
-    ))
-
     return (
       <>
         <h4>Users</h4>
-        <ul>{userList}</ul>
+        <div className='marquee'>
+          <ul className='marquee--inner'>
+            {users.map((user) => (
+              <li className='user-name' key={user[1]}>
+                <Link
+                  to={`/map/locations/${user[1]}`}>
+                  {user[0]}
+                </Link>
+                <FriendLocation token={user[2]} />
+              </li>
+            ))}
+          </ul>
+        </div>
       </>
     )
   }
