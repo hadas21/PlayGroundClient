@@ -27,7 +27,7 @@ const unauthenticatedOptions = (
 )
 
 const Header = ({ user }) => (
-  <Navbar bg='primary' variant='dark' expand='md'>
+  <Navbar className='sticky-top' bg='primary' variant='dark' expand='md'>
     <Navbar.Brand>
       <Link
         to='/'
