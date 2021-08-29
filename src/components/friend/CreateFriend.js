@@ -56,7 +56,6 @@ render () {
   return (
     <div className='row'>
       <div className='col-sm-10 col-md-8 mx-auto mt-5'>
-        <h3>Add Friend</h3>
         <Form onSubmit={this.onCreateFriend}>
           <Form.Group controlId='friend'>
             <Form.Label>Add Friend</Form.Label>
