@@ -57,7 +57,7 @@ class App extends Component {
     const { msgAlerts, user } = this.state
 
     return (
-      <Fragment>
+      <Fragment className='container-fluid'>
         <Header user={user} />
         {msgAlerts.map((msgAlert) => (
           <AutoDismissAlert
@@ -69,7 +69,7 @@ class App extends Component {
             deleteAlert={this.deleteAlert}
           />
         ))}
-        <main className='container'>
+        <main className='container-fluid'>
           <Route
             path='/sign-up'
             render={() => (

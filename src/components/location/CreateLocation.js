@@ -4,7 +4,10 @@ import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 
 import { createLocation } from '../../api/location'
-import { createLocationSuccess, createLocationFailure } from '../AutoDismissAlert/messages'
+import {
+  createLocationSuccess,
+  createLocationFailure
+} from '../AutoDismissAlert/messages'
 
 class CreateLocation extends Component {
   constructor (props) {
@@ -18,7 +21,6 @@ class CreateLocation extends Component {
   }
 
 handleChange = (event) =>
-
   this.setState({
     location: this.props.address,
     description: event.target.value,
@@ -60,8 +62,8 @@ render () {
     <div className='row'>
       <div className='col-sm-10 col-sm-8 mx-auto mt-5'>
         {/* <Link to='/map' className='nav-link'>
-            Add a Location
-        </Link> */}
+          Add a Location
+      </Link> */}
         <Form onSubmit={this.onCreateLocation}>
           <Form.Group controlId='location'>
             <Form.Label>Location</Form.Label>

@@ -2,7 +2,10 @@ import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 
 import { createFriend } from '../../api/friend'
-import { createLocationSuccess, createLocationFailure } from '../AutoDismissAlert/messages'
+import {
+  createFriendSuccess,
+  createFriendFailure
+} from '../AutoDismissAlert/messages'
 
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
@@ -12,6 +15,7 @@ class CreateFriend extends Component {
     super(props)
 
     this.state = {
+      username: '',
       location: ''
     }
   }
@@ -28,11 +32,11 @@ onCreateFriend = (event) => {
   const data = this.state
 
   createFriend(data, user)
-    .then((res) => history.push('/friends' + res.data.location._id))
+    .then((res) => history.push('/friends/' + res.data.friend._id))
     .then(() =>
       msgAlert({
         heading: 'Friend Added!',
-        message: createLocationSuccess,
+        message: createFriendSuccess,
         variant: 'success'
       })
     )
@@ -40,14 +44,14 @@ onCreateFriend = (event) => {
     .catch((err) =>
       msgAlert({
         heading: 'Failed adding Friend :(',
-        message: createLocationFailure + err.message,
+        message: createFriendFailure + err.message,
         variant: 'danger'
       })
     )
 }
 
 render () {
-  const { friend } = this.state
+  const { username, location } = this.state
 
   return (
     <div className='row'>
@@ -55,20 +59,24 @@ render () {
         <h3>Add Friend</h3>
         <Form onSubmit={this.onCreateFriend}>
           <Form.Group controlId='friend'>
-            <Form.Label>
-                Add Friend
-            </Form.Label>
+            <Form.Label>Add Friend</Form.Label>
             <Form.Control
-              required
-              type='text'
-              name='friend'
-              value={friend}
-              placeholder='Add Friend'
+              type='username'
+              name='username'
+              value={username}
+              placeholder='Add friend name...'
+              onChange={this.handleChange}
+            />
+            <Form.Control
+              type='location'
+              name='location'
+              value={location}
+              placeholder='Add location name...'
               onChange={this.handleChange}
             />
           </Form.Group>
           <Button variant='primary' type='submit'>
-                        Add
+            Add
           </Button>
         </Form>
       </div>

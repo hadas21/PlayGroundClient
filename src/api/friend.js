@@ -10,7 +10,7 @@ export const createFriend = (data, user) => {
       Authorization: `Bearer ${user.token}`
     },
     data: {
-      location: data
+      friend: data
     }
   })
 }
@@ -28,7 +28,7 @@ export const indexFriends = (user) => {
 export const showFriend = (id, user) => {
   return axios({
     method: 'GET',
-    url: `${apiUrl}/friends/${id}`,
+    url: apiUrl + '/friends/' + id,
     headers: {
       Authorization: `Bearer ${user.token}`
     }
@@ -50,7 +50,7 @@ export const updateFriend = (data, id, user) => {
   return axios({
     url: apiUrl + '/friends/' + id,
     method: 'PATCH',
-    data: { location: data },
+    data: { friend: data },
     headers: {
       Authorization: `Bearer ${user.token}`
     }
