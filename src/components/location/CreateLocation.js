@@ -30,7 +30,11 @@ handleChange = (event) =>
 onCreateLocation = (event) => {
   event.preventDefault()
 
+<<<<<<< HEAD
   const { user, msgAlert, history, setAddress } = this.props
+=======
+  const { user, msgAlert, setMarkerColor, history, setAddress } = this.props
+>>>>>>> dec9422 (cleare oncreate location form)
 
   const data = this.state
 
@@ -45,6 +49,10 @@ onCreateLocation = (event) => {
       })
     )
     .then(() => this.setState({ location: '', description: '' }))
+<<<<<<< HEAD
+=======
+    .then(setMarkerColor())
+>>>>>>> dec9422 (cleare oncreate location form)
     .then(setAddress())
     .catch((err) =>
       msgAlert({
@@ -57,7 +65,11 @@ onCreateLocation = (event) => {
 
 render () {
   const { address } = this.props
+<<<<<<< HEAD
   const { description } = this.props
+=======
+  const { description } = this.state
+>>>>>>> dec9422 (cleare oncreate location form)
 
   return (
     <div className='row'>

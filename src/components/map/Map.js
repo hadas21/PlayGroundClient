@@ -26,6 +26,10 @@ setAddress = () => {
   this.setState({ address: '' })
 }
 
+setAddress = () => {
+  this.setState({ address: '' })
+}
+
 componentDidMount () {
   // const { zoom } = this.state
   const map = new mapboxgl.Map({
@@ -112,11 +116,19 @@ render () {
         msgAlert={msgAlert}
         user={user}
         address={address}
+<<<<<<< HEAD
         setAddress={this.setAddress}
       />
       <div ref={this.mapContainer} className='map-container'>
         <div className='lat-long'> Longitude: {lng} | Latitude: {lat} | Zoom: {zoom} address: {address}
         </div>
+=======
+        setMarkerColor={this.setMarkerColor}
+        setAddress={this.setAddress}
+      />
+      <div ref={this.mapContainer} className='map-container' />
+      <div className='lat-long'>Longitude: {lng} | Latitude: {lat} | Zoom: {zoom} address: {address}
+>>>>>>> dec9422 (cleare oncreate location form)
       </div>
     </div>
   )
