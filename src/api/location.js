@@ -25,6 +25,16 @@ export const indexLocations = (user) => {
   })
 }
 
+export const indexFriendLocations = (token) => {
+  return axios({
+    method: 'GET',
+    url: apiUrl + '/locations',
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  })
+}
+
 export const showLocation = (id, user) => {
   return axios({
     method: 'GET',

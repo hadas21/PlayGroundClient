@@ -8,6 +8,7 @@ import { getAddress } from '../../api/map'
 // import CreateLocation from '../../components/location/CreateLocation'
 // import AuthenticatedRoute from '../../components/AuthenticatedRoute/AuthenticatedRoute'
 import Sidebar from './Sidebar'
+import Users from './../Users'
 
 mapboxgl.accessToken = 'pk.eyJ1IjoibGF1cmFhbHlzb24iLCJhIjoiY2tzcDJleWVkMDF0NjMxcGhwMzM1Mm1tMiJ9.27PwqNrg2-gZnMmuS1vOww'
 
@@ -129,6 +130,7 @@ render () {
         setMarkerColor={this.setMarkerColor}
       />
       <div ref={this.mapContainer} className='map-container' />
+      <Users />
       <div className='lat-long'>
         Longitude: {lng} | Latitude: {lat} | Zoom: {zoom} address: {address}
       </div>

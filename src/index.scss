@@ -1,6 +1,11 @@
 @import '~bootstrap/scss/bootstrap';
 @import 'mapbox-gl/dist/mapbox-gl.css';
 @import '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css';
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@200;300;400;500&display=swap');
+
+body {
+    font-family: 'IBM Plex Sans Arabic', sans-serif;
+}
 
 #map {
     margin: 0;
@@ -18,6 +23,10 @@ main.container-fluid {
 
 .navbar-nav {
     margin-left: auto;
+}
+
+button {
+    margin: 1em;
 }
 
 .container, .container-fluid, .container-sm, .container-md, .container-lg, .container-xl, .container-xxl {
@@ -58,3 +67,50 @@ main.container-fluid {
     padding: 0;
     margin: 0;
 }
+
+// .user-name {
+//   border-radius: 50px;
+//   display: inline-block;
+//   margin: 0 24.7px;
+//   transition: all .2s ease-out;
+// }
+
+// .user-name:hover {
+//   transform: scale(1.2);
+//   opacity: .5;
+//   cursor: pointer;
+// }
+
+// .marquee {
+//   height: 100px;
+//   width: 100%;
+//   overflow: hidden;
+//   box-sizing: border-box;
+//   position: relative;
+//   margin: 200px auto;
+// }
+
+// .marquee--inner {
+//   display: block;
+//   width: 200%;
+//   margin: 70px 0;
+//   position: absolute;
+//   animation: marquee 20s linear infinite;
+// }
+
+// .marquee--inner:link {
+//     color: black;
+// }
+
+// .marquee--inner:hover {
+//   animation-play-state: paused;
+// }
+
+// span {
+//   float: left;
+// }
+
+// @keyframes marquee {
+//   0% { left: 0; }
+//   100% { left: -100%; }
+// }
