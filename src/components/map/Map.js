@@ -32,6 +32,7 @@ setAddress = () => {
   //   this.setState({ color: '#33dc3f' })
   // }
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 153930e (render list of all locations of all users, users not rendering (yet))
 =======
 <<<<<<< HEAD
@@ -42,6 +43,8 @@ setAddress = () => {
 }
 =======
 >>>>>>> fc0cb16 (g)
+=======
+>>>>>>> 584b5c7 (resolve)
 
 setAddress = () => {
   this.setState({ address: '' })
