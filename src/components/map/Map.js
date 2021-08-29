@@ -22,9 +22,15 @@ class Map extends Component {
     this.mapContainer = React.createRef()
   }
 
+<<<<<<< HEAD
 setAddress = () => {
   this.setState({ address: '' })
 }
+=======
+  // setMarkerColor = () => {
+  //   this.setState({ color: '#33dc3f' })
+  // }
+>>>>>>> 153930e (render list of all locations of all users, users not rendering (yet))
 
 setAddress = () => {
   this.setState({ address: '' })
@@ -44,7 +50,10 @@ componentDidMount () {
     .then((res) => {
       for (const { coordinates, location, description } of res.data.locations) {
         // make a marker for each location and add to the map
-        new mapboxgl.Marker({ draggable: false, color: '#ffff' })
+        new mapboxgl.Marker({
+          draggable: false,
+          color: '#ffff'
+        })
           .setLngLat(coordinates)
           .setPopup(
             new mapboxgl.Popup({ offset: 25 }).setHTML(
@@ -62,6 +71,14 @@ componentDidMount () {
     const marker = new mapboxgl.Marker({ color: color, draggable: true })
       .setLngLat([0, 0])
       .addTo(map)
+<<<<<<< HEAD
+=======
+    console.log('this is marker: ', marker)
+
+    // marker.on('click', (e) => {
+    //   console.log('this is marker.on click e: ', e)
+    // })
+>>>>>>> 153930e (render list of all locations of all users, users not rendering (yet))
 
     const onDragEnd = (e) => {
       // set state to marker coords
@@ -70,7 +87,10 @@ componentDidMount () {
         lng: lngLat.lng,
         lat: lngLat.lat,
         zoom: map.getZoom().toFixed(2)
+<<<<<<< HEAD
         // color: '#33dc3f'
+=======
+>>>>>>> 153930e (render list of all locations of all users, users not rendering (yet))
       })
 
       // transfer coords to string address

@@ -25,6 +25,7 @@ export const indexLocations = (user) => {
   })
 }
 
+<<<<<<< HEAD
 export const indexFriendLocations = (token) => {
   return axios({
     method: 'GET',
@@ -32,6 +33,12 @@ export const indexFriendLocations = (token) => {
     headers: {
       Authorization: `Bearer ${token}`
     }
+=======
+export const indexAllLocations = () => {
+  return axios({
+    method: 'GET',
+    url: apiUrl + '/locations-all'
+>>>>>>> 153930e (render list of all locations of all users, users not rendering (yet))
   })
 }
 

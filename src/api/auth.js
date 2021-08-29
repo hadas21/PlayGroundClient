@@ -28,6 +28,13 @@ export const signIn = (credentials) => {
   })
 }
 
+export const showUsers = () => {
+  return axios({
+    url: apiUrl + '/users/',
+    method: 'GET'
+  })
+}
+
 export const signOut = (user) => {
   return axios({
     url: apiUrl + '/sign-out/',
