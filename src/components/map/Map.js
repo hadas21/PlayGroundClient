@@ -137,6 +137,7 @@ render () {
         user={user}
         address={address}
 <<<<<<< HEAD
+<<<<<<< HEAD
         setAddress={this.setAddress}
       />
       <div ref={this.mapContainer} className='map-container'>
@@ -144,6 +145,8 @@ render () {
         </div>
 =======
         setMarkerColor={this.setMarkerColor}
+=======
+>>>>>>> 105d356 (cleasr sreate location form after success and error)
         setAddress={this.setAddress}
       />
       <div ref={this.mapContainer} className='map-container' />

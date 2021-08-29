@@ -23,24 +23,26 @@ class Users extends Component {
     // make a GET request for all of the books
     axios(`${apiUrl}/users`)
       .then((res) => {
-        console.log(res)
-        this.setState({ users: res.data.users })
+        console.log(res.data.user)
+        const response = res.data.user.map((user) => user.username)
+        this.setState({ users: response })
       })
       .catch(console.error)
   }
 
   render () {
-    const users = this.state.user
-    // .map(user => (
-    //   <li key={user._id}>
-    //     <Link to={`/users/${user._id}`}>{user.username}</Link>
-    //   </li>
-    // ))
+    // const users = this.state
 
     return (
       <>
         <h4>Users</h4>
-        <ul>{users}</ul>
+        {/* <ul>
+          {users.map((user) => (
+            <li key={user._id}>
+              {user}
+            </li>
+          ))}
+        </ul> */}
       </>
     )
   }
