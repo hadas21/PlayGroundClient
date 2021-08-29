@@ -16,6 +16,7 @@ const authenticatedOptions = (
     </NavLink>
     <NavLink to='/friends' className='nav-link'>Show Friends
     </NavLink>
+
   </Fragment>
 )
 
@@ -23,6 +24,7 @@ const unauthenticatedOptions = (
   <Fragment>
     <NavLink to='/sign-up' className='nav-link'>Sign Up</NavLink>
     <NavLink to='/sign-in' className='nav-link'>Sign In</NavLink>
+    <NavLink to='/users' className='nav-link'>Show Users</NavLink>
   </Fragment>
 )
 

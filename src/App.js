@@ -24,6 +24,7 @@ import CreateFriend from '../src/components/friend/CreateFriend'
 import IndexFriends from '../src/components/friend/IndexFriends'
 import ShowFriend from '../src/components/friend/ShowFriend'
 import UpdateFriend from '../src/components/friend/UpdateFriend'
+import Users from './components/Users'
 
 class App extends Component {
   constructor (props) {
@@ -70,6 +71,9 @@ class App extends Component {
           />
         ))}
         <main className='container-fluid'>
+          <Route
+            path='/users' render={() => <Users />}
+          />
           <Route
             path='/sign-up'
             render={() => (

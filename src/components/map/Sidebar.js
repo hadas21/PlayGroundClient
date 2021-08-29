@@ -2,8 +2,7 @@ import React, { Component } from 'react'
 import './Sidebar.scss'
 import './../../index.scss'
 import CreateLocation from '../location/CreateLocation'
-// import { createLocation } from '../../api/location.js'
-// import { createLocationSuccess, createLocationFailure } from '../AutoDismissAlert/messages'
+import CreateFriend from '../friend/CreateFriend'
 
 class Sidebar extends Component {
   constructor (props) {
@@ -19,14 +18,24 @@ class Sidebar extends Component {
         <div id='this.map.current'>
           <div id='left' className='sidebar flex-center left collapsed'>
             <div className='sidebar-content rounded-rect flex-center'>
-              <CreateLocation
-                setMarkerColor={setMarkerColor}
-                msgAlert={msgAlert}
-                user={user}
-                address={address}
-                lng={lng}
-                lat={lat}
-              />
+              <>
+                <CreateLocation
+                  setMarkerColor={setMarkerColor}
+                  msgAlert={msgAlert}
+                  user={user}
+                  address={address}
+                  lng={lng}
+                  lat={lat}
+                /><br />
+                <CreateFriend
+                  setMarkerColor={setMarkerColor}
+                  msgAlert={msgAlert}
+                  user={user}
+                  address={address}
+                  lng={lng}
+                  lat={lat}
+                />
+              </>
             </div>
           </div>
         </div>

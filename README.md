@@ -32,7 +32,8 @@ Log in and make the world your playground. Show off your favorite places around 
 ## Mockup
 ![Mockup](https://i.imgur.com/up6CD99.png)
 
----
+
+## [Api Documentation](/ApiDocumentation.md)
 
 ## Technology Used
 - [React JS](https://reactjs.org/)
