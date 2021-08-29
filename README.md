@@ -2,6 +2,8 @@
 
 ```md
 Log in and make the world your playground. Show off your favorite places around the world by setting pins on the map and telling us what makes this location special. Share your pins with other users and see their favorite spots. 
+The world is your playground.
+![check it out here](https://projectplaygroundlha.github.io/PlayGroundClient/)
 ```
 ---
 
