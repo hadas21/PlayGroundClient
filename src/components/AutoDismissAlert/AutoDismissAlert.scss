@@ -1,14 +1,15 @@
+@import '~bootstrap/scss/bootstrap';
+
 .alert {
   align-items: center;
   animation: .5s ease-in-out 0s 1 light-bounce-in;
   bottom: 1rem;
-  display: flex;
   left: 0;
   margin: auto;
   max-width: 30rem;
-  position: fixed;
+  position: absolute;
   right: 0;
-  z-index: -10000;
+  z-index: 1070;
 
   .alert-body {
     margin-bottom: 0;

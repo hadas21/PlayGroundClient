@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import apiUrl from '../apiConfig'
+import apiUrl from '../../apiConfig'
 import { Link } from 'react-router-dom'
-import FriendLocation from './map/FriendLocation'
-import '../index.scss'
+import FriendLocation from './FriendLocation'
+import '../../index.scss'
+
 class Users extends Component {
   constructor (props) {
     super(props)

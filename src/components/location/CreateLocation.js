@@ -30,7 +30,7 @@ handleChange = (event) =>
 onCreateLocation = (event) => {
   event.preventDefault()
 
-  const { user, msgAlert, setMarkerColor, history } = this.props
+  const { user, msgAlert, history, setAddress } = this.props
 
   const data = this.state
 
@@ -45,7 +45,7 @@ onCreateLocation = (event) => {
       })
     )
     .then(() => this.setState({ location: '', description: '' }))
-    .then(setMarkerColor())
+    .then(setAddress())
     .catch((err) =>
       msgAlert({
         heading: 'Location creation failed :(',
@@ -56,27 +56,28 @@ onCreateLocation = (event) => {
 }
 
 render () {
-  const { address, description } = this.props
+  const { address } = this.props
+  const { description } = this.props
 
   return (
     <div className='row'>
       <div className='col-sm-10 col-sm-8 mx-auto mt-5'>
-        <h3>Add a Pin</h3>
+        {/* <h4>Drag and drop your pin to set a location.</h4> */}
         <Form onSubmit={this.onCreateLocation}>
           <Form.Group controlId='location'>
-            <Form.Label>Location</Form.Label>
+            <Form.Label>Drag and drop your pin to set a location.</Form.Label>
             <Form.Control
               size='sm'
               required
               type='text'
               name='location'
               value={address}
-              placeholder='Enter location'
+              placeholder='Location'
               onChange={this.handleChange}
             />
           </Form.Group>
           <Form.Group controlId='description'>
-            <Form.Label>Description</Form.Label>
+            <Form.Label>Tell us </Form.Label>
             <Form.Control
               size='sm'
               required
