@@ -63,8 +63,13 @@ class App extends Component {
     const { msgAlerts, user } = this.state
 
     return (
+<<<<<<< HEAD
       <Fragment>
         <Header user={user} className='container-fluid'/>
+=======
+      <Fragment className='container-fluid'>
+        <Header user={user} />
+>>>>>>> fd3fde7 (resolve)
         {msgAlerts.map((msgAlert) => (
           <AutoDismissAlert
             key={msgAlert.id}
@@ -76,6 +81,7 @@ class App extends Component {
           />
         ))}
         <main className='container-fluid'>
+<<<<<<< HEAD
           <Route
             path='/users'
             render={() => (
@@ -91,6 +97,8 @@ class App extends Component {
               />
             )}
           />
+=======
+>>>>>>> f690d0e (conflict reserved)
           <Route
             path='/sign-up'
             render={() => (
