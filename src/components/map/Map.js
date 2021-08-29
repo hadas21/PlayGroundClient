@@ -37,6 +37,10 @@ setAddress = () => {
   this.setState({ address: '' })
 }
 
+setAddress = () => {
+  this.setState({ address: '' })
+}
+
 componentDidMount () {
   // const { zoom } = this.state
   const map = new mapboxgl.Map({
@@ -147,15 +151,17 @@ componentDidMount () {
   })
   map.addControl(geocoder)
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 
   map.on('click', (e) => {
     console.log('this is map.e ', e)
 =======
+=======
+>>>>>>> 50a6f7d (resolve)
   map.on('load', () => {
     geocoder.query('Boston')
->>>>>>> e5d79a8 (move marker with map)
   })
 >>>>>>> 01fa2ad (resolve)
 }
