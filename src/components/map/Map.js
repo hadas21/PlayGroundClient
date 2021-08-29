@@ -17,7 +17,8 @@ class Map extends Component {
       lat: '',
       zoom: '',
       address: '',
-      color: ''
+      color: '',
+      center: {}
     }
     this.mapContainer = React.createRef()
   }
@@ -44,6 +45,16 @@ componentDidMount () {
     center: [-13, 34],
     zoom: 2
   })
+  // let center = []
+
+  // map.on('move', () => {
+  //   this.setState({ center: { lng: map.getCenter().lng, lat: map.getCenter().lat } })
+
+  // console.log(typeof center[0])
+
+  // return [map.getCenter().lng, map.getCenter().lat]
+  // })
+  // getCoords()
 
   const { color } = this.state
   indexLocations(this.props.user)
@@ -64,13 +75,23 @@ componentDidMount () {
       }
     })
     .catch((err) => console.log(err))
+<<<<<<< HEAD
 
+=======
+  // map.dragRotate.enable()
+  // const { lng, lat } = this.state.center
+>>>>>>> 01fa2ad (resolve)
   // On click function
-  map.on('load', () => {
-    // drop a marker to create new location
-    const marker = new mapboxgl.Marker({ color: color, draggable: true })
-      .setLngLat([0, 0])
+  const marker = new mapboxgl.Marker({ color: color, draggable: true })
+    .setLngLat([map.getCenter().lng, map.getCenter().lat]) // map.getCenter().lat.toFixed(4)
+    .addTo(map)
+  console.log('this is marker: ', marker)
+  map.on('moveend', () => {
+    marker.remove()
+
+    marker.setLngLat([map.getCenter().lng, map.getCenter().lat]) // map.getCenter().lat.toFixed(4)
       .addTo(map)
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
     console.log('this is marker: ', marker)
@@ -80,6 +101,8 @@ componentDidMount () {
     // })
 >>>>>>> 153930e (render list of all locations of all users, users not rendering (yet))
 
+=======
+>>>>>>> 01fa2ad (resolve)
     const onDragEnd = (e) => {
       // set state to marker coords
       const lngLat = marker.getLngLat()
@@ -123,6 +146,18 @@ componentDidMount () {
     accessToken: mapboxgl.accessToken
   })
   map.addControl(geocoder)
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+
+  map.on('click', (e) => {
+    console.log('this is map.e ', e)
+=======
+  map.on('load', () => {
+    geocoder.query('Boston')
+>>>>>>> e5d79a8 (move marker with map)
+  })
+>>>>>>> 01fa2ad (resolve)
 }
 
 render () {

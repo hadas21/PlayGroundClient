@@ -81,7 +81,6 @@ class App extends Component {
           />
         ))}
         <main className='container-fluid'>
-<<<<<<< HEAD
           <Route
             path='/users'
             render={() => (
@@ -97,8 +96,6 @@ class App extends Component {
               />
             )}
           />
-=======
->>>>>>> f690d0e (conflict reserved)
           <Route
             path='/sign-up'
             render={() => (
