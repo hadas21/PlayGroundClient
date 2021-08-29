@@ -31,11 +31,17 @@ setAddress = () => {
   // setMarkerColor = () => {
   //   this.setState({ color: '#33dc3f' })
   // }
+<<<<<<< HEAD
 >>>>>>> 153930e (render list of all locations of all users, users not rendering (yet))
+=======
+<<<<<<< HEAD
+>>>>>>> 38ab98f (resolve)
 
 setAddress = () => {
   this.setState({ address: '' })
 }
+=======
+>>>>>>> fc0cb16 (g)
 
 setAddress = () => {
   this.setState({ address: '' })
@@ -97,16 +103,24 @@ componentDidMount () {
       .addTo(map)
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+
+>>>>>>> 38ab98f (resolve)
     console.log('this is marker: ', marker)
 
     // marker.on('click', (e) => {
     //   console.log('this is marker.on click e: ', e)
     // })
+<<<<<<< HEAD
 >>>>>>> 153930e (render list of all locations of all users, users not rendering (yet))
 
 =======
 >>>>>>> 01fa2ad (resolve)
+=======
+
+>>>>>>> 38ab98f (resolve)
     const onDragEnd = (e) => {
       // set state to marker coords
       const lngLat = marker.getLngLat()
