@@ -64,10 +64,14 @@ class App extends Component {
 
     return (
 <<<<<<< HEAD
+<<<<<<< HEAD
       <Fragment>
         <Header user={user} className='container-fluid'/>
 =======
       <Fragment className='container-fluid'>
+=======
+      <Fragment>
+>>>>>>> 547ce3f (resolve)
         <Header user={user} />
 >>>>>>> fd3fde7 (resolve)
         {msgAlerts.map((msgAlert) => (
