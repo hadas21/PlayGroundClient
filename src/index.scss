@@ -8,6 +8,7 @@ body {
 }
 
 #map {
+    position: absolute;
     margin: 0;
     padding: 0;
 }
@@ -21,8 +22,20 @@ main.container-fluid {
     height: 100vh;
 }
 
+// .custom-nav {
+//     border-radius: 100px;
+//     // margin: 50px;
+//     // padding: 20px;
+//     // z-index: 2;
+// }
+
+// .navbar {
+//     position: absolute;
+// }
+
 .navbar-nav {
     margin-left: auto;
+    position: absolute;
 }
 
 button {
@@ -41,7 +54,7 @@ button {
     background-color: rgba(35, 55, 75, 0.9);
     color: #fff;
     padding: 6px 12px;
-    font-family: monospace;
+    // font-family: monospace;
     z-index: 1;
     position: absolute;
     top: 50px;
@@ -68,49 +81,49 @@ button {
     margin: 0;
 }
 
-// .user-name {
-//   border-radius: 50px;
-//   display: inline-block;
-//   margin: 0 24.7px;
-//   transition: all .2s ease-out;
-// }
+.user-name {
+  border-radius: 50px;
+  display: inline-block;
+  margin: 0 24.7px;
+  transition: all .2s ease-out;
+}
 
-// .user-name:hover {
-//   transform: scale(1.2);
-//   opacity: .5;
-//   cursor: pointer;
-// }
+.user-name:hover {
+  transform: scale(1.2);
+  opacity: .5;
+  cursor: pointer;
+}
 
-// .marquee {
-//   height: 100px;
-//   width: 100%;
-//   overflow: hidden;
-//   box-sizing: border-box;
-//   position: relative;
-//   margin: 200px auto;
-// }
+.marquee {
+  height: 100px;
+  width: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
+  position: relative;
+  margin: 200px auto;
+}
 
-// .marquee--inner {
-//   display: block;
-//   width: 200%;
-//   margin: 70px 0;
-//   position: absolute;
-//   animation: marquee 20s linear infinite;
-// }
+.marquee--inner {
+  display: block;
+  width: 200%;
+  margin: 70px 0;
+  position: absolute;
+  animation: marquee 20s linear infinite;
+}
 
-// .marquee--inner:link {
-//     color: black;
-// }
+.marquee--inner:link {
+    color: black;
+}
 
-// .marquee--inner:hover {
-//   animation-play-state: paused;
-// }
+.marquee--inner:hover {
+  animation-play-state: paused;
+}
 
-// span {
-//   float: left;
-// }
+span {
+  float: left;
+}
 
-// @keyframes marquee {
-//   0% { left: 0; }
-//   100% { left: -100%; }
-// }
+@keyframes marquee {
+  0% { left: 0; }
+  100% { left: -100%; }
+}

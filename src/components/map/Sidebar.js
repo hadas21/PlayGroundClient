@@ -3,6 +3,7 @@ import './Sidebar.scss'
 import './../../index.scss'
 import CreateLocation from '../location/CreateLocation'
 import CreateFriend from '../friend/CreateFriend'
+import Users from './Users'
 
 class Sidebar extends Component {
   constructor (props) {
@@ -12,7 +13,7 @@ class Sidebar extends Component {
   }
 
   render () {
-    const { user, msgAlert, address, lng, lat, setMarkerColor } = this.props
+    const { user, msgAlert, address, lng, lat, setAddress } = this.props
     return (
       <>
         <div id='this.map.current'>
@@ -20,21 +21,23 @@ class Sidebar extends Component {
             <div className='sidebar-content rounded-rect flex-center'>
               <>
                 <CreateLocation
-                  setMarkerColor={setMarkerColor}
                   msgAlert={msgAlert}
                   user={user}
+                  setAddress={setAddress}
                   address={address}
                   lng={lng}
                   lat={lat}
-                /><br />
+                />
+                <br />
                 <CreateFriend
-                  setMarkerColor={setMarkerColor}
+                  setAddress={setAddress}
                   msgAlert={msgAlert}
                   user={user}
                   address={address}
                   lng={lng}
                   lat={lat}
                 />
+                <Users />
               </>
             </div>
           </div>
