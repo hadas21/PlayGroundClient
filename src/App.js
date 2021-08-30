@@ -2,6 +2,7 @@
 import React, { Component, Fragment } from 'react'
 import { Route } from 'react-router-dom'
 import { v4 as uuid } from 'uuid'
+import Button from 'react-bootstrap/Button'
 
 import AuthenticatedRoute from './components/AuthenticatedRoute/AuthenticatedRoute'
 import AutoDismissAlert from './components/AutoDismissAlert/AutoDismissAlert'
@@ -24,6 +25,7 @@ import CreateFriend from '../src/components/friend/CreateFriend'
 import IndexFriends from '../src/components/friend/IndexFriends'
 import ShowFriend from '../src/components/friend/ShowFriend'
 import UpdateFriend from '../src/components/friend/UpdateFriend'
+import Users from './components/map/Users'
 
 class App extends Component {
   constructor (props) {
@@ -58,7 +60,7 @@ class App extends Component {
 
     return (
       <Fragment>
-        <Header user={user} />
+        <Header user={user} className='container-fluid'/>
         {msgAlerts.map((msgAlert) => (
           <AutoDismissAlert
             key={msgAlert.id}
@@ -81,6 +83,11 @@ class App extends Component {
             render={() => (
               <SignIn msgAlert={this.msgAlert} setUser={this.setUser} />
             )}
+          />
+          <AuthenticatedRoute
+            path='/users'
+            user={user}
+            render={() => <Users user={user} />}
           />
           <AuthenticatedRoute
             user={user}
@@ -114,14 +121,20 @@ class App extends Component {
             user={user}
             exact
             path='/map/locations/:id'
-            render={() => <ShowLocation msgAlert={this.msgAlert} user={user} />}
+            render={() => (
+              <ShowLocation msgAlert={this.msgAlert} user={user} />
+            )}
           />
           <AuthenticatedRoute
             msgAlert={this.msgAlert}
             user={user}
             path='/map/locations/:id/edit'
             render={() => (
-              <UpdateLocation msgAlert={this.msgAlert} user={user} />
+              <>
+                <Button>
+                  <UpdateLocation msgAlert={this.msgAlert} user={user} />
+                </Button>
+              </>
             )}
           />
           <AuthenticatedRoute

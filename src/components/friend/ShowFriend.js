@@ -38,9 +38,6 @@ handleDelete = (event) => {
 }
 
 render () {
-  if (this.state.friend === null) {
-    return 'Loading...'
-  }
   const { friend } = this.state
   console.log('this is friends ', friend)
   const { user } = this.props

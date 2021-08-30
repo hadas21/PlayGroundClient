@@ -2,6 +2,7 @@ import React, { Fragment } from 'react'
 import Nav from 'react-bootstrap/Nav'
 import Navbar from 'react-bootstrap/Navbar'
 import { Link, NavLink } from 'react-router-dom'
+import Button from 'react-bootstrap/Button'
 
 const authenticatedOptions = (
   <Fragment>
@@ -9,13 +10,11 @@ const authenticatedOptions = (
     </NavLink>
     <NavLink to='/sign-out' className='nav-link'>Sign Out
     </NavLink>
-    <NavLink exact to='/map' className='nav-link'>Map</NavLink>
-    <NavLink to='/map/locations' className='nav-link'>Show Locations
-    </NavLink>
-    <NavLink to='/create-friend' className='nav-link'>Add a Friend
-    </NavLink>
-    <NavLink to='/friends' className='nav-link'>Show Friends
-    </NavLink>
+    {/* <NavLink exact to='/map' className='nav-link'>Map</NavLink> */}
+    {/* <NavLink to='/map/locations' className='nav-link'>Show Locations
+    </NavLink> */}
+    <Button to='/map/locations/:id/edit' class='btn btn-outline-success' type='button'>Update Location
+    </Button>
   </Fragment>
 )
 
@@ -27,10 +26,10 @@ const unauthenticatedOptions = (
 )
 
 const Header = ({ user }) => (
-  <Navbar className='sticky-top' bg='primary' variant='dark' expand='md'>
+  <Navbar className='custom-nav sticky-nav' bg='primary' variant='dark' expand='md'>
     <Navbar.Brand>
       <Link
-        to='/'
+        to='/map'
         style={{
           color: '#FFF',
           textDecoration: 'none',
@@ -44,9 +43,9 @@ const Header = ({ user }) => (
       <Nav
         className='ml-auto sticky-top'
         style={{ padding: '0px 20px', fontSize: '18px' }}>
-        {user && (
+        {/* {user && (
           <span className='navbar-text mr-2'>Hey there, {user.username}.</span>
-        )}
+        )} */}
         {user ? authenticatedOptions : unauthenticatedOptions}
       </Nav>
     </Navbar.Collapse>

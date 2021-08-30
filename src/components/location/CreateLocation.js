@@ -8,6 +8,7 @@ import {
   createLocationSuccess,
   createLocationFailure
 } from '../AutoDismissAlert/messages'
+import Users from '../map/Users'
 
 class CreateLocation extends Component {
   constructor (props) {
@@ -30,7 +31,7 @@ handleChange = (event) =>
 onCreateLocation = (event) => {
   event.preventDefault()
 
-  const { user, msgAlert, setMarkerColor, history } = this.props
+  const { user, msgAlert, history, setAddress } = this.props
 
   const data = this.state
 
@@ -45,7 +46,7 @@ onCreateLocation = (event) => {
       })
     )
     .then(() => this.setState({ location: '', description: '' }))
-    .then(setMarkerColor())
+    .then(setAddress())
     .catch((err) =>
       msgAlert({
         heading: 'Location creation failed :(',
@@ -56,40 +57,46 @@ onCreateLocation = (event) => {
 }
 
 render () {
-  const { address, description } = this.props
+  const { address } = this.props
+  const { description } = this.props
 
   return (
     <div className='row'>
       <div className='col-sm-10 col-sm-8 mx-auto mt-5'>
         <Form onSubmit={this.onCreateLocation}>
+          <h2>Create Location</h2>
           <Form.Group controlId='location'>
-            <Form.Label>Location</Form.Label>
+            <Form.Label>Drag and drop your pin to set a location.</Form.Label>
             <Form.Control
               size='sm'
               required
               type='text'
               name='location'
               value={address}
-              placeholder='Enter location'
+              placeholder='Location'
               onChange={this.handleChange}
             />
           </Form.Group>
           <Form.Group controlId='description'>
-            <Form.Label>Description</Form.Label>
+            <br />
+            <Form.Label variant='primary'>What makes this place so great?</Form.Label>
             <Form.Control
               size='sm'
               required
               name='description'
               value={description}
               type='text'
-              placeholder='description'
+              placeholder='Description'
               onChange={this.handleChange}
             />
           </Form.Group>
-
-          <Button variant='primary' type='submit'>Add Location
-          </Button>
+          <br />
+          <Button size='md' variant='outline-primary' type='submit'>Add</Button>
         </Form>
+        <br />
+        <br />
+        <h2>Other Users</h2>
+        <Users />
       </div>
     </div>
   )
