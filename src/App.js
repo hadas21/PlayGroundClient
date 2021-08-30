@@ -2,6 +2,7 @@
 import React, { Component, Fragment } from 'react'
 import { Route } from 'react-router-dom'
 import { v4 as uuid } from 'uuid'
+import Button from 'react-bootstrap/Button'
 
 import AuthenticatedRoute from './components/AuthenticatedRoute/AuthenticatedRoute'
 import AutoDismissAlert from './components/AutoDismissAlert/AutoDismissAlert'
@@ -120,14 +121,20 @@ class App extends Component {
             user={user}
             exact
             path='/map/locations/:id'
-            render={() => <ShowLocation msgAlert={this.msgAlert} user={user} />}
+            render={() => (
+              <ShowLocation msgAlert={this.msgAlert} user={user} />
+            )}
           />
           <AuthenticatedRoute
             msgAlert={this.msgAlert}
             user={user}
             path='/map/locations/:id/edit'
             render={() => (
-              <UpdateLocation msgAlert={this.msgAlert} user={user} />
+              <>
+                <Button>
+                  <UpdateLocation msgAlert={this.msgAlert} user={user} />
+                </Button>
+              </>
             )}
           />
           <AuthenticatedRoute

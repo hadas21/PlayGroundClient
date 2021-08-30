@@ -8,6 +8,7 @@ import {
   createLocationSuccess,
   createLocationFailure
 } from '../AutoDismissAlert/messages'
+import Users from '../map/Users'
 
 class CreateLocation extends Component {
   constructor (props) {
@@ -62,8 +63,8 @@ render () {
   return (
     <div className='row'>
       <div className='col-sm-10 col-sm-8 mx-auto mt-5'>
-        {/* <h4>Drag and drop your pin to set a location.</h4> */}
         <Form onSubmit={this.onCreateLocation}>
+          <h2>Create Location</h2>
           <Form.Group controlId='location'>
             <Form.Label>Drag and drop your pin to set a location.</Form.Label>
             <Form.Control
@@ -77,21 +78,25 @@ render () {
             />
           </Form.Group>
           <Form.Group controlId='description'>
-            <Form.Label>Tell us </Form.Label>
+            <br />
+            <Form.Label variant='primary'>What makes this place so great?</Form.Label>
             <Form.Control
               size='sm'
               required
               name='description'
               value={description}
               type='text'
-              placeholder='description'
+              placeholder='Description'
               onChange={this.handleChange}
             />
           </Form.Group>
-
-          <Button variant='primary' type='submit'>Add
-          </Button>
+          <br />
+          <Button size='md' variant='outline-primary' type='submit'>Add</Button>
         </Form>
+        <br />
+        <br />
+        <h2>Other Users</h2>
+        <Users />
       </div>
     </div>
   )

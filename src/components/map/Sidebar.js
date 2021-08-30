@@ -2,9 +2,8 @@ import React, { Component } from 'react'
 import './Sidebar.scss'
 import './../../index.scss'
 import CreateLocation from '../location/CreateLocation'
-import CreateFriend from '../friend/CreateFriend'
-import Users from './Users'
-
+// import CreateFriend from '../friend/CreateFriend'
+// import Users from './../map/Users'
 class Sidebar extends Component {
   constructor (props) {
     super(props)
@@ -29,15 +28,6 @@ class Sidebar extends Component {
                   lat={lat}
                 />
                 <br />
-                <CreateFriend
-                  setAddress={setAddress}
-                  msgAlert={msgAlert}
-                  user={user}
-                  address={address}
-                  lng={lng}
-                  lat={lat}
-                />
-                <Users />
               </>
             </div>
           </div>
