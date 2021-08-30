@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react'
 import Nav from 'react-bootstrap/Nav'
 import Navbar from 'react-bootstrap/Navbar'
+import Button from 'react-bootstrap/Button'
 import { Link, NavLink } from 'react-router-dom'
 
 const authenticatedOptions = (
@@ -17,15 +18,17 @@ const authenticatedOptions = (
     <NavLink to='/friends' className='nav-link'>Show Friends
     </NavLink>
     <NavLink to='/users' className='nav-link'>Show Users</NavLink>
+    <Button to='/map/locations/:id/edit' class='btn btn-outline-success' type='button'>Update Location
+    </Button>
   </Fragment>
 )
 
 const unauthenticatedOptions = (
   <Fragment>
-    <NavLink to='/sign-up' className='nav-link'>Sign Up
+    {/* <NavLink to='/sign-up' className='nav-link'>Sign Up
     </NavLink>
     <NavLink to='/sign-in' className='nav-link'>Sign In
-    </NavLink>
+    </NavLink> */}
     <NavLink to='/users' className='nav-link'>Show Users
     </NavLink>
     <NavLink to='/locations-all' className='nav-link'>Show locations-all
