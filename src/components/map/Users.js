@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
+
+import { Link } from 'react-router-dom'
+import FriendLocation from './FriendLocation'
 import '../../index.scss'
 
 class Users extends Component {
@@ -28,6 +31,7 @@ class Users extends Component {
 
     return (
       <>
+
         <div className='marquee'>
           <ul className='marquee--inner'>
             {users.map((user) => (
@@ -40,6 +44,7 @@ class Users extends Component {
                   {user[0]}
                   {user[0]}
                 </>
+
               </li>
             ))}
           </ul>

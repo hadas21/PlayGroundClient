@@ -1,14 +1,14 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
+// bootstrap
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
-
+// api calls
 import { createLocation } from '../../api/location'
-import {
-  createLocationSuccess,
-  createLocationFailure
-} from '../AutoDismissAlert/messages'
-import Users from '../map/Users'
+
+// messages
+import { createLocationFailure } from '../AutoDismissAlert/messages'
+
 
 class CreateLocation extends Component {
   constructor (props) {
@@ -22,6 +22,7 @@ class CreateLocation extends Component {
   }
 
 handleChange = (event) =>
+
   this.setState({
     location: this.props.address,
     description: event.target.value,
@@ -31,34 +32,30 @@ handleChange = (event) =>
 onCreateLocation = (event) => {
   event.preventDefault()
 
-  const { user, msgAlert, history, setAddress } = this.props
+
+  const { user, msgAlert, setAddress } = this.props
 
   const data = this.state
 
+  // send api req to create location with data from create location form
   createLocation(data, user)
-    .then((res) => console.log(res.data.location.coordinates))
-    .then(() => history.push('/map'))
-    .then(() =>
-      msgAlert({
-        heading: 'Location Created!',
-        message: createLocationSuccess,
-        variant: 'success'
-      })
-    )
-    .then(() => this.setState({ location: '', description: '' }))
+    // empty form fields
+    .then(() => this.setState({ description: '' }))
     .then(setAddress())
-    .catch((err) =>
+    .catch((err) => {
       msgAlert({
         heading: 'Location creation failed :(',
         message: createLocationFailure + err.message,
         variant: 'danger'
       })
-    )
+      this.setState({ description: '' })
+    })
 }
 
 render () {
   const { address } = this.props
-  const { description } = this.props
+
+  const { description } = this.state
 
   return (
     <div className='row'>
@@ -90,6 +87,7 @@ render () {
               onChange={this.handleChange}
             />
           </Form.Group>
+
           <br />
           <Button size='md' variant='outline-primary' type='submit'>Add</Button>
         </Form>
