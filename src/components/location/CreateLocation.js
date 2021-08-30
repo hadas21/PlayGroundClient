@@ -5,10 +5,9 @@ import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 // api calls
 import { createLocation } from '../../api/location'
-
+import Users from '../map/Users'
 // messages
 import { createLocationFailure } from '../AutoDismissAlert/messages'
-
 
 class CreateLocation extends Component {
   constructor (props) {
@@ -31,7 +30,6 @@ handleChange = (event) =>
 
 onCreateLocation = (event) => {
   event.preventDefault()
-
 
   const { user, msgAlert, setAddress } = this.props
 

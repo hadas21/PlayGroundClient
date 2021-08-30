@@ -3,12 +3,7 @@
 import React, { Component, Fragment } from 'react'
 import { Route } from 'react-router-dom'
 import { v4 as uuid } from 'uuid'
-
-import Button from 'react-bootstrap/Button'
-
-
 import Mod from './components/Model'
-// import './styles.css'
 // Authentication
 
 import AuthenticatedRoute from './components/AuthenticatedRoute/AuthenticatedRoute'
@@ -35,9 +30,8 @@ import CreateFriend from '../src/components/friend/CreateFriend'
 import IndexFriends from '../src/components/friend/IndexFriends'
 import ShowFriend from '../src/components/friend/ShowFriend'
 import UpdateFriend from '../src/components/friend/UpdateFriend'
-import Users from './components/map/Users'
 
-import Sample from './components/UserAuth'
+// import Sample from './components/UserAuth'
 
 // map logic
 import Map from './components/map/Map'
@@ -57,12 +51,6 @@ class App extends Component {
 	setUser = (user) => this.setState({ user })
 
 	clearUser = () => this.setState({ user: null })
-
-	// deleteAlert = (id) => {
-	//   this.setState((state) => {
-	//     return { msgAlerts: state.msgAlerts.filter((msg) => msg.id !== id) }
-	//   })
-	// }
 
 msgAlert = ({ heading, message, variant }) => {
   const id = uuid()
@@ -92,7 +80,6 @@ componentDidMount () {
 render () {
   const { msgAlerts, user } = this.state
 
-
   return (
     <Fragment>
       <Header user={user} className='container-fluid' />
@@ -110,7 +97,6 @@ render () {
         />
       ))}
       <main className='container-fluid'>
-        <Sample />
         <Mod />
         <SignUp msgAlert={this.msgAlert} setUser={this.setUser} />
         <SignIn msgAlert={this.msgAlert} setUser={this.setUser} />
@@ -129,18 +115,6 @@ render () {
             />
           )}
         />
-        {/* <Route
-          path='/sign-up'
-          render={() => (
-            <SignUp msgAlert={this.msgAlert} setUser={this.setUser} />
-          )}
-        />
-        <Route
-          path='/sign-in'
-          render={() => (
-            <SignIn msgAlert={this.msgAlert} setUser={this.setUser} />
-          )}
-        /> */}
         <AuthenticatedRoute
           path='/users'
           user={user}
@@ -221,6 +195,6 @@ render () {
     </Fragment>
   )
 }
-
+}
 
 export default App

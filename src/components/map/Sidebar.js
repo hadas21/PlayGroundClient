@@ -4,10 +4,8 @@ import './Sidebar.scss'
 import './../../index.scss'
 // components
 import CreateLocation from '../location/CreateLocation'
-
 import CreateFriend from '../friend/CreateFriend'
 import Users from './Users'
-
 
 class Sidebar extends Component {
   constructor (props) {
