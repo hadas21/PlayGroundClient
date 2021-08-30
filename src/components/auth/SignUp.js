@@ -51,8 +51,7 @@ render () {
 
   return (
     <>
-      <Button variant='primary' onClick={this.handleShow}>
-Sign Up
+      <Button variant='primary' onClick={this.handleShow}>Sign Up
       </Button>
       <Modal show={this.state.show} onHide={this.handleClose}>
         <Modal.Header closeButton>
@@ -95,17 +94,12 @@ Sign Up
                 onChange={this.handleChange}
               />
             </Form.Group>
-            <Button variant='primary' type='submit'>
-Submit
+            <Button variant='primary' type='submit'>Submit
             </Button>
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant='secondary' onClick={this.handleClose}>
-Close
-          </Button>
-          <Button variant='primary' onClick={this.handleClose}>
-Save Changes
+          <Button variant='secondary' onClick={this.handleClose}>Close
           </Button>
         </Modal.Footer>
       </Modal>

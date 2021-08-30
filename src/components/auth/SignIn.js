@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 
 import { signIn } from '../../api/auth'
-import { signInFailure } from '../AutoDismissAlert/messages'
+// import { signInFailure } from '../AutoDismissAlert/messages'
 
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
@@ -29,18 +29,14 @@ handleChange = (event) =>
 onSignIn = (event) => {
   event.preventDefault()
 
-  const { msgAlert, history, setUser } = this.props
+  const { history, setUser } = this.props
 
   signIn(this.state)
     .then((res) => setUser(res.data.user))
     .then(() => history.push('/map'))
     .catch((error) => {
       this.setState({ username: '', password: '' })
-      msgAlert({
-        heading: 'Sign In Failed with error: ' + error.message,
-        message: signInFailure,
-        variant: 'danger'
-      })
+      console.log(error)
     })
 }
 
@@ -54,14 +50,13 @@ render () {
       </Button>
       <Modal show={this.state.show} onHide={this.handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Sign Up</Modal.Title>
+          <Modal.Title>Sign In</Modal.Title>
         </Modal.Header>
 
         <Modal.Body>
-          {' '}
           <Form onSubmit={this.onSignIn}>
             <Form.Group controlId='username'>
-              <Form.Label>username address</Form.Label>
+              <Form.Label>Username</Form.Label>
               <Form.Control
                 required
                 type='username'
@@ -90,9 +85,6 @@ render () {
         <Modal.Footer>
           <Button variant='secondary' onClick={this.handleClose}>
             Close
-          </Button>
-          <Button variant='primary' onClick={this.handleClose}>
-            Save Changes
           </Button>
         </Modal.Footer>
       </Modal>

@@ -67,13 +67,6 @@ render () {
               placeholder='Add friend name...'
               onChange={this.handleChange}
             />
-            {/* <Form.Control
-              type='location'
-              name='location'
-              value={location}
-              placeholder='Add location name...'
-              onChange={this.handleChange}
-            /> */}
           </Form.Group>
           <Button variant='primary' type='submit'>Add
           </Button>

@@ -3,7 +3,6 @@
 import React, { Component, Fragment } from 'react'
 import { Route } from 'react-router-dom'
 import { v4 as uuid } from 'uuid'
-import Mod from './components/Model'
 // Authentication
 
 import AuthenticatedRoute from './components/AuthenticatedRoute/AuthenticatedRoute'
@@ -31,10 +30,10 @@ import IndexFriends from '../src/components/friend/IndexFriends'
 import ShowFriend from '../src/components/friend/ShowFriend'
 import UpdateFriend from '../src/components/friend/UpdateFriend'
 
-// import Sample from './components/UserAuth'
-
 // map logic
+import WelcomeMap from './components/map/WelcomeMap'
 import Map from './components/map/Map'
+
 // mapbox
 import mapboxgl from '!mapbox-gl' // eslint-disable-line import/no-webpack-loader-syntax
 mapboxgl.accessToken = 'pk.eyJ1IjoibGF1cmFhbHlzb24iLCJhIjoiY2tzcDJleWVkMDF0NjMxcGhwMzM1Mm1tMiJ9.27PwqNrg2-gZnMmuS1vOww'
@@ -45,7 +44,6 @@ class App extends Component {
       user: null,
       msgAlerts: []
     }
-    this.mapContainer = React.createRef()
   }
 
 	setUser = (user) => this.setState({ user })
@@ -61,31 +59,25 @@ msgAlert = ({ heading, message, variant }) => {
   })
 }
 
-componentDidMount () {
-  const map = new mapboxgl.Map({
-    container: this.mapContainer.current,
-    style: 'mapbox://styles/lauraalyson/cksrla6wq2b4f18nvb4mmk0xv',
-    center: [-70.9, 42.35],
-    zoom: 9
-  })
-  map.on('move', () => {
-    this.setState({
-      lng: map.getCenter().lng.toFixed(4),
-      lat: map.getCenter().lat.toFixed(4),
-      zoom: map.getZoom().toFixed(2)
-    })
-  })
-}
-
 render () {
   const { msgAlerts, user } = this.state
 
   return (
     <Fragment>
-      <Header user={user} className='container-fluid' />
-      <div>
-        <div ref={this.mapContainer} className='map-container' />
-      </div>
+      <Header msgAlert={this.msgAlert} setUser={this.setUser} user={user} className='container-fluid'>
+        <Route
+          path='/sign-up'
+          render={() => (
+            <SignUp msgAlert={this.msgAlert} setUser={this.setUser} />
+          )}
+        />
+        <Route
+          path='/sign-in'
+          render={() => (
+            <SignIn msgAlert={this.msgAlert} setUser={this.setUser} />
+          )}
+        />
+      </Header>
       {msgAlerts.map((msgAlert) => (
         <AutoDismissAlert
           key={msgAlert.id}
@@ -97,9 +89,14 @@ render () {
         />
       ))}
       <main className='container-fluid'>
-        <Mod />
-        <SignUp msgAlert={this.msgAlert} setUser={this.setUser} />
         <SignIn msgAlert={this.msgAlert} setUser={this.setUser} />
+        <SignUp msgAlert={this.msgAlert} setUser={this.setUser} />
+        <Route
+          exact path='/'
+          render={() => (
+            <WelcomeMap />
+          )}
+        />
         <Route
           path='/users'
           render={() => (
