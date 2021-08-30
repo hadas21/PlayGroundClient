@@ -3,6 +3,7 @@
 @import '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css';
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@200;300;400;500&display=swap');
 
+
 #root {
   margin: 0;
   padding: 0;
@@ -29,6 +30,7 @@ body {
   position: absolute;
   margin: 0;
   padding: 0;
+
 }
 
 main.container-fluid {
@@ -52,6 +54,17 @@ main.container-fluid {
 .navbar {
   position: absolute;
 }
+
+// .custom-nav {
+//     border-radius: 100px;
+//     // margin: 50px;
+//     // padding: 20px;
+//     // z-index: 2;
+// }
+
+// .navbar {
+//     position: absolute;
+// }
 
 .navbar-nav {
   margin-left: auto;
@@ -84,7 +97,7 @@ button {
 }
 
 #marker {
-    // background-image: url('https://docs.mapbox.com/mapbox-gl-js/assets/washington-monument.jpg');
+    //background-image: url('https://cdn5.vectorstock.com/i/1000x1000/05/44/map-marker-icon-vector-12860544.jpg');
     background-size: cover;
     width: 50px;
     height: 50px;

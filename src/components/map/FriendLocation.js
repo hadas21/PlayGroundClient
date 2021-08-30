@@ -25,6 +25,7 @@ class FriendLocation extends Component {
   render () {
     return (
       <p></p>
+
     )
   }
 }
