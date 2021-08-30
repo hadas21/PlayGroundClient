@@ -5,8 +5,10 @@ import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 // api calls
 import { createLocation } from '../../api/location'
+
 // messages
 import { createLocationFailure } from '../AutoDismissAlert/messages'
+
 
 class CreateLocation extends Component {
   constructor (props) {
@@ -30,7 +32,9 @@ handleChange = (event) =>
 onCreateLocation = (event) => {
   event.preventDefault()
 
+
   const { user, msgAlert, setAddress } = this.props
+
   const data = this.state
 
   // send api req to create location with data from create location form
@@ -50,12 +54,14 @@ onCreateLocation = (event) => {
 
 render () {
   const { address } = this.props
+
   const { description } = this.state
 
   return (
     <div className='row'>
       <div className='col-sm-10 col-sm-8 mx-auto mt-5'>
         <Form onSubmit={this.onCreateLocation}>
+          <h2>Create Location</h2>
           <Form.Group controlId='location'>
             <Form.Label>Drag and drop your pin to set a location.</Form.Label>
             <Form.Control
@@ -69,21 +75,26 @@ render () {
             />
           </Form.Group>
           <Form.Group controlId='description'>
-            <Form.Label>Tell us </Form.Label>
+            <br />
+            <Form.Label variant='primary'>What makes this place so great?</Form.Label>
             <Form.Control
               size='sm'
               required
               name='description'
               value={description}
               type='text'
-              placeholder='description'
+              placeholder='Description'
               onChange={this.handleChange}
             />
           </Form.Group>
 
-          <Button variant='primary' type='submit'>Add
-          </Button>
+          <br />
+          <Button size='md' variant='outline-primary' type='submit'>Add</Button>
         </Form>
+        <br />
+        <br />
+        <h2>Other Users</h2>
+        <Users />
       </div>
     </div>
   )

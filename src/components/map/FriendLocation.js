@@ -24,7 +24,8 @@ class FriendLocation extends Component {
 
   render () {
     return (
-      <p>Test Token</p>
+      <p></p>
+
     )
   }
 }

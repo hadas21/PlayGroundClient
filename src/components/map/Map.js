@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
+
 // mapbox
+
 import mapboxgl from '!mapbox-gl' // eslint-disable-line import/no-webpack-loader-syntax
 import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder'
 // style
@@ -7,7 +9,9 @@ import './../../index.scss'
 // api calls
 import { indexLocations } from '../../api/location'
 import { getAddress } from '../../api/map'
+
 // components
+
 import Sidebar from './Sidebar'
 
 mapboxgl.accessToken = 'pk.eyJ1IjoibGF1cmFhbHlzb24iLCJhIjoiY2tzcDJleWVkMDF0NjMxcGhwMzM1Mm1tMiJ9.27PwqNrg2-gZnMmuS1vOww'
@@ -87,6 +91,7 @@ componentDidMount () {
         lat: lngLat.lat,
         zoom: map.getZoom().toFixed(2)
       })
+
       // transfer coords to string address
       getAddress(lngLat.lng, lngLat.lat)
         .then((res) => {

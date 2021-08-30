@@ -3,6 +3,7 @@ import Nav from 'react-bootstrap/Nav'
 import Navbar from 'react-bootstrap/Navbar'
 import Button from 'react-bootstrap/Button'
 import { Link, NavLink } from 'react-router-dom'
+import Button from 'react-bootstrap/Button'
 
 const authenticatedOptions = (
   <Fragment>
@@ -37,7 +38,7 @@ const unauthenticatedOptions = (
 )
 
 const Header = ({ user }) => (
-  <Navbar className='sticky-top' bg='primary' variant='dark' expand='md'>
+  <Navbar className='custom-nav sticky-nav' bg='primary' variant='dark' expand='md'>
     <Navbar.Brand>
       <Link
         to='/map'
@@ -54,9 +55,9 @@ const Header = ({ user }) => (
       <Nav
         className='ml-auto sticky-top'
         style={{ padding: '0px 20px', fontSize: '18px' }}>
-        {user && (
+        {/* {user && (
           <span className='navbar-text mr-2'>Hey there, {user.username}.</span>
-        )}
+        )} */}
         {user ? authenticatedOptions : unauthenticatedOptions}
       </Nav>
     </Navbar.Collapse>

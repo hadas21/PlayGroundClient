@@ -34,12 +34,14 @@ export const indexFriendLocations = (token) => {
     }
   })
 }
+
 export const indexAllLocations = () => {
   return axios({
     method: 'GET',
     url: apiUrl + '/locations-all'
   })
 }
+
 
 export const showLocation = (id, user) => {
   return axios({

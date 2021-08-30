@@ -3,9 +3,14 @@
 import React, { Component, Fragment } from 'react'
 import { Route } from 'react-router-dom'
 import { v4 as uuid } from 'uuid'
+
+import Button from 'react-bootstrap/Button'
+
+
 import Mod from './components/Model'
 // import './styles.css'
 // Authentication
+
 import AuthenticatedRoute from './components/AuthenticatedRoute/AuthenticatedRoute'
 // user messages
 import AutoDismissAlert from './components/AutoDismissAlert/AutoDismissAlert'
@@ -30,6 +35,7 @@ import CreateFriend from '../src/components/friend/CreateFriend'
 import IndexFriends from '../src/components/friend/IndexFriends'
 import ShowFriend from '../src/components/friend/ShowFriend'
 import UpdateFriend from '../src/components/friend/UpdateFriend'
+import Users from './components/map/Users'
 
 import Sample from './components/UserAuth'
 
@@ -85,6 +91,7 @@ componentDidMount () {
 
 render () {
   const { msgAlerts, user } = this.state
+
 
   return (
     <Fragment>
@@ -214,6 +221,6 @@ render () {
     </Fragment>
   )
 }
-}
+
 
 export default App
