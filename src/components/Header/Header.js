@@ -1,52 +1,46 @@
 import React, { Fragment } from 'react'
 import Nav from 'react-bootstrap/Nav'
 import Navbar from 'react-bootstrap/Navbar'
+import Button from 'react-bootstrap/Button'
 import { Link, NavLink } from 'react-router-dom'
+import SignIn from '../auth/SignIn'
+import SignUp from '../auth/SignUp'
 
 const authenticatedOptions = (
   <Fragment>
     <NavLink to='/change-password' className='nav-link'>Change Password
     </NavLink>
-    <NavLink to='/sign-out' className='nav-link'>Sign Out
-    </NavLink>
-    {/* <NavLink to='/map/create-location' className='nav-link'>Add a Location
-    </NavLink> */}
-    <NavLink to='/map/locations' className='nav-link'>Show Locations
-    </NavLink>
-    <NavLink to='/create-friend' className='nav-link'>Add a Friend
-    </NavLink>
-    <NavLink to='/friends' className='nav-link'>Show Friends
-    </NavLink>
-    <NavLink to='/search-location' className='nav-link'>search location
-    </NavLink>
+    <NavLink to='/sign-out' className='nav-link'>Sign Out</NavLink>
+    <Button to='/map/locations/:id/edit' class='btn btn-outline-success' type='button'>Update Location
+    </Button>
   </Fragment>
 )
 
 const unauthenticatedOptions = (
   <Fragment>
-    <NavLink to='/sign-up' className='nav-link'>Sign Up</NavLink>
-    <NavLink to='/sign-in' className='nav-link'>Sign In</NavLink>
-  </Fragment>
-)
-
-const alwaysOptions = (
-  <Fragment>
-    <NavLink exact to='/' className='nav-link'>Home</NavLink>
+    <SignIn />
+    <SignUp />
   </Fragment>
 )
 
 const Header = ({ user }) => (
-  <Navbar bg='primary' variant='dark' expand='md'>
+  <Navbar className='custom-nav sticky-nav' bg='primary' variant='dark' expand='md'>
     <Navbar.Brand>
-      <Link to='/' style={{ color: '#FFF', textDecoration: 'none', padding: '0 20px', fontSize: '30px' }}>Playground</Link>
+      <Link
+        to='/map'
+        style={{
+          color: '#FFF',
+          textDecoration: 'none',
+          padding: '0 20px',
+          fontSize: '30px'
+        }}>Playground
+      </Link>
     </Navbar.Brand>
     <Navbar.Toggle aria-controls='basic-navbar-nav' />
     <Navbar.Collapse id='basic-navbar-nav'>
-      <Nav className='ml-auto'>
-        {user && (
-          <span className='navbar-text mr-2'>Welcome, {user.email}</span>
-        )}
-        {alwaysOptions}
+      <Nav
+        className='ml-auto sticky-top'
+        style={{ padding: '0px 20px', fontSize: '18px' }}>
         {user ? authenticatedOptions : unauthenticatedOptions}
       </Nav>
     </Navbar.Collapse>

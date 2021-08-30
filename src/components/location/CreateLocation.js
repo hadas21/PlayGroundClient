@@ -1,10 +1,13 @@
 import React, { Component } from 'react'
-import { withRouter, Link } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
+// bootstrap
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
-
+// api calls
 import { createLocation } from '../../api/location'
-import { createLocationSuccess, createLocationFailure } from '../AutoDismissAlert/messages'
+import Users from '../map/Users'
+// messages
+import { createLocationFailure } from '../AutoDismissAlert/messages'
 
 class CreateLocation extends Component {
   constructor (props) {
@@ -18,6 +21,7 @@ class CreateLocation extends Component {
   }
 
 handleChange = (event) =>
+
   this.setState({
     location: this.props.address,
     description: event.target.value,
@@ -27,70 +31,68 @@ handleChange = (event) =>
 onCreateLocation = (event) => {
   event.preventDefault()
 
-  const { user, msgAlert } = this.props
+  const { user, msgAlert, setAddress } = this.props
 
   const data = this.state
 
+  // send api req to create location with data from create location form
   createLocation(data, user)
-    .then((res) => console.log(res.data.location.coordinates))
-    .then()
-
-    .then(() =>
-      msgAlert({
-        heading: 'Location Created!',
-        message: createLocationSuccess,
-        variant: 'success'
-      })
-    )
-    .then(() => this.setState({ location: '', description: '' }))
-    .catch((err) =>
+    // empty form fields
+    .then(() => this.setState({ description: '' }))
+    .then(setAddress())
+    .catch((err) => {
       msgAlert({
         heading: 'Location creation failed :(',
         message: createLocationFailure + err.message,
         variant: 'danger'
       })
-    )
+      this.setState({ description: '' })
+    })
 }
 
 render () {
-  const { address, description } = this.props
+  const { address } = this.props
+
+  const { description } = this.state
 
   return (
     <div className='row'>
       <div className='col-sm-10 col-sm-8 mx-auto mt-5'>
         <Form onSubmit={this.onCreateLocation}>
+          <h2>Create Location</h2>
           <Form.Group controlId='location'>
-            <Form.Label>Location</Form.Label>
+            <Form.Label>Drag and drop your pin to set a location.</Form.Label>
             <Form.Control
+              size='sm'
               required
               type='text'
               name='location'
               value={address}
-              placeholder='Enter location'
+              placeholder='Location'
               onChange={this.handleChange}
             />
           </Form.Group>
           <Form.Group controlId='description'>
-            <Form.Label>Description</Form.Label>
+            <br />
+            <Form.Label variant='primary'>What makes this place so great?</Form.Label>
             <Form.Control
+              size='sm'
               required
               name='description'
               value={description}
               type='text'
-              placeholder='description'
+              placeholder='Description'
               onChange={this.handleChange}
             />
           </Form.Group>
 
-          <Button variant='primary' type='submit'>
-            Submit
-          </Button>
+          <br />
+          <Button size='md' variant='outline-primary' type='submit'>Add</Button>
         </Form>
-        <Button>
-          <Link to='/map' className='nav-link'>
-            Add a Location
-          </Link>
-        </Button>
+        <br />
+        <br />
+        <h2>Other Users</h2>
+        <Users />
       </div>
     </div>
   )
