@@ -26,7 +26,8 @@ body {
 
 #map {
   width: inherit;
-  height: 100vh;
+  vertical-align: baseline;
+  // height: 100vh;
   position: absolute;
   margin: 0;
   padding: 0;
@@ -169,4 +170,10 @@ span {
 @keyframes marquee {
   0%   { top:   8em }
   100% { top: -11em }
+}
+
+.update-input {
+  border: none;
+  outline: none;
+  background:transparent;
 }

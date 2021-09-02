@@ -42,7 +42,6 @@ export const indexAllLocations = () => {
   })
 }
 
-
 export const showLocation = (id, user) => {
   return axios({
     method: 'GET',

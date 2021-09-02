@@ -1,18 +1,11 @@
-# Playground
+# [Playground](https://projectplaygroundlha.github.io/PlayGroundClient/)
+[Playground Repository :](https://github.com/ProjectPlayGroundLHA) 
+[Client](https://projectplaygroundlha.github.io/PlayGroundClient/) | [Server](https://github.com/ProjectPlayGroundLHA/PlayGroundApi) | [Heroku](https://mysterious-plains-31294.herokuapp.com/)
+
 
 ```md
 Log in and make the world your playground. Show off your favorite places around the world by setting pins on the map and telling us what makes this location special. Share your pins with other users and see their favorite spots. 
-<<<<<<< HEAD
-The world is your playground.
-![check it out here](https://projectplaygroundlha.github.io/PlayGroundClient/)
-=======
->>>>>>> 2992ce0 (fly to boston on map load)
 ```
----
-
-[Playground Repository :](https://github.com/ProjectPlayGroundLHA) [Client](https://projectplaygroundlha.github.io/PlayGroundClient/) and [Server](https://github.com/ProjectPlayGroundLHA/PlayGroundApi)
-
-[Deployed Site](https://projectplaygroundlha.github.io/PlayGroundClient/)
 
 ---
 ## Version One User Stories
@@ -30,6 +23,13 @@ The world is your playground.
 - As a signed in user I would like to remove a friend.
 - As a signed in user I would like to be able to sign out.
 ```
+## Version Two Plans
+```md
+- Adjust map marker to move once location has been created to reveal newly created location.
+- Smooth out the feature that keeps the maker on the map canvas (smooth transitions)
+- 'Add Friends' feature
+- See friends locations
+```
 ## ERD
 ![ERD](https://i.imgur.com/G1oDzFW.png)
 ## Wireframe
@@ -37,6 +37,8 @@ The world is your playground.
 ## Mockup
 ![Mockup](https://i.imgur.com/up6CD99.png)
 
+## Workflow
+![Workflow](https://i.imgur.com/PHODGfT.png)
 
 ## [Api Documentation](/ApiDocumentation.md)
 

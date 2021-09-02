@@ -35,6 +35,16 @@ setAddress = () => {
   this.setState({ address: '' })
 }
 
+// update = false
+
+handleEdit = (event, update) => {
+  console.log('Event and Edit: ', event, update)
+  // update = true
+  // this.setState({
+  //   description: event.target.value
+  // })
+}
+
 componentDidMount () {
   const map = new mapboxgl.Map({
     container: this.mapContainer.current,
@@ -46,7 +56,8 @@ componentDidMount () {
   indexLocations(this.props.user)
   // set markers on map
     .then((res) => {
-      for (const { coordinates, location, description } of res.data.locations) {
+      for (const { coordinates, location, description } of res.data
+        .locations) {
         // make a marker for each location and add to the map
         new mapboxgl.Marker({
           draggable: false,
@@ -55,7 +66,10 @@ componentDidMount () {
           .setLngLat(coordinates)
           .setPopup(
             new mapboxgl.Popup({ offset: 25 }).setHTML(
-              `<h6>${location}</h6><p>${description}</p>`
+              `
+                <h3>${location}</h3>
+                <p>${description}</p>        
+              `
             )
           )
           .addTo(map)
@@ -64,7 +78,8 @@ componentDidMount () {
     .catch((error) =>
       this.props.msgAlert({
         heading: 'Sorry, ' + error.message,
-        message: 'The map did not load with your locations. please try refreshing the page',
+        message:
+          'The map did not load with your locations. please try refreshing the page',
         variant: 'danger'
       })
     )
@@ -101,7 +116,8 @@ componentDidMount () {
         .catch((error) =>
           this.props.msgAlert({
             heading: 'Oops... ' + error.message,
-            message: 'There is no registered address for the selected area, please zoom in and try again',
+            message:
+              'There is no registered address for the selected area, please zoom in and try again',
             variant: 'danger'
           })
         )
@@ -115,7 +131,16 @@ componentDidMount () {
             new mapboxgl.Marker({ draggable: false, color: '#ffff' })
               .setPopup(
                 new mapboxgl.Popup({ offset: 25 }).setHTML(
-                  `<h6>${location}</h6><p>${description}</p>`
+                  `
+                  <form>
+                  <label>${location}</label>
+                  <input 
+                  {this.edit ? value='' && placeholder='${description}' :  value='${description}' && placeholder='' }
+                  >
+                  </input>
+                  <button type='button' 'onClick='${() => this.handleEdit()}''>edit</button>
+                  </form> 
+                  `
                 )
               )
               .setLngLat(coordinates)
@@ -125,7 +150,8 @@ componentDidMount () {
         .catch((error) =>
           this.props.msgAlert({
             heading: 'Sorry, : ' + error.message,
-            message: 'The map did not load with your locations. please try refreshing the page',
+            message:
+              'The map did not load with your locations. please try refreshing the page',
             variant: 'danger'
           })
         )
@@ -159,7 +185,9 @@ render () {
         setAddress={this.setAddress}
       />
       <div ref={this.mapContainer} className='map-container'>
-        <div className='lat-long'> Longitude: {lng} | Latitude: {lat} | Zoom: {zoom}
+        <div className='lat-long'>
+          {' '}
+          Longitude: {lng} | Latitude: {lat} | Zoom: {zoom}
         </div>
       </div>
     </div>
