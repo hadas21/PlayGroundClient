@@ -35,13 +35,7 @@ class Users extends Component {
               <li className='user-name' key={user[1]}>
                 <>
                   {user[0]}
-                  {user[0]}
-                  {user[0]}
-                  {user[0]}
-                  {user[0]}
-                  {user[0]}
                 </>
-
               </li>
             ))}
           </ul>
