@@ -139,20 +139,17 @@ componentDidMount () {
       indexLocations(this.props.user)
         .then((res) => {
           console.log(res)
-          for (const { coordinates, location, description } of res.data
+          for (const { coordinates, location, description, _id } of res.data
             .locations) {
             new mapboxgl.Marker({ draggable: false, color: '#ffff' })
               .setPopup(
                 new mapboxgl.Popup({ offset: 25 }).setHTML(
                   `
-                  <form>
-                  <label>${location}</label>
-                  <input
-                  {this.edit ? value='' && placeholder='${description}' :  value='${description}' && placeholder='' }
-                  >
-                  </input>
-                  <button type='button' 'onClick='${() => this.handleEdit()}''>edit</button>
-                  </form>
+                  <div>
+                  <h4>${location}</h4>
+                  <h6>${description}</h6>
+                  <p>ID: ${_id}</p>
+                  </div>
                   `
                 )
               )
