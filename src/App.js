@@ -21,8 +21,9 @@ import Users from '../src/components/auth/Users'
 // location CRUD
 import IndexLocations from './components/location/IndexLocations'
 import ShowLocation from './components/location/ShowLocation'
-import UpdateLocation from './components/location/UpdateLocation'
+// import UpdateLocation from './components/location/UpdateLocation'
 import IndexAllLocations from '../src/components/location/indexAllLocations'
+import UpdatePopup from './components/location/UpdatePopup'
 
 // friends CRUD
 import CreateFriend from '../src/components/friend/CreateFriend'
@@ -161,7 +162,7 @@ render () {
           msgAlert={this.msgAlert}
           user={user}
           path='/map/locations/:id/edit'
-          render={() => <UpdateLocation msgAlert={this.msgAlert} user={user} />}
+          render={() => <UpdatePopup msgAlert={this.msgAlert} user={user} />}
         />
         <AuthenticatedRoute
           msgAlert={this.msgAlert}
