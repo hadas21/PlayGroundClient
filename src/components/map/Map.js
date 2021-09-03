@@ -1,20 +1,30 @@
 import React, { Component } from 'react'
-
+// import { ReactDOM } from 'react-dom'
 // mapbox
-
 import mapboxgl from '!mapbox-gl' // eslint-disable-line import/no-webpack-loader-syntax
 import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder'
 // style
 import './../../index.scss'
+// import Form from 'react-bootstrap/Form'
+// import Button from 'react-bootstrap/Button'
+// import Modal from 'react-bootstrap/Modal'
 // api calls
 import { indexLocations } from '../../api/location'
 import { getAddress } from '../../api/map'
 
 // components
-
+// import UpdatePopup from '../location/UpdatePopup'
 import Sidebar from './Sidebar'
+// import PopupButton from './../location/PopupButton'
 
 mapboxgl.accessToken = 'pk.eyJ1IjoibGF1cmFhbHlzb24iLCJhIjoiY2tzcDJleWVkMDF0NjMxcGhwMzM1Mm1tMiJ9.27PwqNrg2-gZnMmuS1vOww'
+
+// const popupContent = (addy, desc, locId, updateFormSub) => {
+//   return (
+//     `
+//     `
+//   )
+// }
 
 class Map extends Component {
   constructor (props) {
@@ -35,6 +45,13 @@ setAddress = () => {
   this.setState({ address: '' })
 }
 
+editTestFunc = (event) => {
+  event.preventDefault()
+  console.log('testing edit function')
+}
+
+updateData = {}
+
 componentDidMount () {
   const map = new mapboxgl.Map({
     container: this.mapContainer.current,
@@ -46,7 +63,12 @@ componentDidMount () {
   indexLocations(this.props.user)
   // set markers on map
     .then((res) => {
-      for (const { coordinates, location, description } of res.data.locations) {
+      console.log(res)
+      // const placeholder = document.createElement('div')
+      // ReactDOM.render(PopupButton, placeholder)
+      for (const { coordinates, location, description, _id } of res.data
+        .locations) {
+        // this.updateData = { location, description, _id }
         // make a marker for each location and add to the map
         new mapboxgl.Marker({
           draggable: false,
@@ -55,16 +77,22 @@ componentDidMount () {
           .setLngLat(coordinates)
           .setPopup(
             new mapboxgl.Popup({ offset: 25 }).setHTML(
-              `<h6>${location}</h6><p>${description}</p>`
-            )
-          )
+              `
+              <div>
+              <h4>${location}</h4>
+              <h6>${description}</h6>
+              <p>ID: ${_id}</p>
+              </div>
+              `
+            ))
           .addTo(map)
       }
     })
     .catch((error) =>
       this.props.msgAlert({
         heading: 'Sorry, ' + error.message,
-        message: 'The map did not load with your locations. please try refreshing the page',
+        message:
+          'The map did not load with your locations. please try refreshing the page',
         variant: 'danger'
       })
     )
@@ -101,7 +129,8 @@ componentDidMount () {
         .catch((error) =>
           this.props.msgAlert({
             heading: 'Oops... ' + error.message,
-            message: 'There is no registered address for the selected area, please zoom in and try again',
+            message:
+              'There is no registered address for the selected area, please zoom in and try again',
             variant: 'danger'
           })
         )
@@ -115,7 +144,16 @@ componentDidMount () {
             new mapboxgl.Marker({ draggable: false, color: '#ffff' })
               .setPopup(
                 new mapboxgl.Popup({ offset: 25 }).setHTML(
-                  `<h6>${location}</h6><p>${description}</p>`
+                  `
+                  <form>
+                  <label>${location}</label>
+                  <input
+                  {this.edit ? value='' && placeholder='${description}' :  value='${description}' && placeholder='' }
+                  >
+                  </input>
+                  <button type='button' 'onClick='${() => this.handleEdit()}''>edit</button>
+                  </form>
+                  `
                 )
               )
               .setLngLat(coordinates)
@@ -125,7 +163,8 @@ componentDidMount () {
         .catch((error) =>
           this.props.msgAlert({
             heading: 'Sorry, : ' + error.message,
-            message: 'The map did not load with your locations. please try refreshing the page',
+            message:
+              'The map did not load with your locations. please try refreshing the page',
             variant: 'danger'
           })
         )
@@ -159,7 +198,9 @@ render () {
         setAddress={this.setAddress}
       />
       <div ref={this.mapContainer} className='map-container'>
-        <div className='lat-long'> Longitude: {lng} | Latitude: {lat} | Zoom: {zoom}
+        <div className='lat-long'>
+          {' '}
+          Longitude: {lng} | Latitude: {lat} | Zoom: {zoom}
         </div>
       </div>
     </div>

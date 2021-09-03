@@ -1,5 +1,5 @@
-
 import React, { Component } from 'react'
+import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder'
 import mapboxgl from '!mapbox-gl' // eslint-disable-line import/no-webpack-loader-syntax
 mapboxgl.accessToken = 'pk.eyJ1IjoibGF1cmFhbHlzb24iLCJhIjoiY2tzcDJleWVkMDF0NjMxcGhwMzM1Mm1tMiJ9.27PwqNrg2-gZnMmuS1vOww'
 
@@ -16,7 +16,7 @@ class WelcomeMap extends Component {
       container: this.mapContainer.current,
       style: 'mapbox://styles/lauraalyson/cksrla6wq2b4f18nvb4mmk0xv',
       center: [-70.9, 42.35],
-      zoom: 9
+      zoom: 2
     })
     map.on('move', () => {
       this.setState({
@@ -24,6 +24,15 @@ class WelcomeMap extends Component {
         lat: map.getCenter().lat.toFixed(4),
         zoom: map.getZoom().toFixed(2)
       })
+    })
+    // add search box to map
+    const geocoder = new MapboxGeocoder({
+      accessToken: mapboxgl.accessToken
+    })
+    map.addControl(geocoder)
+    // show boston on the map
+    map.on('load', () => {
+      geocoder.query('Boston')
     })
   }
 

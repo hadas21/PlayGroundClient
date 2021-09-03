@@ -21,8 +21,9 @@ import Users from '../src/components/auth/Users'
 // location CRUD
 import IndexLocations from './components/location/IndexLocations'
 import ShowLocation from './components/location/ShowLocation'
-import UpdateLocation from './components/location/UpdateLocation'
+// import UpdateLocation from './components/location/UpdateLocation'
 import IndexAllLocations from '../src/components/location/indexAllLocations'
+import UpdatePopup from './components/location/UpdatePopup'
 
 // friends CRUD
 import CreateFriend from '../src/components/friend/CreateFriend'
@@ -46,9 +47,15 @@ class App extends Component {
     }
   }
 
-	setUser = (user) => this.setState({ user })
+	setUser = (newUser) => this.setState({ user: newUser })
 
 	clearUser = () => this.setState({ user: null })
+
+  deleteAlert = (id) => {
+    this.setState((state) => {
+      return { msgAlerts: state.msgAlerts.filter((msg) => msg.id !== id) }
+    })
+  }
 
 msgAlert = ({ heading, message, variant }) => {
   const id = uuid()
@@ -64,7 +71,21 @@ render () {
 
   return (
     <Fragment>
-      <Header msgAlert={this.msgAlert} setUser={this.setUser} user={user} className='container-fluid'>
+      {msgAlerts.map((msgAlert) => (
+        <AutoDismissAlert
+          key={msgAlert.id}
+          heading={msgAlert.heading}
+          variant={msgAlert.variant}
+          message={msgAlert.message}
+          id={msgAlert.id}
+          deleteAlert={this.deleteAlert}
+        />
+      ))}
+      <Header
+        msgAlert={this.msgAlert}
+        setUser={this.setUser}
+        user={user}
+        className='container-fluid'>
         <Route
           path='/sign-up'
           render={() => (
@@ -77,26 +98,16 @@ render () {
             <SignIn msgAlert={this.msgAlert} setUser={this.setUser} />
           )}
         />
+        {/* <Route path='/sign-in' user={user}>
+          <SignIn user={user} msgAlert={this.msgAlert} setUser={this.setUser} />
+          component={SignIn} */}
+        {/* </Route> */}
       </Header>
-      {msgAlerts.map((msgAlert) => (
-        <AutoDismissAlert
-          key={msgAlert.id}
-          heading={msgAlert.heading}
-          variant={msgAlert.variant}
-          message={msgAlert.message}
-          id={msgAlert.id}
-          deleteAlert={this.deleteAlert}
-        />
-      ))}
+
       <main className='container-fluid'>
-        <SignIn msgAlert={this.msgAlert} setUser={this.setUser} />
-        <SignUp msgAlert={this.msgAlert} setUser={this.setUser} />
-        <Route
-          exact path='/'
-          render={() => (
-            <WelcomeMap />
-          )}
-        />
+        {/* <SignIn msgAlert={this.msgAlert} setUser={this.setUser} />
+        <SignUp msgAlert={this.msgAlert} setUser={this.setUser} /> */}
+        <Route exact path='/' render={() => <WelcomeMap />} />
         <Route
           path='/users'
           render={() => (
@@ -151,7 +162,7 @@ render () {
           msgAlert={this.msgAlert}
           user={user}
           path='/map/locations/:id/edit'
-          render={() => <UpdateLocation msgAlert={this.msgAlert} user={user} />}
+          render={() => <UpdatePopup msgAlert={this.msgAlert} user={user} />}
         />
         <AuthenticatedRoute
           msgAlert={this.msgAlert}

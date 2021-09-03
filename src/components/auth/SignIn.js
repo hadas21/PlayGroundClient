@@ -28,11 +28,14 @@ handleChange = (event) =>
 
 onSignIn = (event) => {
   event.preventDefault()
-
+  console.log('props in sign in: ', this.props)
   const { history, setUser } = this.props
 
   signIn(this.state)
-    .then((res) => setUser(res.data.user))
+    .then((res) => {
+      console.log('this is res in sign in ', res)
+      setUser(res.data.user)
+    })
     .then(() => history.push('/map'))
     .catch((error) => {
       this.setState({ username: '', password: '' })
