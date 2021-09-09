@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder'
+// import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder'
 import mapboxgl from '!mapbox-gl' // eslint-disable-line import/no-webpack-loader-syntax
 mapboxgl.accessToken = 'pk.eyJ1IjoibGF1cmFhbHlzb24iLCJhIjoiY2tzcDJleWVkMDF0NjMxcGhwMzM1Mm1tMiJ9.27PwqNrg2-gZnMmuS1vOww'
 
@@ -25,15 +25,15 @@ class WelcomeMap extends Component {
         zoom: map.getZoom().toFixed(2)
       })
     })
-    // add search box to map
-    const geocoder = new MapboxGeocoder({
-      accessToken: mapboxgl.accessToken
-    })
-    map.addControl(geocoder)
-    // show boston on the map
-    map.on('load', () => {
-      geocoder.query('Boston')
-    })
+    // // add search box to map
+    // const geocoder = new MapboxGeocoder({
+    //   accessToken: mapboxgl.accessToken
+    // })
+    // map.addControl(geocoder)
+    // // show boston on the map
+    // map.on('load', () => {
+    //   geocoder.query('')
+    // })
   }
 
   render () {
