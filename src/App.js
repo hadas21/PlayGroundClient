@@ -19,14 +19,12 @@ import ChangePassword from './components/auth/ChangePassword'
 // import Users from '../src/components/auth/Users'
 
 // location CRUD
-// import IndexAllLocations from '../src/components/location/indexAllLocations'
-// import IndexLocations from './components/location/IndexLocations'
 import ShowLocation from './components/location/ShowLocation'
 
 import UpdatePopup from './components/location/UpdatePopup'
 
 // map logic
-import WelcomeMap from './components/map/WelcomeMap'
+// import WelcomeMap from './components/map/WelcomeMap'
 import Map from './components/map/Map'
 
 // mapbox
@@ -96,27 +94,7 @@ render () {
       </Header>
 
       <main className='container-fluid'>
-        <Route exact path='/' render={() => <WelcomeMap />} />
-        {/* <Route
-          path='/users'
-          render={() => (
-            <Users msgAlert={this.msgAlert} setUser={this.setUser} />
-          )}
-        /> */}
-        {/* <Route
-          path='/locations-all'
-          render={() => (
-            <IndexAllLocations
-              msgAlert={this.msgAlert}
-              setUser={this.setUser}
-            />
-          )}
-        /> */}
-        {/* <AuthenticatedRoute
-          path='/users'
-          user={user}
-          render={() => <Users user={user} />}
-        /> */}
+        {/* <Route exact path='/' render={() => <WelcomeMap />} /> */}
         <AuthenticatedRoute
           user={user}
           path='/sign-out'
@@ -133,13 +111,6 @@ render () {
           path='/change-password'
           render={() => <ChangePassword msgAlert={this.msgAlert} user={user} />}
         />
-        {/* <AuthenticatedRoute
-          msgAlert={this.msgAlert}
-          user={user}
-          exact
-          path='/map/locations'
-          render={() => <IndexLocations msgAlert={this.msgAlert} user={user} />}
-        /> */}
         <AuthenticatedRoute
           msgAlert={this.msgAlert}
           user={user}

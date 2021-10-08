@@ -8,34 +8,32 @@ import UpdatePopup from '../location/UpdatePopup'
 
 const Header = ({ user, setUser, msgAlert }) => (
   <Navbar
-    className='custom-nav sticky-nav'
-    bg='primary'
-    variant='dark'
+    color='white'
     expand='md'>
     <Navbar.Brand>
       <Link
         to='/map'
         style={{
-          color: '#FFF',
+          color: 'white',
           textDecoration: 'none',
-          padding: '0 20px',
+          textTransform: 'uppercase',
+          padding: '0 10px',
           fontSize: '30px'
-        }}> Playground
+        }}>
+          Playground
       </Link>
     </Navbar.Brand>
     <Navbar.Toggle aria-controls='basic-navbar-nav' />
     <Navbar.Collapse id='basic-navbar-nav'>
-      <Nav
-        className='ml-auto sticky-top'
-        style={{ padding: '0px 20px', fontSize: '18px' }}>
+      <Nav className='ml-auto'>
         {user
           ? (
             <Fragment>
-              <NavLink to='/change-password' className='nav-link'> Change Password
+              <NavLink style={{ color: 'white' }} to='/change-password' className='nav-link'> Change Password
               </NavLink>
-              <NavLink to='/sign-out' className='nav-link'> Sign Out
+              <NavLink style={{ color: 'white' }} to='/sign-out' className='nav-link'> Sign Out
               </NavLink>
-              <UpdatePopup user={user} setUser={setUser} msgAlert={msgAlert} />
+              <UpdatePopup style={{ color: 'white' }} user={user} setUser={setUser} msgAlert={msgAlert} />
             </Fragment>
           )
           : (

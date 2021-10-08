@@ -81,7 +81,6 @@ render () {
               onChange={this.handleChange}
             />
           </Form.Group>
-
           <br />
           <Button size='md' variant='outline-primary' type='submit'>Add</Button>
         </Form>

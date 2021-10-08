@@ -40,58 +40,16 @@ handleUpdateSubmit = (event) => {
   event.preventDefault()
   const { user, msgAlert } = this.props
   const data = this.state.location
-  // const id = match.params.id
-
-  // const resetMap = (props) => {
-  //   const { user } = this.props
-
-  //   indexLocations(user)
-  //     .then(() => console.log('this worked'))
-  //     .then((res) => console.log('this is res in update index: ', res))
-  //     .catch((err) => console.log(err))
-  // }
 
   updateLocation(data, user)
     .then(() => console.log('this is user in update popup: ', user))
     .then(() => this.setState({ location: { id: '', description: '' } }))
-    // .then(() =>
-    //   indexLocations(user)
-    //     .then((res) => {
-    //       console.log(res)
-    //       // const placeholder = document.createElement('div')
-    //       // ReactDOM.render(PopupButton, placeholder)
-    //       for (const { coordinates, location, description, _id } of res.data
-    //         .locations) {
-    //       // this.updateData = { location, description, _id }
-    //       // make a marker for each location and add to the map
-    //         new mapboxgl.Marker({
-    //           draggable: false,
-    //           color: '#ffff'
-    //         })
-    //           .setLngLat(coordinates)
-    //           .setPopup(
-    //             new mapboxgl.Popup({ offset: 25 }).setHTML(
-    //               `
-    //           <div>
-    //           <h4>${location}</h4>
-    //           <h6>${description}</h6>
-    //           <p>ID: ${_id}</p>
-    //           <button onClick={removePopUp}>delete</button>
-    //           </div>
-    //           `
-    //             )
-    //           )
-    //           .addTo(map)
-    //       }
-    //     })
-    // )
     .then(() => {
       msgAlert({
         heading: 'updated!',
         variant: 'success'
       })
     })
-  // .then(() => <Redirect to='/map'/>)
     .catch((err) => console.log(err))
 
   indexLocations(user)
@@ -102,7 +60,6 @@ handleDeleteSubmit = (event) => {
 
   const { user, msgAlert } = this.props
   const data = this.state.location
-  // const id = match.params.id
 
   deleteLocation(data.id, user)
     .then(() => this.setState({ location: { id: '' } }))
@@ -122,11 +79,14 @@ handleDeleteSubmit = (event) => {
 }
 
 render () {
-  // const { location } = this.state
-
   return (
     <>
-      <Button variant='primary' onClick={this.handleShow}>
+      <Button style={{
+        backgroundColor: '#273238',
+        borderColor: 'transparent',
+        color: 'white'
+      }}
+      onClick={this.handleShow}>
         Update Location
       </Button>
       <Modal show={this.state.show} onHide={this.handleClose}>
@@ -136,12 +96,6 @@ render () {
 
         <Modal.Body>
           <Form onSubmit={this.handleUpdateSubmit}>
-            {/* <Form.Select aria-label='Default select example'>
-            <option>Location to Edit</option>
-            <option value='1'>One</option>
-            <option value='2'>Two</option>
-            <option value='3'>Three</option>
-          </Form.Select> */}
             <Form.Group controlId='id'>
               <Form.Label>ID</Form.Label>
               <Form.Control
@@ -163,7 +117,7 @@ render () {
               />
             </Form.Group>
             <Button
-              variant='primary'
+              color= ''
               type='submit'
               onClick={this.handleClose}>
               Update

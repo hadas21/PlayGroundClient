@@ -51,7 +51,12 @@ render () {
 
   return (
     <>
-      <Button variant='primary' onClick={this.handleShow}>Sign Up
+      <Button style={{
+        backgroundColor: '#273238',
+        borderColor: '#273238',
+        color: 'white'
+      }}
+      onClick={this.handleShow}>Sign Up
       </Button>
       <Modal show={this.state.show} onHide={this.handleClose}>
         <Modal.Header closeButton>

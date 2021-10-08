@@ -4,7 +4,7 @@ import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder'
 import './../../index.scss'
 import { indexLocations } from '../../api/location'
 import { getAddress } from '../../api/map'
-import Sidebar from './Sidebar'
+import CreateLocation from '../location/CreateLocation'
 
 mapboxgl.accessToken = 'pk.eyJ1IjoibGF1cmFhbHlzb24iLCJhIjoiY2tzcDJleWVkMDF0NjMxcGhwMzM1Mm1tMiJ9.27PwqNrg2-gZnMmuS1vOww'
 
@@ -105,22 +105,14 @@ componentDidMount () {
       zoom: map.getZoom().toFixed(2)
     })
 
-    // transfer coords to string address
     getAddress(lngLat.lng, lngLat.lat)
       .then((res) => {
         console.log(res.data)
         this.setState({ address: res.data.features[1].place_name })
       })
-      .catch((error) =>
-        this.props.msgAlert({
-          heading: 'Oops... ' + error.message,
-          message:
-              'There is no registered address for the selected area, please zoom in and try again',
-          variant: 'danger'
-        })
+      .catch((error) => console.log('There is no location here \n', error)
       )
 
-    // index locations again to display new location NEED TO FIND CLEANER WAY TO DO THIS!!!
     indexLocations(this.props.user)
       .then((res) => {
         console.log(res)
@@ -170,19 +162,26 @@ render () {
   const { user, msgAlert } = this.props
   return (
     <div>
-      <Sidebar
-        lng={lng}
-        lat={lat}
-        msgAlert={msgAlert}
-        user={user}
-        address={address}
-        setAddress={this.setAddress}
-      />
-      <div ref={this.mapContainer} className='map-container'>
-        <div className='lat-long'>
-          Longitude: {lng} | Latitude: {lat} | Zoom: {zoom}
+      <div className='row'>
+        <div className='col-4 md'>
+          <CreateLocation
+            lng={lng}
+            lat={lat}
+            msgAlert={msgAlert}
+            user={user}
+            address={address}
+            setAddress={this.setAddress}
+          />
+        </div>
+
+        <div className='col-8 md'>
+          <div ref={this.mapContainer} className='map-container'>
+            <div className='lat-long'>Longitude: {lng} | Latitude: {lat} | Zoom: {zoom}
+            </div>
+          </div>
         </div>
       </div>
+
     </div>
   )
 }

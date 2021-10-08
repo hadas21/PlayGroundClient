@@ -48,7 +48,12 @@ render () {
 
   return (
     <>
-      <Button variant='primary' onClick={this.handleShow}>
+      <Button style={{
+        backgroundColor: '#273238',
+        borderColor: 'transparent',
+        color: 'white'
+      }}
+      onClick={this.handleShow}>
         Sign In
       </Button>
       <Modal show={this.state.show} onHide={this.handleClose}>
