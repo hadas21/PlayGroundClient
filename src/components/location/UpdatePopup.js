@@ -44,6 +44,7 @@ handleUpdateSubmit = (event) => {
   updateLocation(data, user)
     .then(() => console.log('this is user in update popup: ', user))
     .then(() => this.setState({ location: { id: '', description: '' } }))
+    .then(() => indexLocations(user.token))
     .then(() => {
       msgAlert({
         heading: 'updated!',

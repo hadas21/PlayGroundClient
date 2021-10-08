@@ -4,6 +4,7 @@ import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import { createLocation } from '../../api/location'
 import { createLocationFailure } from '../AutoDismissAlert/messages'
+import UpdatePopup from './UpdatePopup'
 
 class CreateLocation extends Component {
   constructor (props) {
@@ -47,15 +48,14 @@ onCreateLocation = (event) => {
 }
 
 render () {
-  const { address } = this.props
-
+  const { address, user, msgAlert } = this.props
   const { description } = this.state
 
   return (
     <div className='row'>
       <div className='col-sm-10 col-sm-8 mx-auto mt-5'>
         <Form onSubmit={this.onCreateLocation}>
-          <h2>Create Location</h2>
+          <h2>Create Location</h2><br />
           <Form.Group controlId='location'>
             <Form.Label>Drag and drop your pin to set a location.</Form.Label>
             <Form.Control
@@ -82,7 +82,14 @@ render () {
             />
           </Form.Group>
           <br />
-          <Button size='md' variant='outline-primary' type='submit'>Add</Button>
+          <Button style={{
+            backgroundColor: '#273238',
+            borderColor: 'transparent',
+            color: 'white'
+          }}
+          type='submit'>Add</Button> <br /><br /><br /><br />
+          <h2>Or Update a Location</h2><br />
+          <UpdatePopup style={{ color: 'white' }} user={user} msgAlert={msgAlert} />
         </Form>
       </div>
     </div>

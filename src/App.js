@@ -24,11 +24,12 @@ import ShowLocation from './components/location/ShowLocation'
 import UpdatePopup from './components/location/UpdatePopup'
 
 // map logic
-// import WelcomeMap from './components/map/WelcomeMap'
+import WelcomeMap from './components/map/WelcomeMap'
 import Map from './components/map/Map'
 
 // mapbox
 import mapboxgl from '!mapbox-gl' // eslint-disable-line import/no-webpack-loader-syntax
+import AboutPlayground from './components/map/AboutPlayground'
 mapboxgl.accessToken = 'pk.eyJ1IjoibGF1cmFhbHlzb24iLCJhIjoiY2tzcDJleWVkMDF0NjMxcGhwMzM1Mm1tMiJ9.27PwqNrg2-gZnMmuS1vOww'
 
 class App extends Component {
@@ -94,7 +95,7 @@ render () {
       </Header>
 
       <main className='container-fluid'>
-        {/* <Route exact path='/' render={() => <WelcomeMap />} /> */}
+        <Route exact path='/' render={() => <WelcomeMap />} />
         <AuthenticatedRoute
           user={user}
           path='/sign-out'
@@ -124,6 +125,7 @@ render () {
           path='/map/locations/:id/edit'
           render={() => <UpdatePopup msgAlert={this.msgAlert} user={user} />}
         />
+        <AuthenticatedRoute render={() => <AboutPlayground />}/>
         <AuthenticatedRoute
           user={user}
           path='/map'

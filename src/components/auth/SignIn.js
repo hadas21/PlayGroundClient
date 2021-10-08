@@ -85,7 +85,12 @@ render () {
                 onChange={this.handleChange}
               />
             </Form.Group>
-            <Button variant='primary' type='submit'>
+            <Button
+              style={{
+                backgroundColor: '#273238',
+                borderColor: 'transparent',
+                color: 'white'
+              }}type='submit'>
               Submit
             </Button>
           </Form>

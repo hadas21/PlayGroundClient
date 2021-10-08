@@ -104,7 +104,13 @@ render () {
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant='secondary' onClick={this.handleClose}>Close
+          <Button
+            style={{
+              backgroundColor: '#273238',
+              borderColor: 'transparent',
+              color: 'white'
+            }}
+            onClick={this.handleClose}>Close
           </Button>
         </Modal.Footer>
       </Modal>

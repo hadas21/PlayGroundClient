@@ -37,7 +37,9 @@ updateData = {}
 componentDidMount () {
   const map = new mapboxgl.Map({
     container: this.mapContainer.current,
-    style: 'mapbox://styles/lauraalyson/ckuilvxys90ac17n3t4la2kr5'
+    style: 'mapbox://styles/lauraalyson/ckuilvxys90ac17n3t4la2kr5',
+    center: [-10, 19],
+    zoom: 1
   })
 
   const { color } = this.state
@@ -151,10 +153,9 @@ componentDidMount () {
     accessToken: mapboxgl.accessToken
   })
   map.addControl(geocoder)
-  // show boston on the map
-  map.on('load', () => {
-    geocoder.query('Boston')
-  })
+  // map.on('load', () => {
+  //   geocoder.query('Boston')
+  // })
 }
 
 render () {
@@ -163,7 +164,7 @@ render () {
   return (
     <div>
       <div className='row'>
-        <div className='col-4 md'>
+        <div className='col-4'>
           <CreateLocation
             lng={lng}
             lat={lat}
@@ -173,7 +174,6 @@ render () {
             setAddress={this.setAddress}
           />
         </div>
-
         <div className='col-8 md'>
           <div ref={this.mapContainer} className='map-container'>
             <div className='lat-long'>Longitude: {lng} | Latitude: {lat} | Zoom: {zoom}

@@ -1,10 +1,12 @@
 import React, { Fragment } from 'react'
 import Nav from 'react-bootstrap/Nav'
 import Navbar from 'react-bootstrap/Navbar'
+import { NavDropdown } from 'react-bootstrap'
 import { Link, NavLink } from 'react-router-dom'
 import SignIn from '../auth/SignIn'
 import SignUp from '../auth/SignUp'
-import UpdatePopup from '../location/UpdatePopup'
+import AboutPlayground from '../map/AboutPlayground'
+import './../../index.scss'
 
 const Header = ({ user, setUser, msgAlert }) => (
   <Navbar
@@ -29,11 +31,14 @@ const Header = ({ user, setUser, msgAlert }) => (
         {user
           ? (
             <Fragment>
-              <NavLink style={{ color: 'white' }} to='/change-password' className='nav-link'> Change Password
-              </NavLink>
-              <NavLink style={{ color: 'white' }} to='/sign-out' className='nav-link'> Sign Out
-              </NavLink>
-              <UpdatePopup style={{ color: 'white' }} user={user} setUser={setUser} msgAlert={msgAlert} />
+              <AboutPlayground />
+              <NavDropdown title='Account' id='basic-nav-dropdown'>
+                <NavLink style={{ color: '#273238' }} to='/change-password' className='nav-link'> Change Password
+                </NavLink>
+                <NavLink style={{ color: '#273238' }} to='/sign-out' className='nav-link'> Sign Out
+                </NavLink>
+                {/* <UpdatePopup user={user} setUser={setUser} msgAlert={msgAlert} /> */}
+              </NavDropdown>
             </Fragment>
           )
           : (
