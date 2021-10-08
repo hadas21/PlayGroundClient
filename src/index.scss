@@ -45,34 +45,6 @@ main.container-fluid {
   height: 100vh;
 }
 
-.custom-nav {
-  position: fixed;
-  top: 20px;
-  margin: 0 20px;
-  border-radius: 100px;
-  z-index: 20;
-}
-
-.navbar {
-  position: absolute;
-}
-
-// .custom-nav {
-//     border-radius: 100px;
-//     // margin: 50px;
-//     // padding: 20px;
-//     // z-index: 2;
-// }
-
-// .navbar {
-//     position: absolute;
-// }
-
-.navbar-nav {
-  margin-left: auto;
-  position: absolute;
-}
-
 button {
   margin: 1em;
 }
@@ -90,16 +62,10 @@ button {
     background-color: rgba(35, 55, 75, 0.9);
     color: #fff;
     padding: 6px 12px;
-    // z-index: 1;
-    // position: absolute;
-    // top: 50px;
-    // left: 0;
-    // margin: 12px;
     border-radius: 4px;
 }
 
 #marker {
-    //background-image: url('https://cdn5.vectorstock.com/i/1000x1000/05/44/map-marker-icon-vector-12860544.jpg');
     background-size: cover;
     width: 50px;
     height: 50px;

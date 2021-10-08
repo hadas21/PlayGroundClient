@@ -1,12 +1,8 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
-// bootstrap
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
-// api calls
 import { createLocation } from '../../api/location'
-import Users from '../map/Users'
-// messages
 import { createLocationFailure } from '../AutoDismissAlert/messages'
 
 class CreateLocation extends Component {
@@ -89,10 +85,6 @@ render () {
           <br />
           <Button size='md' variant='outline-primary' type='submit'>Add</Button>
         </Form>
-        <br />
-        <br />
-        <h2>Other Users</h2>
-        <Users />
       </div>
     </div>
   )

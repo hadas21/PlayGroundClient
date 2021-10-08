@@ -1,30 +1,13 @@
 import React, { Component } from 'react'
-// import { ReactDOM } from 'react-dom'
-// mapbox
 import mapboxgl from '!mapbox-gl' // eslint-disable-line import/no-webpack-loader-syntax
 import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder'
-// style
 import './../../index.scss'
-// import Form from 'react-bootstrap/Form'
-// import Button from 'react-bootstrap/Button'
-// import Modal from 'react-bootstrap/Modal'
-// api calls
 import { indexLocations } from '../../api/location'
 import { getAddress } from '../../api/map'
-
-// components
-// import UpdatePopup from '../location/UpdatePopup'
 import Sidebar from './Sidebar'
-// import PopupButton from './../location/PopupButton'
 
 mapboxgl.accessToken = 'pk.eyJ1IjoibGF1cmFhbHlzb24iLCJhIjoiY2tzcDJleWVkMDF0NjMxcGhwMzM1Mm1tMiJ9.27PwqNrg2-gZnMmuS1vOww'
 
-// const popupContent = (addy, desc, locId, updateFormSub) => {
-//   return (
-//     `
-//     `
-//   )
-// }
 class Map extends Component {
   constructor (props) {
     super(props)
@@ -51,17 +34,10 @@ editTestFunc = (event) => {
 
 updateData = {}
 
-// removePopUp = (event) => {
-//   // eslint-disable-next-line no-undef
-//   map.on('click', () => {
-//     popup.remove()
-//   })
-// }
-
 componentDidMount () {
   const map = new mapboxgl.Map({
     container: this.mapContainer.current,
-    style: 'mapbox://styles/lauraalyson/cksp2t5nr6w2m17o33s38ftds'
+    style: 'mapbox://styles/lauraalyson/ckuilvxys90ac17n3t4la2kr5'
   })
 
   const { color } = this.state
@@ -204,7 +180,6 @@ render () {
       />
       <div ref={this.mapContainer} className='map-container'>
         <div className='lat-long'>
-          {' '}
           Longitude: {lng} | Latitude: {lat} | Zoom: {zoom}
         </div>
       </div>

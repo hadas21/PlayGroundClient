@@ -14,9 +14,9 @@ class WelcomeMap extends Component {
   componentDidMount () {
     const map = new mapboxgl.Map({
       container: this.mapContainer.current,
-      style: 'mapbox://styles/lauraalyson/cksrla6wq2b4f18nvb4mmk0xv',
+      style: 'mapbox://styles/lauraalyson/ckuilvxys90ac17n3t4la2kr5',
       center: [-70.9, 42.35],
-      zoom: 2
+      zoom: 6
     })
     map.on('move', () => {
       this.setState({
@@ -25,15 +25,6 @@ class WelcomeMap extends Component {
         zoom: map.getZoom().toFixed(2)
       })
     })
-    // // add search box to map
-    // const geocoder = new MapboxGeocoder({
-    //   accessToken: mapboxgl.accessToken
-    // })
-    // map.addControl(geocoder)
-    // // show boston on the map
-    // map.on('load', () => {
-    //   geocoder.query('')
-    // })
   }
 
   render () {

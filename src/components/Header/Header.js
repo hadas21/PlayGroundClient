@@ -1,28 +1,10 @@
 import React, { Fragment } from 'react'
 import Nav from 'react-bootstrap/Nav'
 import Navbar from 'react-bootstrap/Navbar'
-// import Button from 'react-bootstrap/Button'
 import { Link, NavLink } from 'react-router-dom'
 import SignIn from '../auth/SignIn'
 import SignUp from '../auth/SignUp'
 import UpdatePopup from '../location/UpdatePopup'
-
-// const authenticatedOptions = (
-//   <Fragment>
-//     <NavLink to='/change-password' className='nav-link'>Change Password
-//     </NavLink>
-//     <NavLink to='/sign-out' className='nav-link'>Sign Out</NavLink>
-//     <Button to='/map/locations/:id/edit' class='btn btn-outline-success' type='button'>Update Location
-//     </Button>
-//   </Fragment>
-// )
-
-// const unauthenticatedOptions = (
-//   <Fragment>
-//     <SignIn />
-//     <SignUp />
-//   </Fragment>
-// )
 
 const Header = ({ user, setUser, msgAlert }) => (
   <Navbar
