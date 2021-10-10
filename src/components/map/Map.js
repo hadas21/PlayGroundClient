@@ -5,7 +5,7 @@ import './../../index.scss'
 import { indexLocations } from '../../api/location'
 import { getAddress } from '../../api/map'
 import CreateLocation from '../location/CreateLocation'
-import PlaygroundWelcome from './PlaygroundWelcome'
+// import PlaygroundWelcome from './PlaygroundWelcome'
 
 mapboxgl.accessToken = 'pk.eyJ1IjoibGF1cmFhbHlzb24iLCJhIjoiY2tzcDJleWVkMDF0NjMxcGhwMzM1Mm1tMiJ9.27PwqNrg2-gZnMmuS1vOww'
 
@@ -20,7 +20,7 @@ class Map extends Component {
       address: '',
       color: '',
       center: {},
-      editLocation: ''
+      locations: ''
     }
     this.mapContainer = React.createRef()
   }
@@ -68,7 +68,7 @@ componentDidMount () {
           .addTo(map)
       }
     })
-    .then(() => console.log('back in componentDidMount'))
+    .then((res) => this.setState({ locations: res.data.locations }))
     .catch((error) =>
       this.props.msgAlert({
         heading: 'Sorry, ' + error.message,
@@ -150,7 +150,7 @@ render () {
   const { user, msgAlert } = this.props
   return (
     <div>
-      <PlaygroundWelcome />
+      {/* <PlaygroundWelcome /> */}
       <div className='row'>
         <div className='col-lg-4 col-md-4 mb-sm-0'>
           <CreateLocation
@@ -161,6 +161,7 @@ render () {
             address={address}
             setAddress={this.setAddress}
           />
+          <div><p>{this.state.locations}</p></div>
         </div>
         <div className='col-lg-8 col-md-8 mb-sm-0'>
           <div ref={this.mapContainer} className='map-container'>

@@ -123,9 +123,11 @@ footer {
   width: 100vw;
   font-size: .8em;
   overflow: hidden;
+  margin: 0;
 }
 
-footer.text-white.row {
+footer.text-white.row, section {
+  background-color: #273238;
   width: 100vw;
 }
 
@@ -149,18 +151,25 @@ div.mapboxgl-ctrl-bottom-right {
   display: none;
 }
 
-// div.row {
-//   max-width: 100%;
-// }
-
 .row {
   --bs-gutter-x: 0;
 }
 
-div.col-lg-4.mb-md-0 {
-  background-color: blue;
-}
-
 div.mapboxgl-ctrl-top-right {
   margin-right: 1em;
+}
+
+#basic-nav-dropdown, div.dropdown-menu.show, a.nav-link {
+  text-align: center;
+  background-color: transparent;
+  color: white;
+  border: none;
+}
+
+@media only screen and (max-width: 767px) {
+  a#basic-nav-dropdown.dropdown-toggle.nav-link, .basic-nav-dropdown, div.dropdown-menu.show {
+    text-align: center;
+    background-color: transparent;
+    color: white;
+  }
 }

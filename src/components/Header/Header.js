@@ -33,9 +33,9 @@ const Header = ({ user, setUser, msgAlert }) => (
             <Fragment>
               <AboutPlayground />
               <NavDropdown title='Account' id='basic-nav-dropdown'>
-                <NavLink style={{ color: '#273238' }} to='/change-password' className='nav-link'> Change Password
+                <NavLink style={{ color: 'white' }} to='/change-password' className='nav-link'> Change Password
                 </NavLink>
-                <NavLink style={{ color: '#273238' }} to='/sign-out' className='nav-link'> Sign Out
+                <NavLink style={{ color: 'white' }} to='/sign-out' className='nav-link'> Sign Out
                 </NavLink>
               </NavDropdown>
             </Fragment>
