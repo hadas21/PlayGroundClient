@@ -33,7 +33,6 @@ body {
   position: absolute;
   margin: 0;
   padding: 0;
-
 }
 
 main.container-fluid {
@@ -56,14 +55,15 @@ main.container-fluid {
 }
 
 .lat-long {
-    background-color: rgba(35, 55, 75, 0.9);
+    background-color: #273238;
     color: #fff;
     padding: 6px 12px;
-    border-radius: 4px;
+    width: 100%;
 }
 
 #marker {
     background-size: cover;
+    background-image: url('https://cdn2.iconfinder.com/data/icons/pittogrammi/142/94-512.png');
     width: 50px;
     height: 50px;
     border-radius: 50%;
@@ -72,6 +72,7 @@ main.container-fluid {
 
 .mapboxgl-popup {
     max-width: 200px;
+    border-radius: 5px;
 }
 
 .sidebar-content {
@@ -88,6 +89,6 @@ main.container-fluid {
   margin: 10 10;
 }
 
-.row {
-  margin-top: 0px;
+div.col-4, div.col-8.md {
+  padding: 0px
 }

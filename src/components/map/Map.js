@@ -5,6 +5,7 @@ import './../../index.scss'
 import { indexLocations } from '../../api/location'
 import { getAddress } from '../../api/map'
 import CreateLocation from '../location/CreateLocation'
+import PlaygroundWelcome from './PlaygroundWelcome'
 
 mapboxgl.accessToken = 'pk.eyJ1IjoibGF1cmFhbHlzb24iLCJhIjoiY2tzcDJleWVkMDF0NjMxcGhwMzM1Mm1tMiJ9.27PwqNrg2-gZnMmuS1vOww'
 
@@ -37,10 +38,12 @@ updateData = {}
 componentDidMount () {
   const map = new mapboxgl.Map({
     container: this.mapContainer.current,
-    style: 'mapbox://styles/lauraalyson/ckuilvxys90ac17n3t4la2kr5',
+    style: 'mapbox://styles/lauraalyson/ckuj0d93d323s17rwaujvd8go',
     center: [-10, 19],
     zoom: 1
   })
+
+  console.log('welcome to playground')
 
   const { color } = this.state
   // get saved locations to display markers on map
@@ -112,8 +115,7 @@ componentDidMount () {
         console.log(res.data)
         this.setState({ address: res.data.features[1].place_name })
       })
-      .catch((error) => console.log('There is no location here \n', error)
-      )
+      .catch((res) => this.setState({ address: 'Ooops, that is the ocean! Pick somewhere on land.' }))
 
     indexLocations(this.props.user)
       .then((res) => {
@@ -159,12 +161,16 @@ componentDidMount () {
 }
 
 render () {
-  const { lng, lat, zoom, address } = this.state
+  const { lng, lat, address } = this.state
   const { user, msgAlert } = this.props
   return (
     <div>
+      <PlaygroundWelcome />
       <div className='row'>
         <div className='col-4'>
+          <p className='lat-long' >
+            Longitude: {lng}<br />
+            Latitude: {lat}</p>
           <CreateLocation
             lng={lng}
             lat={lat}
@@ -176,12 +182,9 @@ render () {
         </div>
         <div className='col-8 md'>
           <div ref={this.mapContainer} className='map-container'>
-            <div className='lat-long'>Longitude: {lng} | Latitude: {lat} | Zoom: {zoom}
-            </div>
           </div>
         </div>
       </div>
-
     </div>
   )
 }
