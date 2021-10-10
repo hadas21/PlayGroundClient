@@ -9,29 +9,29 @@ class WelcomeMap extends Component {
     super(props)
     this.state = {}
 
-    //   this.mapContainer = React.createRef()
-    // }
+    this.mapContainer = React.createRef()
+  }
 
-  // componentDidMount () {
-  //   const map = new mapboxgl.Map({
-  //     container: this.mapContainer.current,
-  //     style: 'mapbox://styles/lauraalyson/ckuilvxys90ac17n3t4la2kr5',
-  //     center: [-70.9, 42.35],
-  //     zoom: 1
-  //   })
-  //   map.on('move', () => {
-  //     this.setState({
-  //       lng: map.getCenter().lng.toFixed(4),
-  //       lat: map.getCenter().lat.toFixed(4),
-  //       zoom: map.getZoom().toFixed(2)
-  //     })
-  //   })
+  componentDidMount () {
+    const map = new mapboxgl.Map({
+      container: this.mapContainer.current,
+      style: 'mapbox://styles/lauraalyson/ckuj0d93d323s17rwaujvd8go',
+      center: [-70.9, 42.35],
+      zoom: 1
+    })
+    map.on('move', () => {
+      this.setState({
+        lng: map.getCenter().lng.toFixed(4),
+        lat: map.getCenter().lat.toFixed(4),
+        zoom: map.getZoom().toFixed(2)
+      })
+    })
   }
 
   render () {
     return (
       <div>
-        {/* <div ref={this.mapContainer} className='map-container' /> */}
+        <div ref={this.mapContainer} className='map-container' />
       </div>
     )
   }

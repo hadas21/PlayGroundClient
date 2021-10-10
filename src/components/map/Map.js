@@ -35,8 +35,8 @@ componentDidMount () {
   const map = new mapboxgl.Map({
     container: this.mapContainer.current,
     style: 'mapbox://styles/lauraalyson/ckuj0d93d323s17rwaujvd8go',
-    center: [-10, 19],
-    zoom: 1
+    center: [-29, 32],
+    zoom: 2
   })
 
   const { color } = this.state
@@ -52,7 +52,7 @@ componentDidMount () {
         // make a marker for each location and add to the map
         new mapboxgl.Marker({
           draggable: false,
-          color: '#ffff'
+          color: '#D0E0F1'
         })
           .setLngLat(coordinates)
           .setPopup(
@@ -106,7 +106,7 @@ componentDidMount () {
     getAddress(lngLat.lng, lngLat.lat)
       .then((res) => {
         console.log(res.data)
-        this.setState({ address: res.data.features[1].place_name })
+        this.setState({ address: res.data.features[1].text })
       })
       .catch((res) => this.setState({ address: 'Ooops, that is the ocean! Pick somewhere on land.' }))
 
@@ -115,7 +115,7 @@ componentDidMount () {
         console.log(res)
         for (const { coordinates, location, description, _id } of res.data
           .locations) {
-          new mapboxgl.Marker({ draggable: false, color: '#ffff' })
+          new mapboxgl.Marker({ draggable: false, color: '#D0E0F1' })
             .setPopup(
               new mapboxgl.Popup({ offset: 25 }).setHTML(
                 `
@@ -152,10 +152,7 @@ render () {
     <div>
       <PlaygroundWelcome />
       <div className='row'>
-        <div className='col-4'>
-          <p className='lat-long' >
-            Longitude: {lng}<br />
-            Latitude: {lat}</p>
+        <div className='col-lg-4 col-md-4 mb-sm-0'>
           <CreateLocation
             lng={lng}
             lat={lat}
@@ -165,7 +162,7 @@ render () {
             setAddress={this.setAddress}
           />
         </div>
-        <div className='col-8'>
+        <div className='col-lg-8 col-md-8 mb-sm-0'>
           <div ref={this.mapContainer} className='map-container'>
           </div>
         </div>

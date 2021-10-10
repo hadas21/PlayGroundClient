@@ -88,8 +88,9 @@ render () {
         color: 'white'
       }}
       onClick={this.handleShow}>
-        Update Location
+        Edit
       </Button>
+      <div style={{ paddingBottom: '4em' }}></div>
       <Modal show={this.state.show} onHide={this.handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Update Location</Modal.Title>

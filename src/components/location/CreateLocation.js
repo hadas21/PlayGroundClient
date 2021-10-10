@@ -49,14 +49,17 @@ onCreateLocation = (event) => {
 }
 
 render () {
-  const { address, user, msgAlert } = this.props
+  const { lat, lng, address, user, msgAlert } = this.props
   const { description } = this.state
 
   return (
     <div className='row'>
       <div className='col-sm-10 col-sm-8 mx-auto mt-5'>
         <Form onSubmit={this.onCreateLocation}>
-          <h2>Create Location</h2><br />
+          <h2>Create Location</h2>
+          <p className='lat-long' >
+            Longitude: {lng}<br />
+            Latitude: {lat}</p>
           <Form.Group controlId='location'>
             <Form.Label>Drag and drop your pin to set a location.</Form.Label>
             <Form.Control
@@ -88,8 +91,9 @@ render () {
             borderColor: 'transparent',
             color: 'white'
           }}
-          type='submit'>Add</Button> <br /><br /><br /><br />
-          <h2>Edit Location</h2><br />
+          type='submit'>Add</Button> &nbsp;
+          {/* <br /><br /><br /><br /> */}
+          {/* <h2>Edit Location</h2><br /> */}
           <UpdatePopup style={{ color: 'white' }} user={user} msgAlert={msgAlert} />
         </Form>
       </div>

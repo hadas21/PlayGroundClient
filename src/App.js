@@ -30,6 +30,7 @@ import Map from './components/map/Map'
 // mapbox
 import mapboxgl from '!mapbox-gl' // eslint-disable-line import/no-webpack-loader-syntax
 import AboutPlayground from './components/map/AboutPlayground'
+import Footer from './components/Header/Footer'
 mapboxgl.accessToken = 'pk.eyJ1IjoibGF1cmFhbHlzb24iLCJhIjoiY2tzcDJleWVkMDF0NjMxcGhwMzM1Mm1tMiJ9.27PwqNrg2-gZnMmuS1vOww'
 
 class App extends Component {
@@ -137,6 +138,7 @@ render () {
             />
           )}
         />
+        <Route path='/' render={() => (<Footer />)}/>
       </main>
     </Fragment>
   )
