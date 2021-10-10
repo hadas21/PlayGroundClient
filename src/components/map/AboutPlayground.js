@@ -7,7 +7,7 @@ class AboutPlayground extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      location: {}
+      show: true
     }
   }
 
@@ -27,7 +27,10 @@ render () {
       onClick={this.handleShow}>
         About
       </Button>
-      <Modal show={this.state.show} onHide={this.handleClose}>
+      <Modal
+        aria-labelledby="contained-modal-title-vcenter"
+        centeredshow={this.state.show}
+        onHide={this.handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>The world is your <i>Playground</i>.</Modal.Title>
         </Modal.Header>

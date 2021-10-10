@@ -19,18 +19,14 @@ class Map extends Component {
       zoom: '',
       address: '',
       color: '',
-      center: {}
+      center: {},
+      editLocation: ''
     }
     this.mapContainer = React.createRef()
   }
 
 setAddress = () => {
   this.setState({ address: '' })
-}
-
-editTestFunc = (event) => {
-  event.preventDefault()
-  console.log('testing edit function')
 }
 
 updateData = {}
@@ -42,8 +38,6 @@ componentDidMount () {
     center: [-10, 19],
     zoom: 1
   })
-
-  console.log('welcome to playground')
 
   const { color } = this.state
   // get saved locations to display markers on map
@@ -68,7 +62,6 @@ componentDidMount () {
               <h4>${location}</h4>
               <h6>${description}</h6>
               <p>ID: ${_id}</p>
-              <button onClick={removePopUp}>delete</button>
               </div>
               `
             ))
@@ -127,7 +120,7 @@ componentDidMount () {
               new mapboxgl.Popup({ offset: 25 }).setHTML(
                 `
                     <div>
-                    <h4>${location}</h4>
+                    <h5>${location}</h5>
                     <h6>${description}</h6>
                     <p>ID: ${_id}</p>
                     </div>
@@ -138,18 +131,10 @@ componentDidMount () {
             .addTo(map)
         }
       })
-      .catch((error) =>
-        this.props.msgAlert({
-          heading: 'Sorry, : ' + error.message,
-          message:
-              'The map did not load with your locations. please try refreshing the page',
-          variant: 'danger'
-        })
-      )
+      .catch((error) => console.log('second index location failed \n', error))
   }
 
   marker.on('dragend', onDragEnd)
-
   // add search box to map
   const geocoder = new MapboxGeocoder({
     accessToken: mapboxgl.accessToken
@@ -180,7 +165,7 @@ render () {
             setAddress={this.setAddress}
           />
         </div>
-        <div className='col-8 md'>
+        <div className='col-8'>
           <div ref={this.mapContainer} className='map-container'>
           </div>
         </div>

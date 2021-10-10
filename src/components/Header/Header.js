@@ -19,8 +19,8 @@ const Header = ({ user, setUser, msgAlert }) => (
           color: 'white',
           textDecoration: 'none',
           textTransform: 'uppercase',
-          padding: '0 10px',
-          fontSize: '30px'
+          padding: '10 10px',
+          fontSize: '50px'
         }}>
           Playground
       </Link>
@@ -37,7 +37,6 @@ const Header = ({ user, setUser, msgAlert }) => (
                 </NavLink>
                 <NavLink style={{ color: '#273238' }} to='/sign-out' className='nav-link'> Sign Out
                 </NavLink>
-                {/* <UpdatePopup user={user} setUser={setUser} msgAlert={msgAlert} /> */}
               </NavDropdown>
             </Fragment>
           )

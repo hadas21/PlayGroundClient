@@ -48,15 +48,19 @@ render () {
 
   return (
     <>
-      <Button style={{
-        backgroundColor: '#273238',
-        borderColor: 'transparent',
-        color: 'white'
-      }}
-      onClick={this.handleShow}>
-        Sign In
+      <Button
+        style={{
+          backgroundColor: '#273238',
+          borderColor: 'transparent',
+          color: 'white'
+        }}
+        onClick={this.handleShow}> Sign In
       </Button>
-      <Modal show={this.state.show} onHide={this.handleClose}>
+      <Modal
+        aria-labelledby='contained-modal-title-vcenter'
+        centered
+        show={this.state.show}
+        onHide={this.handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Sign In</Modal.Title>
         </Modal.Header>
@@ -90,14 +94,13 @@ render () {
                 backgroundColor: '#273238',
                 borderColor: 'transparent',
                 color: 'white'
-              }}type='submit'>
-              Submit
+              }}
+              type='submit'>Submit
             </Button>
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant='secondary' onClick={this.handleClose}>
-            Close
+          <Button variant='secondary' onClick={this.handleClose}>Close
           </Button>
         </Modal.Footer>
       </Modal>

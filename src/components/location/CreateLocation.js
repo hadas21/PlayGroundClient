@@ -37,6 +37,7 @@ onCreateLocation = (event) => {
     // empty form fields
     .then(() => this.setState({ description: '' }))
     .then(setAddress())
+    .then((res) => console.log('this is res in create location \n', res))
     .catch((err) => {
       msgAlert({
         heading: 'Location creation failed :(',
@@ -88,7 +89,7 @@ render () {
             color: 'white'
           }}
           type='submit'>Add</Button> <br /><br /><br /><br />
-          <h2>Or Update a Location</h2><br />
+          <h2>Edit Location</h2><br />
           <UpdatePopup style={{ color: 'white' }} user={user} msgAlert={msgAlert} />
         </Form>
       </div>

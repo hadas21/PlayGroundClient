@@ -2,7 +2,13 @@
 @import 'mapbox-gl/dist/mapbox-gl.css';
 @import '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css';
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@200;300;400;500&display=swap');
+@import url("https://use.typekit.net/uvk6qgm.css");
+@import url("https://use.typekit.net/sdy1wfw.css");
 
+@font-face {
+  font-family: DinPro;
+  src: url(./DINPro-Medium_13936.woff);
+}
 
 #root {
   margin: 0;
@@ -23,6 +29,14 @@ body {
   line-height: 1.5;
 }
 
+h1, h2, h3, h4, h5, h6, p, nav {
+font-family: DinPro;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  text-transform: uppercase;
+}
+
 #basic-nav-dropdown {
   color: white;
 }
@@ -36,7 +50,7 @@ body {
 }
 
 main.container-fluid {
-  height: 100vh;
+  // height: 100vh;
   padding: 0px 0px;
 }
 
@@ -56,8 +70,9 @@ main.container-fluid {
 
 .lat-long {
     background-color: #273238;
+    text-transform: uppercase;
     color: #fff;
-    padding: 6px 12px;
+    padding-left: 1em;
     width: 100%;
 }
 
@@ -89,6 +104,9 @@ main.container-fluid {
   margin: 10 10;
 }
 
-div.col-4, div.col-8.md {
-  padding: 0px
+div.col-4, div.col-8 {
+  padding: 0px;
+}
+nav {
+  padding: 1em;
 }

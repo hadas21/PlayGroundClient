@@ -17,7 +17,11 @@ handleClose = () => this.setState({ show: false })
 render () {
   return (
     <>
-      <Modal show={this.state.show} onHide={this.handleClose}>
+      <Modal
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
+        show={this.state.show}
+        onHide={this.handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>The world is your <i>Playground</i>.</Modal.Title>
         </Modal.Header>
