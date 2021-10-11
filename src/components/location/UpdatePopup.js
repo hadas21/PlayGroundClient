@@ -91,7 +91,11 @@ render () {
         Edit
       </Button>
       <div style={{ paddingBottom: '4em' }}></div>
-      <Modal show={this.state.show} onHide={this.handleClose}>
+      <Modal
+        aria-labelledby='contained-modal-title-vcenter'
+        centered
+        show={this.state.show}
+        onHide={this.handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Update Location</Modal.Title>
         </Modal.Header>

@@ -20,7 +20,8 @@ class Map extends Component {
       address: '',
       color: '',
       center: {},
-      locations: ''
+      locations: '',
+      time: Date.now()
     }
     this.mapContainer = React.createRef()
   }
@@ -28,8 +29,6 @@ class Map extends Component {
 setAddress = () => {
   this.setState({ address: '' })
 }
-
-updateData = {}
 
 componentDidMount () {
   const map = new mapboxgl.Map({
@@ -39,11 +38,16 @@ componentDidMount () {
     zoom: 2
   })
 
+  this.interval = setInterval(() => this.setState({ time: Date.now() }), 1000)
+
+  this.setState({ mapStore: map })
+
   const { color } = this.state
+
   // get saved locations to display markers on map
   indexLocations(this.props.user)
     .then((res) => {
-      console.log(res)
+      console.log('This is the response\n', res)
       // const placeholder = document.createElement('div')
       // ReactDOM.render(PopupButton, placeholder)
       for (const { coordinates, location, description, _id } of res.data
@@ -64,19 +68,13 @@ componentDidMount () {
               <p>ID: ${_id}</p>
               </div>
               `
-            ))
+            )
+          )
           .addTo(map)
       }
     })
     .then((res) => this.setState({ locations: res.data.locations }))
-    .catch((error) =>
-      this.props.msgAlert({
-        heading: 'Sorry, ' + error.message,
-        message:
-          'The map did not load with your locations. please try refreshing the page',
-        variant: 'danger'
-      })
-    )
+    .catch((error) => console.log(error))
 
   // map.dragRotate.enable()
 
@@ -91,6 +89,10 @@ componentDidMount () {
     marker
       .setLngLat([map.getCenter().lng, map.getCenter().lat]) // map.getCenter().lat.toFixed(4)
       .addTo(map)
+  })
+
+  marker.on('click', (event) => {
+    console.log('this has been clicked \n', event)
   })
 
   // store data of marked location
