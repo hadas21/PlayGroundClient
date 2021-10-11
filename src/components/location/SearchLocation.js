@@ -21,10 +21,6 @@ handleChange = (event) =>
     location: event.target.value
   })
 
-//   componentDidMount () {
-//     const { match, user, msgAlert } = this.props
-
-//   }
 onFindLocation = (event) => {
   event.preventDefault()
 

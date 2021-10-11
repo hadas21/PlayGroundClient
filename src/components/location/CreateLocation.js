@@ -1,13 +1,10 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
-// bootstrap
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
-// api calls
 import { createLocation } from '../../api/location'
-import Users from '../map/Users'
-// messages
 import { createLocationFailure } from '../AutoDismissAlert/messages'
+import UpdatePopup from './UpdatePopup'
 
 class CreateLocation extends Component {
   constructor (props) {
@@ -40,6 +37,7 @@ onCreateLocation = (event) => {
     // empty form fields
     .then(() => this.setState({ description: '' }))
     .then(setAddress())
+    .then((res) => console.log('this is res in create location \n', res))
     .catch((err) => {
       msgAlert({
         heading: 'Location creation failed :(',
@@ -51,8 +49,7 @@ onCreateLocation = (event) => {
 }
 
 render () {
-  const { address } = this.props
-
+  const { lat, lng, address, user, msgAlert } = this.props
   const { description } = this.state
 
   return (
@@ -60,6 +57,9 @@ render () {
       <div className='col-sm-10 col-sm-8 mx-auto mt-5'>
         <Form onSubmit={this.onCreateLocation}>
           <h2>Create Location</h2>
+          <p className='lat-long' >
+            Longitude: {lng}<br />
+            Latitude: {lat}</p>
           <Form.Group controlId='location'>
             <Form.Label>Drag and drop your pin to set a location.</Form.Label>
             <Form.Control
@@ -85,14 +85,17 @@ render () {
               onChange={this.handleChange}
             />
           </Form.Group>
-
           <br />
-          <Button size='md' variant='outline-primary' type='submit'>Add</Button>
+          <Button style={{
+            backgroundColor: '#273238',
+            borderColor: 'transparent',
+            color: 'white'
+          }}
+          type='submit'>Add</Button> &nbsp;
+          {/* <br /><br /><br /><br /> */}
+          {/* <h2>Edit Location</h2><br /> */}
+          <UpdatePopup style={{ color: 'white' }} user={user} msgAlert={msgAlert} />
         </Form>
-        <br />
-        <br />
-        <h2>Other Users</h2>
-        <Users />
       </div>
     </div>
   )

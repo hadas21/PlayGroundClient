@@ -51,15 +51,24 @@ render () {
 
   return (
     <>
-      <Button variant='primary' onClick={this.handleShow}>Sign Up
+      <Button
+        style={{
+          backgroundColor: '#273238',
+          borderColor: '#273238',
+          color: 'white'
+        }}
+        onClick={this.handleShow}>Sign Up
       </Button>
-      <Modal show={this.state.show} onHide={this.handleClose}>
+      <Modal
+        aria-labelledby='contained-modal-title-vcenter'
+        centered
+        show={this.state.show}
+        onHide={this.handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Sign Up</Modal.Title>
         </Modal.Header>
 
         <Modal.Body>
-          {' '}
           <Form onSubmit={this.onSignUp}>
             <Form.Group controlId='username'>
               <Form.Label>Username</Form.Label>
@@ -99,7 +108,13 @@ render () {
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant='secondary' onClick={this.handleClose}>Close
+          <Button
+            style={{
+              backgroundColor: '#273238',
+              borderColor: 'transparent',
+              color: 'white'
+            }}
+            onClick={this.handleClose}>Close
           </Button>
         </Modal.Footer>
       </Modal>

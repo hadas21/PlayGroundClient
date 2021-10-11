@@ -1,59 +1,43 @@
 import React, { Fragment } from 'react'
 import Nav from 'react-bootstrap/Nav'
 import Navbar from 'react-bootstrap/Navbar'
-// import Button from 'react-bootstrap/Button'
+import { NavDropdown } from 'react-bootstrap'
 import { Link, NavLink } from 'react-router-dom'
 import SignIn from '../auth/SignIn'
 import SignUp from '../auth/SignUp'
-import UpdatePopup from '../location/UpdatePopup'
-
-// const authenticatedOptions = (
-//   <Fragment>
-//     <NavLink to='/change-password' className='nav-link'>Change Password
-//     </NavLink>
-//     <NavLink to='/sign-out' className='nav-link'>Sign Out</NavLink>
-//     <Button to='/map/locations/:id/edit' class='btn btn-outline-success' type='button'>Update Location
-//     </Button>
-//   </Fragment>
-// )
-
-// const unauthenticatedOptions = (
-//   <Fragment>
-//     <SignIn />
-//     <SignUp />
-//   </Fragment>
-// )
+import AboutPlayground from '../map/AboutPlayground'
+import './../../index.scss'
 
 const Header = ({ user, setUser, msgAlert }) => (
   <Navbar
-    className='custom-nav sticky-nav'
-    bg='primary'
-    variant='dark'
+    color='white'
     expand='md'>
     <Navbar.Brand>
       <Link
         to='/map'
         style={{
-          color: '#FFF',
+          color: 'white',
           textDecoration: 'none',
-          padding: '0 20px',
-          fontSize: '30px'
-        }}> Playground
+          textTransform: 'uppercase',
+          padding: '10 10px',
+          fontSize: '50px'
+        }}>
+          Playground
       </Link>
     </Navbar.Brand>
     <Navbar.Toggle aria-controls='basic-navbar-nav' />
     <Navbar.Collapse id='basic-navbar-nav'>
-      <Nav
-        className='ml-auto sticky-top'
-        style={{ padding: '0px 20px', fontSize: '18px' }}>
+      <Nav className='ml-auto'>
         {user
           ? (
             <Fragment>
-              <NavLink to='/change-password' className='nav-link'> Change Password
-              </NavLink>
-              <NavLink to='/sign-out' className='nav-link'> Sign Out
-              </NavLink>
-              <UpdatePopup user={user} setUser={setUser} msgAlert={msgAlert} />
+              <AboutPlayground />
+              <NavDropdown title='Account' id='basic-nav-dropdown'>
+                <NavLink style={{ color: 'white' }} to='/change-password' className='nav-link'> Change Password
+                </NavLink>
+                <NavLink style={{ color: 'white' }} to='/sign-out' className='nav-link'> Sign Out
+                </NavLink>
+              </NavDropdown>
             </Fragment>
           )
           : (

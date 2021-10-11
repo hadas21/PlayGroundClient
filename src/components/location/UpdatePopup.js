@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
-import { updateLocation, showLocation, deleteLocation } from '../../api/location'
-
+import { updateLocation, showLocation, deleteLocation, indexLocations } from '../../api/location'
+// import mapboxgl from '!mapbox-gl' // eslint-disable-line import/no-webpack-loader-syntax
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import Modal from 'react-bootstrap/Modal'
@@ -38,26 +38,22 @@ handleChange = (event) => {
 
 handleUpdateSubmit = (event) => {
   event.preventDefault()
-
   const { user, msgAlert } = this.props
   const data = this.state.location
-  // const id = match.params.id
 
   updateLocation(data, user)
+    .then(() => console.log('this is user in update popup: ', user))
     .then(() => this.setState({ location: { id: '', description: '' } }))
+    .then(() => indexLocations(user.token))
     .then(() => {
       msgAlert({
         heading: 'updated!',
         variant: 'success'
       })
     })
-    .catch((err) => {
-      msgAlert({
-        heading: 'location update failed :(',
-        message: err.message,
-        variant: 'danger'
-      })
-    })
+    .catch((err) => console.log(err))
+
+  indexLocations(user)
 }
 
 handleDeleteSubmit = (event) => {
@@ -65,7 +61,6 @@ handleDeleteSubmit = (event) => {
 
   const { user, msgAlert } = this.props
   const data = this.state.location
-  // const id = match.params.id
 
   deleteLocation(data.id, user)
     .then(() => this.setState({ location: { id: '' } }))
@@ -85,26 +80,28 @@ handleDeleteSubmit = (event) => {
 }
 
 render () {
-  // const { location } = this.state
-
   return (
     <>
-      <Button variant='primary' onClick={this.handleShow}>
-        Update Location
+      <Button style={{
+        backgroundColor: '#273238',
+        borderColor: 'transparent',
+        color: 'white'
+      }}
+      onClick={this.handleShow}>
+        Edit
       </Button>
-      <Modal show={this.state.show} onHide={this.handleClose}>
+      <div style={{ paddingBottom: '4em' }}></div>
+      <Modal
+        aria-labelledby='contained-modal-title-vcenter'
+        centered
+        show={this.state.show}
+        onHide={this.handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Update Location</Modal.Title>
         </Modal.Header>
 
         <Modal.Body>
           <Form onSubmit={this.handleUpdateSubmit}>
-            {/* <Form.Select aria-label='Default select example'>
-            <option>Location to Edit</option>
-            <option value='1'>One</option>
-            <option value='2'>Two</option>
-            <option value='3'>Three</option>
-          </Form.Select> */}
             <Form.Group controlId='id'>
               <Form.Label>ID</Form.Label>
               <Form.Control
@@ -126,7 +123,7 @@ render () {
               />
             </Form.Group>
             <Button
-              variant='primary'
+              color= ''
               type='submit'
               onClick={this.handleClose}>
               Update
