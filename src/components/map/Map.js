@@ -91,38 +91,6 @@ componentDidMount () {
       .addTo(map)
   })
 
-<<<<<<< HEAD
-      // transfer coords to string address
-      getAddress(lngLat.lng, lngLat.lat)
-        .then((res) => {
-          console.log(res.data)
-          this.setState({ address: res.data.features[1].place_name })
-        })
-        .catch((error) =>
-          this.props.msgAlert({
-            heading: 'Oops... ' + error.message,
-            message:
-              'There is no registered address for the selected area, please zoom in and try again',
-            variant: 'danger'
-          })
-        )
-
-      // index locations again to display new location NEED TO FIND CLEANER WAY TO DO THIS!!!
-      indexLocations(this.props.user)
-        .then((res) => {
-          console.log(res)
-          for (const { coordinates, location, description, _id } of res.data
-            .locations) {
-            new mapboxgl.Marker({ draggable: false, color: '#ffff' })
-              .setPopup(
-                new mapboxgl.Popup({ offset: 25 }).setHTML(
-                  `
-                  <div>
-                  <h4>${location}</h4>
-                  <h6>${description}</h6>
-                  <p>ID: ${_id}</p>
-                  </div>
-=======
   marker.on('click', (event) => {
     console.log('this has been clicked \n', event)
   })
@@ -158,7 +126,6 @@ componentDidMount () {
                     <h6>${description}</h6>
                     <p>ID: ${_id}</p>
                     </div>
->>>>>>> postRedesign
                   `
               )
             )
