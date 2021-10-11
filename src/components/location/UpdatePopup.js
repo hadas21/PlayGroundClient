@@ -121,9 +121,9 @@ render () {
                 placeholder='Type in your new description'
                 onChange={this.handleChange}
               />
-            </Form.Group>
+            </Form.Group><br />
             <Button
-              color= ''
+              backgroundColor='#273238'
               type='submit'
               onClick={this.handleClose}>
               Update
@@ -145,9 +145,9 @@ render () {
                 placeholder='Copy the ID the location you would like to update'
                 onChange={this.handleChange}
               />
-            </Form.Group>
+            </Form.Group><br />
             <Button
-              variant='primary'
+              backgroundColor='#273238'
               type='submit'
               onClick={this.handleClose}>
               Delete

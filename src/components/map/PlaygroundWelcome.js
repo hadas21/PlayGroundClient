@@ -27,7 +27,14 @@ render () {
         </Modal.Header>
 
         <Modal.Body>
-          <p>This app was built with the vision of connecting people across the world, sharing experiences and locations with each other, despite their distance. This is inspired by the founders, based in York and Israel. <br /><br />This is a full stack, active location. We invite you to contribute to the project by visiting our open source repository. <a href='https://github.com/ProjectPlayGroundLHA' >linked here</a></p>
+          <p>This app was built with the vision of connecting people across the world, sharing experiences and locations with each other, despite their distance. This is inspired by the founders, based in York and Israel.
+            <br />
+            <br />
+            This is a full stack, interactive app with a Mapbox integration. We invite you to contribute to the project by visiting our open source repository <a href='https://github.com/ProjectPlayGroundLHA' >linked here</a>.
+            <br />
+            <br />
+            <i>Please note that Playground currently optimized for desktop interaction. Mobile interactions are still in development and should be ready shortly.</i>
+          </p>
         </Modal.Body>
       </Modal>
     </>

@@ -5,7 +5,7 @@ import './../../index.scss'
 import { indexLocations } from '../../api/location'
 import { getAddress } from '../../api/map'
 import CreateLocation from '../location/CreateLocation'
-// import PlaygroundWelcome from './PlaygroundWelcome'
+import PlaygroundWelcome from './PlaygroundWelcome'
 
 mapboxgl.accessToken = 'pk.eyJ1IjoibGF1cmFhbHlzb24iLCJhIjoiY2tzcDJleWVkMDF0NjMxcGhwMzM1Mm1tMiJ9.27PwqNrg2-gZnMmuS1vOww'
 
@@ -137,14 +137,10 @@ componentDidMount () {
   }
 
   marker.on('dragend', onDragEnd)
-  // add search box to map
   const geocoder = new MapboxGeocoder({
     accessToken: mapboxgl.accessToken
   })
   map.addControl(geocoder)
-  // map.on('load', () => {
-  //   geocoder.query('Boston')
-  // })
 }
 
 render () {
@@ -152,9 +148,9 @@ render () {
   const { user, msgAlert } = this.props
   return (
     <div>
-      {/* <PlaygroundWelcome /> */}
+      <PlaygroundWelcome />
       <div className='row'>
-        <div className='col-lg-4 col-md-4 mb-sm-0'>
+        <div className='col-lg-4 col-md-4 mb-sm-0 gutter-form'>
           <CreateLocation
             lng={lng}
             lat={lat}

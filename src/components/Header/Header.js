@@ -7,6 +7,7 @@ import SignIn from '../auth/SignIn'
 import SignUp from '../auth/SignUp'
 import AboutPlayground from '../map/AboutPlayground'
 import './../../index.scss'
+import ChangePassword from '../auth/ChangePassword'
 
 const Header = ({ user, setUser, msgAlert }) => (
   <Navbar
@@ -20,7 +21,7 @@ const Header = ({ user, setUser, msgAlert }) => (
           textDecoration: 'none',
           textTransform: 'uppercase',
           padding: '10 10px',
-          fontSize: '50px'
+          fontSize: '2em'
         }}>
           Playground
       </Link>
@@ -33,8 +34,7 @@ const Header = ({ user, setUser, msgAlert }) => (
             <Fragment>
               <AboutPlayground />
               <NavDropdown title='Account' id='basic-nav-dropdown'>
-                <NavLink style={{ color: 'white' }} to='/change-password' className='nav-link'> Change Password
-                </NavLink>
+                <ChangePassword user={user} msgAlert={msgAlert} style={{ color: 'white' }} />
                 <NavLink style={{ color: 'white' }} to='/sign-out' className='nav-link'> Sign Out
                 </NavLink>
               </NavDropdown>

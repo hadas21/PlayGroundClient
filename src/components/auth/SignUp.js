@@ -108,6 +108,7 @@ render () {
           </Form>
         </Modal.Body>
         <Modal.Footer>
+          <br />
           <Button
             style={{
               backgroundColor: '#273238',

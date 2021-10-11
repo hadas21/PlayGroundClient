@@ -13,7 +13,6 @@
 #root {
   margin: 0;
   padding: 0;
-  background-color: #273238; 
 }
 
 ol, ul {
@@ -59,14 +58,14 @@ main.container-fluid {
   height: 90vh;
 }
 
-.container, .container-fluid, .container-sm, .container-md, .container-lg, .container-xl, .container-xxl {
-  position: absolute;
-  width: 100%;
-  padding-right: var(--bs-gutter-x, 0rem);
-  padding-left: var(--bs-gutter-x, 0rem);
-  margin-right: auto;
-  margin-left: auto;
-}
+// .container, .container-fluid, .container-sm, .container-md, .container-lg, .container-xl, .container-xxl {
+//   position: absolute;
+//   width: 100%;
+//   padding-right: var(--bs-gutter-x, 0rem);
+//   padding-left: var(--bs-gutter-x, 0rem);
+//   margin-right: auto;
+//   margin-left: auto;
+// }
 
 .lat-long {
     text-transform: uppercase;
@@ -89,17 +88,13 @@ main.container-fluid {
     border-radius: 5px;
 }
 
-.sidebar-content {
-    padding: 0;
-    margin: 0;
-}
-
 .user-name {
   border-radius: 50px;
   transition: all .2s ease-out;
 }
 
 .playground-title {
+  font-size: 4em;
   margin: 10 10;
 }
 
@@ -109,6 +104,7 @@ div.col-lg-4.mb-md-0, div.col-lg-8.mb-md-0 {
 
 nav {
   padding: 1em;
+  background-color: #273238; 
 }
 
 .button.navbar-toggler.collapsed {
@@ -150,9 +146,9 @@ div.mapboxgl-ctrl-bottom-right {
   display: none;
 }
 
-.row {
-  --bs-gutter-x: 0;
-}
+// .row {
+//   --bs-gutter-x: 0;
+// }
 
 div.mapboxgl-ctrl-top-right {
   margin-right: 1em;
@@ -160,12 +156,21 @@ div.mapboxgl-ctrl-top-right {
 
 #basic-nav-dropdown, div.dropdown-menu.show, a.nav-link {
   text-align: center;
-  background-color: transparent;
   color: white;
   border: none;
 }
 
+div.dropdown-menu.show {
+  background-color: #273238;
+  opacity: 90%;
+}
+
 @media only screen and (max-width: 767px) {
+
+  .gutter-form {
+    padding-left: 1.6em;
+  }
+
   a#basic-nav-dropdown.dropdown-toggle.nav-link, .basic-nav-dropdown, div.dropdown-menu.show {
     text-align: center;
     background-color: transparent;
