@@ -14,7 +14,7 @@ function Map (props) {
   const map = useRef(null)
   const [lng, setLng] = useState('')
   const [lat, setLat] = useState('')
-  const [setZoom] = useState('')
+  // const [setZoom] = useState('')
   const [address, setAddress] = useState('')
   // const [color] = useState('#ffff')
   // const [center, setCenter] = useState('')
@@ -28,12 +28,13 @@ function Map (props) {
       center: [-29, 32],
       zoom: 2
     })
+    console.log(map)
   })
   // display markers to show saved locations
   useEffect(() => {
     indexLocations(props.user)
       .then((res) => {
-        console.log('This is the response\n', res.data.locations)
+        // console.log('This is the response\n', res.data.locations)
 
         for (const { coordinates, location, description } of res.data
           .locations) {
@@ -52,21 +53,22 @@ function Map (props) {
             .addTo(map.current)
         }
       })
+      .then((map) => console.log(map))
       .catch((error) => console.log(error))
   })
 
   useEffect(() => {
     // drop new marker on map to select and create new location
     const marker = new mapboxgl.Marker({ color: '#ffff', draggable: true })
-      .setLngLat([map.getCenter().lng, map.getCenter().lat]) // map.getCenter().lat.toFixed(4)
-      .addTo(map)
+      .setLngLat([map.current.getCenter().lng, map.current.getCenter().lat]) // map.getCenter().lat.toFixed(4)
+      .addTo(map.current)
     // store data of marked location
     const onDragEnd = (e) => {
       // set state to marker coords
       const lngLat = marker.getLngLat()
       setLng(lngLat.lng)
       setLat(lngLat.lat)
-      setZoom(map.getZoom().toFixed(2))
+      // setZoom(map.current.getZoom().toFixed(2)) ?
 
       getAddress(lngLat.lng, lngLat.lat)
         .then((res) => {
@@ -74,9 +76,7 @@ function Map (props) {
           this.setState({ address: res.data.features[1].text })
         })
         .catch((res) =>
-          this.setState({
-            address: 'Ooops, that is the ocean! Pick somewhere on land.'
-          })
+          setAddress('Ooops, that is the ocean! Pick somewhere on land.')
         )
     }
 
