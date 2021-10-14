@@ -17,7 +17,7 @@ function Map (props) {
   // const [setZoom] = useState('')
   const [address, setAddress] = useState('')
   // const [color] = useState('#ffff')
-  // const [center, setCenter] = useState('')
+  const [created, setCreated] = useState(true)
 
   // display map
   useEffect(() => {
@@ -30,12 +30,14 @@ function Map (props) {
     })
     console.log(map)
   })
+  const onClick = (e) => console.log(e)
   // display markers to show saved locations
   useEffect(() => {
+    if (map.current._markers.length !== 0) {
+      map.current._markers = []
+    }
     indexLocations(props.user)
       .then((res) => {
-        // console.log('This is the response\n', res.data.locations)
-
         for (const { coordinates, location, description } of res.data
           .locations) {
           new mapboxgl.Marker()
@@ -53,15 +55,16 @@ function Map (props) {
             .addTo(map.current)
         }
       })
-      .then((map) => console.log(map))
       .catch((error) => console.log(error))
-  })
+  }, [created])
 
+  // drop new marker on map to select and create a new location
   useEffect(() => {
-    // drop new marker on map to select and create new location
     const marker = new mapboxgl.Marker({ color: '#ffff', draggable: true })
       .setLngLat([map.current.getCenter().lng, map.current.getCenter().lat]) // map.getCenter().lat.toFixed(4)
       .addTo(map.current)
+
+    marker.on('click', onClick)
     // store data of marked location
     const onDragEnd = (e) => {
       // set state to marker coords
@@ -72,16 +75,16 @@ function Map (props) {
 
       getAddress(lngLat.lng, lngLat.lat)
         .then((res) => {
-          console.log(res.data)
-          this.setState({ address: res.data.features[1].text })
+          console.log(res.data.features[0].text)
+          setAddress(res.data.features[0].text)
         })
-        .catch((res) =>
+        .catch(() =>
           setAddress('Ooops, that is the ocean! Pick somewhere on land.')
         )
     }
 
     marker.on('dragend', onDragEnd)
-  })
+  }, [])
 
   // empty address input after creating location
   function emptyAddress () {
@@ -100,6 +103,8 @@ function Map (props) {
             user={props.user}
             address={address}
             emptyAddress={emptyAddress}
+            setCreated={setCreated}
+            created={created}
           />
           {/* <div><p>{locations}</p></div> */}
         </div>
@@ -110,8 +115,6 @@ function Map (props) {
     </div>
   )
 }
-
-// this.interval = setInterval(() => this.setState({ time: Date.now() }), 1000)
 
 // this.setState({ mapStore: map })
 
