@@ -28,15 +28,16 @@ handleChange = (event) =>
 onCreateLocation = (event) => {
   event.preventDefault()
 
-  const { user, msgAlert, setAddress } = this.props
+  const { user, msgAlert, emptyAddress, setCreated, created } = this.props
 
   const data = this.state
 
   // send api req to create location with data from create location form
   createLocation(data, user)
-    // empty form fields
+  // empty form fields
     .then(() => this.setState({ description: '' }))
-    .then(setAddress())
+    .then(() => emptyAddress())
+    .then(() => setCreated(!created))
     .then((res) => console.log('this is res in create location \n', res))
     .catch((err) => {
       msgAlert({
