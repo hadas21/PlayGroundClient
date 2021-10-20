@@ -11,31 +11,36 @@ import ChangePassword from '../auth/ChangePassword'
 
 const Header = ({ user, setUser, msgAlert }) => (
   <Navbar
-    color='white'
-    expand='md'>
+    className='justify-content-center' color='white'>
     <Navbar.Brand>
       <Link
+        className='nav-header justify-content-center'
         to='/map'
         style={{
           color: 'white',
           textDecoration: 'none',
           textTransform: 'uppercase',
-          padding: '10 10px',
           fontSize: '2em'
-        }}>
-          Playground
+        }}>Playground
       </Link>
     </Navbar.Brand>
     <Navbar.Toggle aria-controls='basic-navbar-nav' />
     <Navbar.Collapse id='basic-navbar-nav'>
-      <Nav className='ml-auto'>
+      <Nav className='justify-content-end'>
         {user
           ? (
             <Fragment>
               <AboutPlayground />
               <NavDropdown title='Account' id='basic-nav-dropdown'>
-                <ChangePassword user={user} msgAlert={msgAlert} style={{ color: 'white' }} />
-                <NavLink style={{ color: 'white' }} to='/sign-out' className='nav-link'> Sign Out
+                <ChangePassword
+                  user={user}
+                  msgAlert={msgAlert}
+                  style={{ color: 'white' }}
+                />
+                <NavLink
+                  style={{ color: 'white' }}
+                  to='/sign-out'
+                  className='nav-link'>Sign Out
                 </NavLink>
               </NavDropdown>
             </Fragment>

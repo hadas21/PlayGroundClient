@@ -40,7 +40,7 @@ function Map (props) {
       .then((res) => {
         for (const { coordinates, location, description } of res.data
           .locations) {
-          new mapboxgl.Marker()
+          const marker = new mapboxgl.Marker()
             .setLngLat(coordinates)
             .setPopup(
               new mapboxgl.Popup({ offset: 25 }).setHTML(
@@ -53,6 +53,8 @@ function Map (props) {
               )
             )
             .addTo(map.current)
+
+          console.log(marker.getPopup())
         }
       })
       .catch((error) => console.log(error))
@@ -106,7 +108,6 @@ function Map (props) {
             setCreated={setCreated}
             created={created}
           />
-          {/* <div><p>{locations}</p></div> */}
         </div>
         <div className='col-lg-8 col-md-8 mb-sm-0'>
           <div ref={mapContainer} className='map-container'></div>

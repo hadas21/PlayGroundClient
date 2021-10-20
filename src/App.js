@@ -9,11 +9,11 @@ import AuthenticatedRoute from './components/AuthenticatedRoute/AuthenticatedRou
 // user messages
 import AutoDismissAlert from './components/AutoDismissAlert/AutoDismissAlert'
 // header logic
-import Header from './components/Header/Header'
+// import Header from './components/Header/Header'
 
 // auth CRUD
-import SignUp from './components/auth/SignUp'
-import SignIn from './components/auth/SignIn'
+// import SignUp from './components/auth/SignUp'
+// import SignIn from './components/auth/SignIn'
 import SignOut from './components/auth/SignOut'
 import ChangePassword from './components/auth/ChangePassword'
 // import Users from '../src/components/auth/Users'
@@ -24,7 +24,7 @@ import ShowLocation from './components/location/ShowLocation'
 import UpdatePopup from './components/location/UpdatePopup'
 
 // map logic
-import WelcomeMap from './components/map/WelcomeMap'
+import WelcomeMap from './components/WelcomePage/WelcomeMap'
 import Map from './components/map/Map'
 
 // mapbox
@@ -76,7 +76,7 @@ render () {
           deleteAlert={this.deleteAlert}
         />
       ))}
-      <Header
+      {/* <Header
         msgAlert={this.msgAlert}
         setUser={this.setUser}
         user={user}
@@ -93,7 +93,7 @@ render () {
             <SignIn msgAlert={this.msgAlert} setUser={this.setUser} />
           )}
         />
-      </Header>
+      </Header> */}
 
       <main className='container-fluid'>
         <Route exact path='/' render={() => <WelcomeMap />} />
