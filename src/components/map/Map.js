@@ -1,9 +1,9 @@
 import React, { useRef, useEffect, useState } from 'react'
 import mapboxgl from '!mapbox-gl' // eslint-disable-line import/no-webpack-loader-syntax
-// import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder'
+import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder'
 import './../../index.scss'
 import { indexLocations } from '../../api/location'
-import { getAddress } from '../../api/map'
+import { onDragEnd, centerDraggableMarker } from '../../functions'
 import CreateLocation from '../location/CreateLocation'
 import PlaygroundWelcome from './PlaygroundWelcome'
 
@@ -28,9 +28,8 @@ function Map (props) {
       center: [-29, 32],
       zoom: 2
     })
-    console.log(map)
   })
-  const onClick = (e) => console.log(e)
+
   // display markers to show saved locations
   useEffect(() => {
     if (map.current._markers.length !== 0) {
@@ -60,30 +59,35 @@ function Map (props) {
 
   // drop new marker on map to select and create a new location
   useEffect(() => {
-    const marker = new mapboxgl.Marker({ color: '#ffff', draggable: true })
-      .setLngLat([map.current.getCenter().lng, map.current.getCenter().lat]) // map.getCenter().lat.toFixed(4)
+    const draggableMarker = new mapboxgl.Marker({
+      color: '#ffff',
+      draggable: true
+    })
+      .setLngLat([map.current.getCenter().lng, map.current.getCenter().lat])
       .addTo(map.current)
 
-    marker.on('click', onClick)
     // store data of marked location
-    const onDragEnd = (e) => {
-      // set state to marker coords
-      const lngLat = marker.getLngLat()
-      setLng(lngLat.lng)
-      setLat(lngLat.lat)
-      // setZoom(map.current.getZoom().toFixed(2)) ?
+    draggableMarker.on('dragend', () =>
+      onDragEnd(draggableMarker, setLng, setLat, setAddress)
+    )
+    // keep draggable marker on center of map
+    map.current.on('moveend', () =>
+      centerDraggableMarker(map.current, draggableMarker)
+    )
 
-      getAddress(lngLat.lng, lngLat.lat)
-        .then((res) => {
-          console.log(res.data.features[0].text)
-          setAddress(res.data.features[0].text)
-        })
-        .catch(() =>
-          setAddress('Ooops, that is the ocean! Pick somewhere on land.')
-        )
-    }
-
-    marker.on('dragend', onDragEnd)
+    // add geoceder to search locations
+    const geocoder = new MapboxGeocoder({
+      accessToken: mapboxgl.accessToken,
+      mapboxgl: mapboxgl, // Set the mapbox-gl instance
+      marker: false, // Do not use the default marker style
+      placeholder: 'Find your favorite location'
+    })
+    map.current.addControl(geocoder)
+    console.log(map)
+    geocoder.on('result', (e) => {
+      // console.log(e.result.place_name)
+      setAddress(e.result.place_name)
+    })
   }, [])
 
   // empty address input after creating location
@@ -138,12 +142,6 @@ function Map (props) {
 //   marker.on('click', (event) => {
 //     console.log('this has been clicked \n', event)
 //   })
-
-//   const geocoder = new MapboxGeocoder({
-//     accessToken: mapboxgl.accessToken
-//   })
-//   map.addControl(geocoder)
-// }
 
 // render () {
 //   const { lng, lat, address } = this.state
