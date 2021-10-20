@@ -54,7 +54,6 @@ function Map (props) {
             .addTo(map.current)
 
           console.log(marker.getPopup())
-
         }
       })
       .catch((error) => console.log(error))
