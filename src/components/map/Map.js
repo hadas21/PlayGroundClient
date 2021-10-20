@@ -37,14 +37,14 @@ function Map (props) {
     }
     indexLocations(props.user)
       .then((res) => {
-        for (const { coordinates, location, description } of res.data
+        for (const { coordinates, location, description, _id } of res.data
           .locations) {
-          new mapboxgl.Marker()
+          const marker = new mapboxgl.Marker()
             .setLngLat(coordinates)
             .setPopup(
               new mapboxgl.Popup({ offset: 25 }).setHTML(
                 `
-                <div>
+                <div data-id="${_id}">
                 <h4>${location}</h4>
                 <h6>${description}</h6>
                 </div>
@@ -52,6 +52,7 @@ function Map (props) {
               )
             )
             .addTo(map.current)
+          console.log(marker)
         }
       })
       .catch((error) => console.log(error))
