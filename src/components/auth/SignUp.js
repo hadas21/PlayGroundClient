@@ -102,22 +102,16 @@ render () {
                 placeholder='Confirm Password'
                 onChange={this.handleChange}
               />
-            </Form.Group>
-            <Button variant='primary' type='submit'>Submit
+            </Form.Group><br />
+            <Button
+              style={{
+                backgroundColor: '#273238',
+                borderColor: 'transparent',
+                color: 'white'
+              }} type='submit'>Submit
             </Button>
           </Form>
         </Modal.Body>
-        <Modal.Footer>
-          <br />
-          <Button
-            style={{
-              backgroundColor: '#273238',
-              borderColor: 'transparent',
-              color: 'white'
-            }}
-            onClick={this.handleClose}>Close
-          </Button>
-        </Modal.Footer>
       </Modal>
     </>
   )

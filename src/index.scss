@@ -1,13 +1,19 @@
 @import '~bootstrap/scss/bootstrap';
 @import 'mapbox-gl/dist/mapbox-gl.css';
 @import '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css';
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@200;300;400;500&display=swap');
-@import url("https://use.typekit.net/uvk6qgm.css");
-@import url("https://use.typekit.net/sdy1wfw.css");
-
+@import url("https://use.typekit.net/kmh6ygf.css");
 @font-face {
   font-family: DinPro;
   src: url(./DINPro-Medium_13936.woff);
+}
+@font-face {
+  font-family: EpiceneRegular;
+  src: url(./epicene-regular.woff2);
+}
+
+@font-face {
+  font-family: EpiceneItalic;
+  src: url(./epicene-light-italic.woff2);
 }
 
 #root {
@@ -23,22 +29,101 @@ body {
   height: 100vh;
   width: 100vw;
   margin: 0;
-  font-size: 1rem;
-  font-weight: 400;
-  line-height: 1.5;
 }
 
-h1, h2, h3, h4, h5, h6, p, nav {
-font-family: DinPro;
+p, nav, form, title {
+  font-family: DinPro;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1 {
+  font-family: EpiceneRegular;
   text-transform: uppercase;
 }
 
-#basic-nav-dropdown {
+h2,h3,h4,h5,h6 {
+  font-family: EpiceneItalic;
+  letter-spacing: .15rem;
+}
+
+
+// Nav Styles
+
+.nav-header {
+  font-family: EpiceneRegular;
+  font-weight: 300;
+  font-style: normal;
+}
+
+nav {
+  padding: 1em;
+  background-color: rgb(39,50,56);
+}
+
+
+// Welcome Page 
+.welcome-header {
+  background-image: url('https://i.imgur.com/RPTtJW1.jpeg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 60vw;
+  position: relative;
   color: white;
 }
+
+.welcome-header-arrow {
+  position: absolute;                 
+  bottom: 6vw;
+  width: 5vw;                         
+  right: 6vw;
+  opacity: 100%;
+  color: white;
+  transition: transform .7s ease-in-out;
+  transform: rotate(180deg);
+}
+
+.welcome-header-arrow:hover {
+  transform: rotate(360deg);
+}
+
+.welcome-header-title {
+  display: flex;
+  flex-wrap: wrap;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.welcome-secondary {
+  padding: 2.5vw 0em;
+  justify-content: center;
+  margin: 5vw;
+  color: #626D77;
+}
+
+// Nav Link Styles
+
+#basic-nav-dropdown {
+  color: white;
+  justify-content: center;
+}
+
+#basic-nav-dropdown, div.dropdown-menu.show, a.nav-link {
+  text-align: center;
+  color: white;
+  border: none;
+  justify-content: center;
+}
+
+div.dropdown-menu.show {
+  background-color: #273238;
+  opacity: 90%;
+  justify-content: center;
+}
+
+
+
+// Map Styles
 
 #map {
   width: inherit;
@@ -57,15 +142,6 @@ main.container-fluid {
 .map-container {
   height: 90vh;
 }
-
-// .container, .container-fluid, .container-sm, .container-md, .container-lg, .container-xl, .container-xxl {
-//   position: absolute;
-//   width: 100%;
-//   padding-right: var(--bs-gutter-x, 0rem);
-//   padding-left: var(--bs-gutter-x, 0rem);
-//   margin-right: auto;
-//   margin-left: auto;
-// }
 
 .lat-long {
     text-transform: uppercase;
@@ -88,46 +164,45 @@ main.container-fluid {
     border-radius: 5px;
 }
 
-.user-name {
-  border-radius: 50px;
-  transition: all .2s ease-out;
+a.mapboxgl-ctrl-logo {
+  display: none;
 }
 
-.playground-title {
-  font-size: 4em;
-  margin: 10 10;
+div.mapboxgl-ctrl-bottom-right {
+  display: none;
 }
+
+div.mapboxgl-ctrl-top-right {
+  margin-right: 1em;
+}
+
+
+
+// Playground Column Style 
 
 div.col-lg-4.mb-md-0, div.col-lg-8.mb-md-0 {
   padding: 0px;
-}
-
-nav {
-  padding: 1em;
-  background-color: #273238; 
 }
 
 .button.navbar-toggler.collapsed {
   color: white
 }
 
+
+// Footer Styles
+
 footer {
   background-color: #273238;
-  padding: 1.6em;
+  padding: 4vw;
   bottom: 0;
   width: 100vw;
   font-size: .8em;
   overflow: hidden;
-  margin: 0;
 }
 
 footer.text-white.row, section {
   background-color: #273238;
   width: 100vw;
-}
-
-a.mapboxgl-ctrl-logo {
-  display: none;
 }
 
 a.text-white {
@@ -142,30 +217,13 @@ a.text-white {
   text-align: right;
 }
 
-div.mapboxgl-ctrl-bottom-right {
-  display: none;
-}
 
-// .row {
-//   --bs-gutter-x: 0;
-// }
-
-div.mapboxgl-ctrl-top-right {
-  margin-right: 1em;
-}
-
-#basic-nav-dropdown, div.dropdown-menu.show, a.nav-link {
-  text-align: center;
-  color: white;
-  border: none;
-}
-
-div.dropdown-menu.show {
-  background-color: #273238;
-  opacity: 90%;
-}
 
 @media only screen and (max-width: 767px) {
+
+  .welcome-header {
+    height: 80vw;
+  }
 
   .gutter-form {
     padding-left: 1.6em;

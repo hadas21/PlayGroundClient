@@ -16,7 +16,6 @@ import SignUp from './components/auth/SignUp'
 import SignIn from './components/auth/SignIn'
 import SignOut from './components/auth/SignOut'
 import ChangePassword from './components/auth/ChangePassword'
-// import Users from '../src/components/auth/Users'
 
 // location CRUD
 import ShowLocation from './components/location/ShowLocation'
@@ -24,7 +23,7 @@ import ShowLocation from './components/location/ShowLocation'
 import UpdatePopup from './components/location/UpdatePopup'
 
 // map logic
-import WelcomeMap from './components/map/WelcomeMap'
+import WelcomeMap from './components/WelcomePage/WelcomeMap'
 import Map from './components/map/Map'
 
 // mapbox
