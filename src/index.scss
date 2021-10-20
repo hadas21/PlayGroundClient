@@ -29,7 +29,6 @@ body {
   height: 100vh;
   width: 100vw;
   margin: 0;
-  color: white;
 }
 
 p, nav, form, title {
@@ -47,7 +46,6 @@ h2,h3,h4,h5,h6 {
 }
 
 
-
 // Nav Styles
 
 .nav-header {
@@ -58,7 +56,7 @@ h2,h3,h4,h5,h6 {
 
 nav {
   padding: 1em;
-  background-color: #273238; 
+  background-color: rgb(39,50,56);
 }
 
 
@@ -70,6 +68,7 @@ nav {
   background-size: cover;
   height: 60vw;
   position: relative;
+  color: white;
 }
 
 .welcome-header-arrow {
@@ -106,17 +105,20 @@ nav {
 
 #basic-nav-dropdown {
   color: white;
+  justify-content: center;
 }
 
 #basic-nav-dropdown, div.dropdown-menu.show, a.nav-link {
   text-align: center;
   color: white;
   border: none;
+  justify-content: center;
 }
 
 div.dropdown-menu.show {
   background-color: #273238;
   opacity: 90%;
+  justify-content: center;
 }
 
 
@@ -218,6 +220,10 @@ a.text-white {
 
 
 @media only screen and (max-width: 767px) {
+
+  .welcome-header {
+    height: 80vw;
+  }
 
   .gutter-form {
     padding-left: 1.6em;
