@@ -99,10 +99,6 @@ render () {
             </Button>
           </Form>
         </Modal.Body>
-        <Modal.Footer>
-          <Button variant='secondary' onClick={this.handleClose}>Close
-          </Button>
-        </Modal.Footer>
       </Modal>
     </>
   )
