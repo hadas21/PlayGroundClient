@@ -50,7 +50,7 @@ render () {
     <>
       <Button
         style={{
-          backgroundColor: '#273238',
+          backgroundColor: 'transparent',
           borderColor: 'transparent',
           color: 'white'
         }}
@@ -77,7 +77,7 @@ render () {
                 placeholder='Enter username'
                 onChange={this.handleChange}
               />
-            </Form.Group>
+            </Form.Group><br />
             <Form.Group controlId='password'>
               <Form.Label>Password</Form.Label>
               <Form.Control

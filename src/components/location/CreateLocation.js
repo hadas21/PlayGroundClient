@@ -56,11 +56,19 @@ render () {
   return (
     <div className='row'>
       <div className='col-sm-10 col-sm-8 mx-auto mt-5'>
+        <h2 style={{ textTransform: 'capitalize' }}>Welcome, {user.username}!
+        </h2>
+        <p>
+            Start by adding pins, or checkout the pins
+            you&apos;ve already created.
+        </p>
+        <div style={{ margin: '4vw' }}>
+        </div>
         <Form onSubmit={this.onCreateLocation}>
           <h2>Create Location</h2>
-          <p className='lat-long' >
-            Longitude: {lng}<br />
-            Latitude: {lat}</p>
+          <p className='lat-long'>Longitude: {lng}
+            <br />Latitude: {lat}
+          </p>
           <Form.Group controlId='location'>
             <Form.Label>Drag and drop your pin to set a location.</Form.Label>
             <Form.Control
@@ -75,7 +83,8 @@ render () {
           </Form.Group>
           <Form.Group controlId='description'>
             <br />
-            <Form.Label variant='primary'>What makes this place so great?</Form.Label>
+            <Form.Label variant='primary'>What makes this place so great?
+            </Form.Label>
             <Form.Control
               size='sm'
               required
@@ -87,15 +96,21 @@ render () {
             />
           </Form.Group>
           <br />
-          <Button style={{
-            backgroundColor: '#273238',
-            borderColor: 'transparent',
-            color: 'white'
-          }}
-          type='submit'>Add</Button> &nbsp;
+          <Button
+            style={{
+              backgroundColor: '#273238',
+              borderColor: 'transparent',
+              color: 'white'
+            }}
+            type='submit'>Add
+          </Button> &nbsp;
           {/* <br /><br /><br /><br /> */}
           {/* <h2>Edit Location</h2><br /> */}
-          <UpdatePopup style={{ color: 'white' }} user={user} msgAlert={msgAlert} />
+          <UpdatePopup
+            style={{ color: 'white' }}
+            user={user}
+            msgAlert={msgAlert}
+          />
         </Form>
       </div>
     </div>

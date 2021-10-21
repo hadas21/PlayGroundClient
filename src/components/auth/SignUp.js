@@ -53,8 +53,8 @@ render () {
     <>
       <Button
         style={{
-          backgroundColor: '#273238',
-          borderColor: '#273238',
+          backgroundColor: 'transparent',
+          borderColor: 'transparent',
           color: 'white'
         }}
         onClick={this.handleShow}>Sign Up
@@ -80,7 +80,7 @@ render () {
                 placeholder='Enter username'
                 onChange={this.handleChange}
               />
-            </Form.Group>
+            </Form.Group><br />
             <Form.Group controlId='password'>
               <Form.Label>Password</Form.Label>
               <Form.Control
@@ -91,7 +91,7 @@ render () {
                 placeholder='Password'
                 onChange={this.handleChange}
               />
-            </Form.Group>
+            </Form.Group><br />
             <Form.Group controlId='passwordConfirmation'>
               <Form.Label>Password Confirmation</Form.Label>
               <Form.Control

@@ -74,7 +74,7 @@ render () {
         <Modal.Body>
           <Form onSubmit={this.onChangePassword}>
             <Form.Group controlId='oldPassword'>
-              <Form.Label>Old password</Form.Label>
+              <Form.Label>Old Password</Form.Label>
               <Form.Control
                 required
                 name='oldPassword'
@@ -83,7 +83,7 @@ render () {
                 placeholder='Old Password'
                 onChange={this.handleChange}
               />
-            </Form.Group>
+            </Form.Group><br />
             <Form.Group controlId='newPassword'>
               <Form.Label>New Password</Form.Label>
               <Form.Control
@@ -94,14 +94,10 @@ render () {
                 placeholder='New Password'
                 onChange={this.handleChange}
               />
-            </Form.Group>
-            <Button backgroundColor='#273238' type='submit'>Submit</Button>
+            </Form.Group><br />
+            <Button backgroundColor='#273238' variant='secondary' type='submit'>Submit</Button>
           </Form>
         </Modal.Body>
-        <Modal.Footer><br />
-          <br /><Button variant='secondary' onClick={this.handleClose}>Close
-          </Button>
-        </Modal.Footer>
       </Modal>
     </>
   )

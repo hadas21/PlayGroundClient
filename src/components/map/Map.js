@@ -5,7 +5,6 @@ import './../../index.scss'
 import { indexLocations } from '../../api/location'
 import { onDragEnd, centerDraggableMarker } from '../../functions'
 import CreateLocation from '../location/CreateLocation'
-import PlaygroundWelcome from './PlaygroundWelcome'
 
 mapboxgl.accessToken = 'pk.eyJ1IjoibGF1cmFhbHlzb24iLCJhIjoiY2tzcDJleWVkMDF0NjMxcGhwMzM1Mm1tMiJ9.27PwqNrg2-gZnMmuS1vOww'
 
@@ -62,7 +61,7 @@ function Map (props) {
   // drop new marker on map to select and create a new location
   useEffect(() => {
     const draggableMarker = new mapboxgl.Marker({
-      color: '#ffff',
+      color: '#273238',
       draggable: true
     })
       .setLngLat([map.current.getCenter().lng, map.current.getCenter().lat])
@@ -99,7 +98,6 @@ function Map (props) {
 
   return (
     <div>
-      <PlaygroundWelcome />
       <div className='row'>
         <div className='col-lg-4 col-md-4 mb-sm-0 gutter-form'>
           <CreateLocation
@@ -120,35 +118,5 @@ function Map (props) {
     </div>
   )
 }
-
-// this.setState({ mapStore: map })
-
-// const { color } = this.state
-
-// get saved locations to display markers on map
-
-// map.dragRotate.enable()
-
-//   // drop new draggable marker to create new location
-//
-//   // keep only one draggable marker on map
-//   map.on('moveend', () => {
-//     marker.remove()
-
-//     marker
-//       .setLngLat([map.getCenter().lng, map.getCenter().lat]) // map.getCenter().lat.toFixed(4)
-//       .addTo(map)
-//   })
-
-//   marker.on('click', (event) => {
-//     console.log('this has been clicked \n', event)
-//   })
-
-// render () {
-//   const { lng, lat, address } = this.state
-//   const { user, msgAlert } = this.props
-
-// }
-// }
 
 export default Map
