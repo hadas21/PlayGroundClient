@@ -26,7 +26,7 @@ const Header = ({ user, setUser, msgAlert }) => (
                       color: 'white',
                       textDecoration: 'none',
                       textTransform: 'uppercase',
-                      fontSize: '4vw'
+                      fontSize: '4.2vw'
                     }}> Playground
                   </Link>
                 </Navbar.Brand>

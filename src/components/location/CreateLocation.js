@@ -73,6 +73,7 @@ render () {
             <Form.Label>Drag and drop your pin to set a location.</Form.Label>
             <Form.Control
               size='sm'
+              style={{ width: '95%' }}
               required
               type='text'
               name='location'
@@ -88,6 +89,7 @@ render () {
             <Form.Control
               size='sm'
               required
+              style={{ width: '95%' }}
               name='description'
               value={description}
               type='text'
