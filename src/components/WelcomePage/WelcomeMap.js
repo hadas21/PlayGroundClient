@@ -32,7 +32,7 @@ class WelcomeMap extends Component {
         <div className='welcome-secondary row'>
           <div className='col-lg-6 col-md-12 col-sm-12'>
             <h2 style={{ lineHeight: '.8em' }}>About</h2>
-            <h1 style={{ fontSize: '3em', color: '#16212B' }}>Playground</h1>
+            <h1 style={{ fontSize: '2.8em', color: '#16212B' }}>Playground</h1>
             <br />
           </div>
           <br />

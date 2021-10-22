@@ -14,26 +14,26 @@ const Header = ({ user, setUser, msgAlert }) => (
       <Navbar.Toggle aria-controls='basic-navbar-nav' />
       <Navbar.Collapse id='basic-navbar-nav'>
         <Nav>
-          <Navbar.Brand>
-            <Link
-              className='nav-header'
-              to='/map'
-              style={{
-                color: 'white',
-                textDecoration: 'none',
-                textTransform: 'uppercase',
-                fontSize: '2em'
-              }}> Playground
-            </Link>
-          </Navbar.Brand>
+
           {user
             ? (
               <Fragment>
+                <Navbar.Brand>
+                  <Link
+                    className='nav-header'
+                    to='/map'
+                    style={{
+                      color: 'white',
+                      textDecoration: 'none',
+                      textTransform: 'uppercase',
+                      fontSize: '4vw'
+                    }}> Playground
+                  </Link>
+                </Navbar.Brand>
                 {/* <AboutPlayground /> */}
                 <ChangePassword
                   user={user}
                   msgAlert={msgAlert}
-                  style={{ color: 'white' }}
                 />
                 <NavLink
                   style={{ color: 'white' }}
