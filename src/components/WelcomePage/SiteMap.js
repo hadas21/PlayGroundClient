@@ -35,7 +35,7 @@ class SiteMap extends Component {
 
     return (
       <div className="sitemap row">
-        <div className="col-lg-6 col-md-7 col-sm-12">
+        <div className="col-lg-6 col-md-7 col-sm-12" style={{ alignContent: 'left', padding: '0px 0px 3em 0px' }}>
           <div className="image-indicators">
             <input onClick={this.handlePopups} type="checkbox" className="point" id="point-1" name="point" value="1"/>
             <input onClick={this.handleSearch} type="checkbox" className="point" id="point-2" name="point" value="2"/>
