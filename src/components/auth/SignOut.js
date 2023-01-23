@@ -1,20 +1,20 @@
-import { Component } from 'react'
-import { withRouter } from 'react-router-dom'
+import { Component } from "react";
+import { withRouter } from "react-router-dom";
 
-import { signOut } from '../../api/auth'
+import { signOut } from "../../api/auth";
 
 class SignOut extends Component {
-  componentDidMount () {
-    const { history, clearUser, user } = this.props
+  componentDidMount() {
+    const { history, clearUser, user } = this.props;
 
     signOut(user)
-      .finally(() => history.push('/'))
-      .finally(() => clearUser())
+      .finally(() => history.push("/"))
+      .finally(() => clearUser());
   }
 
-  render () {
-    return ''
+  render() {
+    return "";
   }
 }
 
-export default withRouter(SignOut)
+export default withRouter(SignOut);

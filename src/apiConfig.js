@@ -1,13 +1,13 @@
-let apiUrl
+let apiUrl;
 const apiUrls = {
-  production: 'https://mysterious-plains-31294.herokuapp.com',
-  development: 'http://localhost:4741'
-}
+  production: "https://mysterious-plains-31294.herokuapp.com",
+  development: "http://localhost:4741",
+};
 
-if (window.location.hostname === 'localhost') {
-  apiUrl = apiUrls.development
+if (window.location.hostname === "localhost") {
+  apiUrl = apiUrls.development;
 } else {
-  apiUrl = apiUrls.production
+  apiUrl = apiUrls.production;
 }
 
-export default apiUrl
+export default apiUrl;

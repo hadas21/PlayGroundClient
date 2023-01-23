@@ -1,35 +1,60 @@
-import React, { Component } from 'react'
-import { withRouter } from 'react-router-dom'
-import './../../index.scss'
+import React, { Component } from "react";
+import { withRouter } from "react-router-dom";
+import "./../../index.scss";
 
 class SignUp extends Component {
-  constructor (props) {
-    super(props)
+  constructor(props) {
+    super(props);
 
-    this.state = {}
+    this.state = {};
   }
 
-  render () {
+  render() {
     return (
       <section>
-        <footer
-          className='text-white row'>
-          <div className='row'></div>
-          <div className='text-left col-6 hover-text'>
+        <footer className="text-white row">
+          <div className="row"></div>
+          <div className="text-left col-6 hover-text">
             <h3>Discover</h3>
-            <a className='text-white' href='https://www.mapbox.com/'>Mapbox</a><br />
-            <a className='text-white' href='https://github.com/ProjectPlayGroundLHA/PlayGroundClient/blob/main/ApiDocumentation.md'>Documentation</a>
+            <a className="text-white" href="https://www.mapbox.com/">
+              Mapbox
+            </a>
+            <br />
+            <a
+              className="text-white"
+              href="https://github.com/ProjectPlayGroundLHA/PlayGroundClient/blob/main/ApiDocumentation.md"
+            >
+              Documentation
+            </a>
           </div>
-          <div className='text-right col-6 hover-text'>
+          <div className="text-right col-6 hover-text">
             <h3>About</h3>
-            <a className='text-white' href='https://github.com/ProjectPlayGroundLHA'>Github</a><br />
-            <a className='text-white' href='https://github.com/ProjectPlayGroundLHA/PlayGroundClient'>Source Code</a><br />
-            <a className='text-white' href='https://github.com/ProjectPlayGroundLHA/PlayGroundApi'>API</a><br />
+            <a
+              className="text-white"
+              href="https://github.com/ProjectPlayGroundLHA"
+            >
+              Github
+            </a>
+            <br />
+            <a
+              className="text-white"
+              href="https://github.com/ProjectPlayGroundLHA/PlayGroundClient"
+            >
+              Source Code
+            </a>
+            <br />
+            <a
+              className="text-white"
+              href="https://github.com/ProjectPlayGroundLHA/PlayGroundApi"
+            >
+              API
+            </a>
+            <br />
           </div>
         </footer>
       </section>
-    )
+    );
   }
 }
 
-export default withRouter(SignUp)
+export default withRouter(SignUp);

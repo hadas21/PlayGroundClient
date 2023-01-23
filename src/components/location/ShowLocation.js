@@ -1,49 +1,49 @@
-import React, { Component } from 'react'
-import { withRouter } from 'react-router-dom'
+import React, { Component } from "react";
+import { withRouter } from "react-router-dom";
 // API request
-import { showLocation, deleteLocation } from '../../api/location'
-import { showLocationFailure } from '../AutoDismissAlert/messages'
-import Button from 'react-bootstrap/Button'
+import { showLocation, deleteLocation } from "../../api/location";
+import { showLocationFailure } from "../AutoDismissAlert/messages";
+import Button from "react-bootstrap/Button";
 
 class ShowLocation extends Component {
-  constructor (props) {
-    super(props)
+  constructor(props) {
+    super(props);
 
     this.state = {
-      location: null
-    }
+      location: null,
+    };
   }
 
-  componentDidMount () {
-    const { match, user, msgAlert } = this.props
+  componentDidMount() {
+    const { match, user, msgAlert } = this.props;
 
     showLocation(match.params.id, user)
       .then((res) => this.setState({ location: res.data.location }))
       .catch((err) =>
         msgAlert({
-          heading: 'Show location failed :(',
+          heading: "Show location failed :(",
           message: showLocationFailure + err.message,
-          variant: 'danger'
+          variant: "danger",
         })
-      )
+      );
   }
 
   handleDelete = (event) => {
-    const { match, user, history } = this.props
+    const { match, user, history } = this.props;
     deleteLocation(match.params.id, user)
-    // Redirect to the list of locations
-      .then(() => history.push('/map/locations'))
-      .catch((err) => console.log(err))
-  }
+      // Redirect to the list of locations
+      .then(() => history.push("/map/locations"))
+      .catch((err) => console.log(err));
+  };
 
-  render () {
+  render() {
     if (this.state.location === null) {
-      return 'Loading...'
+      return "Loading...";
     }
 
     // Get the owner (a user id) from the movie state
-    const { location, description, owner } = this.state.location
-    const { user, history, match } = this.props
+    const { location, description, owner } = this.state.location;
+    const { user, history, match } = this.props;
     // history, match
 
     return (
@@ -59,14 +59,17 @@ class ShowLocation extends Component {
             </Button> */}
 
             <Button
-              onClick={() => history.push(`/map/locations/${match.params.id}/edit`)}>
+              onClick={() =>
+                history.push(`/map/locations/${match.params.id}/edit`)
+              }
+            >
               Update
             </Button>
           </>
         )}
       </>
-    )
+    );
   }
 }
 
-export default withRouter(ShowLocation)
+export default withRouter(ShowLocation);

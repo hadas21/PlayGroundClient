@@ -1,21 +1,21 @@
-import React, { Component } from 'react'
-import { withRouter } from 'react-router-dom'
-import Carousel from 'react-bootstrap/Carousel'
+import React, { Component } from "react";
+import { withRouter } from "react-router-dom";
+import Carousel from "react-bootstrap/Carousel";
 
 class CarouselGallery extends Component {
-  constructor (props) {
-    super(props)
+  constructor(props) {
+    super(props);
 
-    this.state = {}
+    this.state = {};
   }
 
-  render () {
+  render() {
     return (
       <>
         <Carousel fade>
           <Carousel.Item>
             <img
-              width='100%'
+              width="100%"
               className="d-block w-100"
               src="https://i.imgur.com/CTLT5Pa.png"
               alt="First slide"
@@ -27,7 +27,7 @@ class CarouselGallery extends Component {
           </Carousel.Item>
           <Carousel.Item>
             <img
-              width='100%'
+              width="100%"
               className="d-block w-100"
               src="https://i.imgur.com/KMOxj9A.png"
               alt="Second slide"
@@ -40,7 +40,7 @@ class CarouselGallery extends Component {
           </Carousel.Item>
           <Carousel.Item>
             <img
-              width='100%'
+              width="100%"
               className="d-block w-100"
               src="https://i.imgur.com/gSqbUQu.png"
               alt="Third slide"
@@ -54,7 +54,7 @@ class CarouselGallery extends Component {
 
           <Carousel.Item>
             <img
-              width='100%'
+              width="100%"
               className="d-block w-100"
               src="https://i.imgur.com/mShIwxN.png"
               alt="Fourth slide"
@@ -68,7 +68,7 @@ class CarouselGallery extends Component {
 
           <Carousel.Item>
             <img
-              width='100%'
+              width="100%"
               className="d-block w-100"
               src="https://i.imgur.com/Jb3Ds81.png"
               alt="Fifth slide"
@@ -81,8 +81,8 @@ class CarouselGallery extends Component {
           </Carousel.Item>
         </Carousel>
       </>
-    )
+    );
   }
 }
 
-export default withRouter(CarouselGallery)
+export default withRouter(CarouselGallery);
