@@ -1,6 +1,6 @@
 let apiUrl;
 const apiUrls = {
-  production: "https://mysterious-plains-31294.herokuapp.com",
+  production: "https://play-ground-api.onrender.com",
   development: "http://localhost:4741",
 };
 
