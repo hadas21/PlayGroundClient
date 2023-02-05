@@ -11,10 +11,23 @@
   },
   "rules": {
     "prefer-const": "error",
+    "comma-dangle": [
+      "error",
+      {
+        "arrays": "never",
+        "objects": "always-multiline",
+        "imports": "always-multiline",
+        "exports": "never",
+        "functions": "never"
+      }
+    ],
     "no-var": "error",
-    "semi": ["error", "never"],
-    "quotes": ["error", "single"],
+    "semi": ["error", "always", { "omitLastInOneLineBlock": false }],
+    "quotes": [2, "double", { "avoidEscape": true }],
     "indent": ["error", 2],
-    "react/prop-types": [0]
+    "space-before-function-paren": ["error", "never"],
+    "react/prop-types": [0],
+    "multiline-ternary": ["error", "never"],
+    "operator-linebreak": ["error", "after"]
   }
 }
