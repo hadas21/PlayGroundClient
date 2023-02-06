@@ -4,10 +4,10 @@ const apiUrls = {
   development: "http://localhost:4741",
 };
 
-if (window.location.hostname === "localhost") {
-  apiUrl = apiUrls.development;
-} else {
+if (process.env.NODE_ENV === "production") {
   apiUrl = apiUrls.production;
+} else {
+  apiUrl = apiUrls.development;
 }
 
 export default apiUrl;
