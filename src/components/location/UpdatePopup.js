@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import {
   updateLocation,
-  showLocation,
+  // showLocation,
   deleteLocation,
   indexLocations,
 } from "../../api/location";
@@ -25,11 +25,13 @@ class UpdatePopup extends Component {
 
   componentDidMount() {
     // one of the automatic router props we get is the match object - that has data about the params in our front-end route url
-    const { match, user } = this.props;
+    const { match } = this.props;
 
-    showLocation(match.params.id, user)
-      .then((res) => this.setState({ location: res.data.location }))
-      .catch((err) => console.log(err));
+    console.log("<<<<<<<<<<<", match.params);
+
+    //   showLocation(match.params.id, user)
+    //     .then((res) => this.setState({ location: res.data.location }))
+    //     .catch((err) => console.log(err));
   }
 
   handleClose = () => this.setState({ show: false });
